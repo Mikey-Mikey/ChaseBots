@@ -7,6 +7,10 @@ include("shared.lua")
 include("sh_roundhandler.lua")
 include("sv_hooks.lua")
 
+SetGlobalBool("RoundRunning", false)
+SetGlobalFloat("RoundStartTime", 0)
+SetGlobalFloat("CurrentRoundTime", GAMEMODE.BASE_ROUND_TIME)
+
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
     navareas = FilterTable(navareas, function(area)
@@ -27,15 +31,14 @@ end
 function GM:StartRound()
     game.CleanUpMap( false, { "env_fire", "entityflame", "_firesmoke" } )
 
-    GAMEMODE.RoundRunning = true
-    GAMEMODE.RoundStartTime = RealTime()
-    GAMEMODE.CurrentRoundTime = GAMEMODE.BASE_ROUND_TIME
+    SetGlobalBool("RoundRunning", true)
+    SetGlobalFloat("RoundStartTime", RealTime())
+    SetGlobalFloat("CurrentRoundTime", GAMEMODE.BASE_ROUND_TIME)
 
     print("Round Started")
 
     for i, ply in ipairs(player.GetAll()) do
         ply:Spawn()
-        GAMEMODE.AlivePlayers[ply] = true
     end
 
     GAMEMODE.CurrentNextbots = {}
@@ -50,4 +53,11 @@ function GM:StartRound()
         bot:Spawn()
         GAMEMODE.CurrentNextbots[#GAMEMODE.CurrentNextbots + 1] = bot
     end
+end
+
+function GM:EndRound()
+    GAMEMODE.RoundRunning = false
+    timer.Create("RestartRound", 3, 1, function()
+        GAMEMODE:StartRound()
+    end)
 end

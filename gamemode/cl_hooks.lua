@@ -1,9 +1,8 @@
 hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
-    if ply:GetObserverMode() ~= OBS_MODE_NONE then
-
+    if not ply:Alive() then
         if not ply.deathEyePos then
             ply.deathEyePos = ply:GetPos() + Vector(0,0,72)
-            timer.Simple(0.05, function()
+            timer.Simple(0.05, function() -- waits for 0.05 seconds and then sets the players eye angles to the velocity direction angle
                 local eyeAng = ply:GetVelocity():Angle()
                 eyeAng.p = 0
                 ply:SetEyeAngles(eyeAng)
@@ -21,7 +20,8 @@ hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
             move = move * 600 * FrameTime() * (1 + (ply:KeyDown(IN_SPEED) and 1 or 0)) / (1 + (ply:KeyDown(IN_WALK) and 1 or 0))
         end
         move:Rotate(angles)
-        if not gui.IsGameUIVisible() and not ply:IsTyping() then
+
+        if not gui.IsGameUIVisible() and not ply:IsTyping() then -- only apply movement if player is focusing the actual game instead of ui
             ply.deathEyePos = ply.deathEyePos + move
         end
 
