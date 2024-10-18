@@ -46,6 +46,14 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
 end)
 
+gameevent.Listen( "player_connect" )
+hook.Add("player_connect", "AnnounceConnection", function( data )
+    local ply = Player(data.userid)
+    if GAMEMODE.RoundRunning and SERVER then
+        victim:Spectate(OBS_MODE_CHASE)
+    end
+end)
+
 function CreateRagdollFromPlayer(ply)
     local ragdoll = ents.Create("prop_ragdoll")
     ragdoll:SetPos(ply:GetPos())
@@ -78,7 +86,6 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
 
     if SERVER then
         victim:Spectate(OBS_MODE_CHASE)
-        victim:SpectateEntity(attacker)
         local deathRagdoll = CreateRagdollFromPlayer(victim)
     end
 
