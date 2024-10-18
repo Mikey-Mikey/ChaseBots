@@ -46,16 +46,6 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
 end)
 
-gameevent.Listen("player_activate")
-hook.Add("player_activate", "PlayerFirstSpawned", function( data )
-    local ply = Player(data.userid)
-    if GAMEMODE.RoundRunning and SERVER then
-        print(ply, "Connected and spawned as spectator!")
-        ply:Spectate(OBS_MODE_CHASE)
-        ply:SpectateEntity(ply)
-    end
-end)
-
 function CreateRagdollFromPlayer(ply)
     local ragdoll = ents.Create("prop_ragdoll")
     ragdoll:SetPos(ply:GetPos())

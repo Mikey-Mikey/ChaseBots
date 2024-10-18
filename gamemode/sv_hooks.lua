@@ -13,6 +13,13 @@ hook.Add("InitPostEntity", "", function()
     navmesh.Load()
 end)
 
+hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
+    if GAMEMODE.RoundRunning then
+        ply:Spectate(OBS_MODE_CHASE)
+        ply:SpectateEntity(ply)
+    end
+end)
+
 hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
     return true
 end)
