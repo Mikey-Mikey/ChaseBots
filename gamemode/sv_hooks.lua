@@ -14,6 +14,7 @@ hook.Add("InitPostEntity", "", function()
 end)
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
+    print(GAMEMODE.RoundRunning, ply)
     if GAMEMODE.RoundRunning then
         ply:Spectate(OBS_MODE_CHASE)
         ply:SpectateEntity(ply)
