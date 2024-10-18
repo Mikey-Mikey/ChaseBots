@@ -24,13 +24,16 @@ function CreateRagdollFromPlayer(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
+    if GetGlobalBool("RoundRunning", false) then
+        timer.Simple(0.02, function()
+            ply:KillSilent()
+            ply:Spectate(OBS_MODE_CHASE)
+            ply:SpectateEntity(ply)
+        end)
+    end
+
     if player.GetCount() <= 1 and not GetGlobalBool("RoundRunning", false) then
         GAMEMODE:StartRound()
-    end
-    if GetGlobalBool("RoundRunning", false) then
-        ply:KillSilent()
-        ply:Spectate(OBS_MODE_CHASE)
-        ply:SpectateEntity(ply)
     end
 end)
 
