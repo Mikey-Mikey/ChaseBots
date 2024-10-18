@@ -1,0 +1,8 @@
+"chasebots"
+{
+	"base"		    "base"
+	"title"		    "Chase Bots"
+	"category"	    "pve"
+	"menusystem"	"1"
+	"workshopid"	""
+}
