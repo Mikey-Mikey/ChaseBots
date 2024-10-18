@@ -31,7 +31,7 @@ function GM:StartRound()
 
     SetGlobalBool("RoundRunning", true)
     SetGlobalFloat("RoundStartTime", RealTime())
-    SetGlobalFloat("CurrentRoundTime", GAMEMODE.BASE_ROUND_TIME)
+    SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("BASE_ROUND_TIME", 300))
 
     print("Round Started")
 

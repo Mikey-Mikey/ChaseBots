@@ -37,7 +37,7 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
 
     navmesh.Load()
 
-    if player.GetCount() > 0 and not GAMEMODE.RoundRunning then
+    if player.GetCount() > 0 and not GetGlobalBool("RoundRunning", false) then
         GAMEMODE:StartRound()
     end
 end)
@@ -64,8 +64,8 @@ end)
 
 hook.Add("Tick", "RoundTimer", function()
     if GetGlobalBool("RoundRunning", false) then
-        SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("RoundStartTime", 0) - RealTime() + GAMEMODE.BASE_ROUND_TIME)
-        if GetGlobalBool("CurrentRoundTime", 0) <= 0 then
+        SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("RoundStartTime", 0) - RealTime() + GetGlobalFloat("BASE_ROUND_TIME", 300))
+        if GetGlobalFloat("CurrentRoundTime", 0) <= 0 then
             GAMEMODE:EndRound()
         end
     end
