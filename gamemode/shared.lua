@@ -39,7 +39,7 @@ end)
 gameevent.Listen("player_spawn")
 hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local ply = Player(data.userid)
-    if CLIENT or ply:GetObserverMode() ~= OBS_MODE_NONE then return end
+    if not GAMEMODE.AlivePlayers[ply] then return end
     ply:SetShouldServerRagdoll(true)
     ply:SetModel("models/player/group01/male_07.mdl")
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
@@ -50,7 +50,8 @@ gameevent.Listen( "player_connect" )
 hook.Add("player_connect", "PlayerConnect", function( data )
     local ply = Player(data.userid)
     if GAMEMODE.RoundRunning and SERVER then
-        victim:Spectate(OBS_MODE_CHASE)
+        ply:Spectate(OBS_MODE_CHASE)
+        ply:SpectateEntity(ply)
     end
 end)
 
@@ -86,6 +87,7 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
 
     if SERVER then
         victim:Spectate(OBS_MODE_CHASE)
+        victim:SpectateEntity(victim)
         local deathRagdoll = CreateRagdollFromPlayer(victim)
     end
 
