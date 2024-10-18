@@ -1,16 +1,11 @@
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("sh_roundhandler.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("cl_hooks.lua")
 AddCSLuaFile("cl_hud.lua")
-AddCSLuaFile("sh_roundhandler.lua")
 include("shared.lua")
 include("sh_roundhandler.lua")
 include("sv_hooks.lua")
-
-resource.AddFile("*.vmt")
-resource.AddFile("*.wav")
-resource.AddFile("*.mp3")
-resource.AddFile("*.ogg")
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
