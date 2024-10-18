@@ -46,8 +46,8 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
 end)
 
-gameevent.Listen( "player_connect" )
-hook.Add("player_connect", "PlayerConnect", function( data )
+gameevent.Listen("player_activate")
+hook.Add("player_activate", "PlayerFirstSpawned", function( data )
     local ply = Player(data.userid)
     if GAMEMODE.RoundRunning and SERVER then
         ply:Spectate(OBS_MODE_CHASE)
