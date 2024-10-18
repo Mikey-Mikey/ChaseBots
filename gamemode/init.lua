@@ -6,10 +6,10 @@ AddCSLuaFile("cl_hud.lua")
 include("shared.lua")
 include("sh_roundhandler.lua")
 include("sv_hooks.lua")
-
+SetGlobalFloat("BASE_ROUND_TIME", 300)
 SetGlobalBool("RoundRunning", false)
 SetGlobalFloat("RoundStartTime", 0)
-SetGlobalFloat("CurrentRoundTime", GAMEMODE.BASE_ROUND_TIME)
+SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("BASE_ROUND_TIME", 300))
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()

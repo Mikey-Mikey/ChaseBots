@@ -4,8 +4,6 @@ GM.Email = "N/A"
 GM.Website = "N/A"
 GM.IsSandboxDerived = true
 
-GM.BASE_ROUND_TIME = 240
-GM.CurrentRoundTime = 240
 GM.NextbotClassTable = {}
 GM.CurrentNextbots = {}
 
