@@ -27,6 +27,8 @@ end)
 
 hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
     if ent:GetClass() == "hl2mp_ragdoll" then
-        ent:Remove()
+        timer.Simple(0, function()
+            ent:Remove()
+        end)
     end
 end)
