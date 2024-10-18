@@ -8,7 +8,7 @@ include("sv_hooks.lua")
 SetGlobalFloat("BASE_ROUND_TIME", 300)
 SetGlobalBool("RoundRunning", false)
 SetGlobalFloat("RoundStartTime", 0)
-SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("BASE_ROUND_TIME", 300))
+SetGlobalFloat("CurrentRoundTime", 300)
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
@@ -40,10 +40,6 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
     end
 
     navmesh.Load()
-
-    if player.GetCount() > 0 and not GetGlobalBool("RoundRunning", false) then
-        GAMEMODE:StartRound()
-    end
 end)
 
 function GM:StartRound()
