@@ -47,7 +47,7 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
 end)
 
 gameevent.Listen( "player_connect" )
-hook.Add("player_connect", "AnnounceConnection", function( data )
+hook.Add("player_connect", "PlayerConnect", function( data )
     local ply = Player(data.userid)
     if GAMEMODE.RoundRunning and SERVER then
         victim:Spectate(OBS_MODE_CHASE)
