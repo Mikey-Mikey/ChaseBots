@@ -9,16 +9,15 @@ hook.Add("InitPostEntity", "", function()
             GAMEMODE.NextbotClassTable[#GAMEMODE.NextbotClassTable + 1] = class
         end
     end
-
-    navmesh.Load()
-end)
-
-hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
-    return true
-end)
-
-hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
-    if ent:GetClass() == "hl2mp_ragdoll" then
-        ent:Remove()
+    if #player.GetAll() > 0 and not GAMEMODE.RoundRunning then
+        GAMEMODE:StartRound()
     end
 end)
+
+function GM:EndRound()
+    GAMEMODE.RoundRunning = false
+    GAMEMODE.AlivePlayers = {}
+    timer.Create("RestartRound", 3, 1, function()
+        GAMEMODE:StartRound()
+    end)
+end

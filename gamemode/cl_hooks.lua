@@ -1,18 +1,3 @@
-hook.Add("InitPostEntity", "", function()
-    local npcs = list.Get("NPC")
-    for class, tbl in pairs(npcs) do
-        if string.find(class, "npc_tf2_ghost") then
-            continue
-        end
-
-        if scripted_ents.IsBasedOn(class, "base_nextbot") then
-            GAMEMODE.NextbotClassTable[#GAMEMODE.NextbotClassTable + 1] = class
-        end
-    end
-
-    GAMEMODE:StartRound()
-end)
-
 hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
     if ply:GetObserverMode() ~= OBS_MODE_NONE then
 

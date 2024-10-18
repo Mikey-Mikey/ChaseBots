@@ -108,11 +108,3 @@ hook.Add("Tick", "RoundTimer", function()
         end
     end
 end)
-
-function GM:EndRound()
-    GAMEMODE.RoundRunning = false
-    GAMEMODE.AlivePlayers = {}
-    timer.Create("RestartRound", 2, 1, function()
-        GAMEMODE:StartRound()
-    end)
-end
