@@ -39,7 +39,7 @@ end)
 gameevent.Listen("player_spawn")
 hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local ply = Player(data.userid)
-    if CLIENT then return end
+    if CLIENT and not GAMEMODE.AlivePlayers[ply] then return end
     ply:SetShouldServerRagdoll(true)
     ply:SetModel("models/player/group01/male_07.mdl")
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
@@ -50,6 +50,7 @@ gameevent.Listen("player_activate")
 hook.Add("player_activate", "PlayerFirstSpawned", function( data )
     local ply = Player(data.userid)
     if GAMEMODE.RoundRunning and SERVER then
+        print(ply, "Connected and spawned as spectator!")
         ply:Spectate(OBS_MODE_CHASE)
         ply:SpectateEntity(ply)
     end
