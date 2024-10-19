@@ -16,7 +16,7 @@ local function GetRandomPointOnNavMesh()
         for k, ply in ipairs(player.GetAll()) do
             local distSqr = ply:GetPos():DistToSqr(area:GetCenter())
 
-            if distSqr < 400^2 then
+            if distSqr < 2000^2 then
                 return false
             end
         end
