@@ -42,6 +42,7 @@ hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
 end)
 
 hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
+    print(ent)
     if ent:GetClass() == "hl2mp_ragdoll" then
         timer.Simple(0, function()
             ent:Remove()
