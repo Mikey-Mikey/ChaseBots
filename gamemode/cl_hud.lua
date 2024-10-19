@@ -12,8 +12,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     -- draw a timer at the top of the screen in a rounded rectangle
 
-    surface.SetDrawColor(0, 0, 0, 200)
-    surface.DrawRect(ScrW() / 2 - 100, 25, 200, 50)
+    draw.RoundedBox(8, ScrW() / 2 - 100, 25, 200, 50, Color(0,0,0,200))
 
     draw.SimpleText(timerText, "DermaLarge", ScrW() / 2, 50, Color(255,151,48), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end)
