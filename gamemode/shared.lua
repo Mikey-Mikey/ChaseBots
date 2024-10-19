@@ -25,8 +25,8 @@ hook.Add("PlayerDeathSound", "RemoveDeathSound", function()
     return true
 end)
 
-local function lerp( dt, from, to )
-    return from + ( to - from ) * dt
+local function lerp(from, to, t)
+    return from + ( to - from ) * t
 end
 
 -- frame independent lerp function using math.exp and dt
