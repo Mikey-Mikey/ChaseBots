@@ -55,6 +55,12 @@ hook.Add("Tick", "RoundTimer", function()
         if GetGlobal2Float("CurrentRoundTime", 0) <= 0 then
             GAMEMODE:EndRound()
         end
+
+        for k, ply in pairs(player.GetAll()) do
+            if not ply:Alive() then
+                ply:SetPos(ply:EyePos())
+            end
+        end
     end
 end)
 
