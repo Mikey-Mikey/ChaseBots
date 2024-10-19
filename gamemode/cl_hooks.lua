@@ -1,5 +1,6 @@
 hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
     local view = GAMEMODE:CalcView(ply,pos,angles,fov)
+
     if not ply:Alive() then
         if not ply.deathEyePos then
             ply.deathEyePos = ply:GetPos() + Vector(0,0,72)
@@ -29,10 +30,10 @@ hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
         view.angles = angles
         view.fov = fov
         view.drawviewer = true
-        ply:SetPos(ply.deathEyePos - Vector(0,0,72))
     else
         ply.deathEyePos = nil
     end
+
     return view
 end)
 

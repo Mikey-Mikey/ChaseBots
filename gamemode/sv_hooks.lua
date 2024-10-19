@@ -56,6 +56,12 @@ hook.Add("Tick", "RoundTimer", function()
             GAMEMODE:EndRound()
         end
     end
+
+    for k, ply in ipairs(player.GetAll()) do
+        if not ply:Alive() then
+            ply:SetPos(ply:EyePos())
+        end
+    end
 end)
 
 gameevent.Listen("entity_killed")
