@@ -22,7 +22,7 @@ local function GetRandomPointOnNavMesh()
         end
         return area:IsValid()
     end)
-    local navarea = navmesh.GetAllNavAreas()[math.random(1, #navmesh.GetAllNavAreas())]
+    local navarea = navareas[math.random(1, table.Count(navareas))]
     local randomPoint = navarea:GetRandomPoint()
     return randomPoint
 end
