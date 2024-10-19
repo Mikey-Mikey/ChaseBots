@@ -69,6 +69,7 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
         victim:SetPos(deathPos)
         victim:SetEyeAngles(deathEyeAngles)
         victim:SetNoTarget(true)
+        victim:SetCollisionGroup(COLLISION_GROUP_WORLD)
     end)
 
     -- If there are no players left, end the round
@@ -109,6 +110,7 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
         ply:SetColor(Color(255, 255, 255, 255))
         ply:DrawShadow(true)
         ply:SetNoTarget(false)
+        ply:SetCollisionGroup(COLLISION_GROUP_NONE)
     end
 end)
 
