@@ -36,7 +36,6 @@ end
 
 hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if not ply:GetNWBool("Spectating", false) then
-        ply:SetGravity(1)
         return false
     end
     --
@@ -77,7 +76,6 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-    ply:SetGravity(0)
     mv:SetVelocity(vel)
     mv:SetOrigin(pos - Vector(0,0,64))
     -- disable collision with world
