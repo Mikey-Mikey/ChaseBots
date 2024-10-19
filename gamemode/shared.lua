@@ -40,7 +40,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     -- Set up a speed, go faster if shift is held down
     --
     -- frame
-    local accel = 2
+    local accel = 6
 
     --
     -- Get information from the movedata
@@ -68,14 +68,16 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyDown( IN_JUMP ) then move = move + ang:Up() end
     if mv:KeyDown( IN_DUCK ) then move = move - ang:Up() end
     if mv:KeyDown( IN_SPEED ) then move = move * 2 end
+    if mv:KeyDown( IN_WALK ) then move = move * 0.5 end
 
-    vel = LerpExpo(FrameTime(), vel, move * 100, accel)
+    vel = LerpExpo(FrameTime(), vel, move * 400, accel)
 
     pos = pos + vel * FrameTime()
 
 
     mv:SetVelocity(vel)
     mv:SetOrigin(pos)
+    -- disable collision with world
 
     --
     -- Return true to not use the default behavior
