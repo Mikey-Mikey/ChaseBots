@@ -1,4 +1,5 @@
 hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
+    local view = GAMEMODE:CalcView(ply,pos,angles,fov)
     if not ply:Alive() then
         if not ply.deathEyePos then
             ply.deathEyePos = ply:GetPos() + Vector(0,0,72)
@@ -8,7 +9,6 @@ hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
                 ply:SetEyeAngles(eyeAng)
             end)
         end
-        local view = {}
 
         local move = Vector(0, 0, 0)
         move[1] = (ply:KeyDown(IN_FORWARD) and 1 or 0) - (ply:KeyDown(IN_BACK) and 1 or 0)
@@ -30,10 +30,10 @@ hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
         view.fov = fov
         view.drawviewer = true
         ply:SetPos(ply.deathEyePos - Vector(0,0,72))
-        return view
     else
         ply.deathEyePos = nil
     end
+    return view
 end)
 
 hook.Add("NetworkEntityCreated", "SetRagdollColors", function(ent)
