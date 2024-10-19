@@ -72,7 +72,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
-        ply.PlayerSpectateID = 0
+
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
         end
@@ -94,6 +94,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK2) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
         end
