@@ -86,7 +86,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
         if IsValid(targetPly) then
-            ply:SetPos(targetPly:GetPos())
+            pos = targetPly:GetPos()
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
@@ -107,7 +107,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
         if IsValid(targetPly) and targetPly:Alive() then
-            ply:SetPos(targetPly:GetPos())
+            pos = targetPly:GetPos()
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
