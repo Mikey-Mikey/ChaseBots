@@ -62,8 +62,9 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
 
     -- when the victim dies start spectating
     victim:SetNWBool("Spectating", true)
-    victim:Spawn()
+
     timer.Simple(0, function()
+        victim:Spawn()
         victim:SetNoTarget(true)
     end)
 
