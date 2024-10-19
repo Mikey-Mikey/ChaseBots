@@ -41,6 +41,14 @@ hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
     return true
 end)
 
+hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
+    if ent:GetClass() == "hl2mp_ragdoll" then
+        timer.Simple(0, function()
+            ent:Remove()
+        end)
+    end
+end)
+
 hook.Add("Tick", "RoundTimer", function()
     if GetGlobal2Bool("RoundRunning", false) then
         SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("RoundStartTime", 0) - RealTime() + GetGlobal2Float("BASE_ROUND_TIME", 300))
