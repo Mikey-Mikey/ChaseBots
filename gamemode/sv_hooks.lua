@@ -24,15 +24,15 @@ function CreateRagdollFromPlayer(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
-    if GetGlobalBool("RoundRunning", false) then
-        timer.Simple(0.02, function()
+    if GetGlobal2Bool("RoundRunning", false) then
+        timer.Simple(0.1, function()
             ply:KillSilent()
             ply:Spectate(OBS_MODE_CHASE)
             ply:SpectateEntity(ply)
         end)
     end
 
-    if player.GetCount() <= 1 and not GetGlobalBool("RoundRunning", false) then
+    if player.GetCount() <= 1 and not GetGlobal2Bool("RoundRunning", false) then
         GAMEMODE:StartRound()
     end
 end)
@@ -50,9 +50,9 @@ hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
 end)
 
 hook.Add("Tick", "RoundTimer", function()
-    if GetGlobalBool("RoundRunning", false) then
-        SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("RoundStartTime", 0) - RealTime() + GetGlobalFloat("BASE_ROUND_TIME", 300))
-        if GetGlobalFloat("CurrentRoundTime", 0) <= 0 then
+    if GetGlobal2Bool("RoundRunning", false) then
+        SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("RoundStartTime", 0) - RealTime() + GetGlobal2Float("BASE_ROUND_TIME", 300))
+        if GetGlobal2Float("CurrentRoundTime", 0) <= 0 then
             GAMEMODE:EndRound()
         end
     end
@@ -62,9 +62,11 @@ gameevent.Listen("entity_killed")
 hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     local victim = Entity(data.entindex_killed)
 
+    -- when the victim dies start spectating
     victim:Spectate(OBS_MODE_CHASE)
     victim:SpectateEntity(victim)
 
+    -- If there are no players left, end the round
     local playersLeft = 0
     for k, ply in ipairs(player.GetAll()) do
         if ply:Alive() then playersLeft = playersLeft + 1 end

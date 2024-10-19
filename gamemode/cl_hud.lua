@@ -1,5 +1,5 @@
 hook.Add("HUDPaint", "DrawRoundTime", function()
-    local timeLeft = GetGlobalFloat("CurrentRoundTime", 0)
+    local timeLeft = GetGlobal2Float("CurrentRoundTime", 0)
 
     if timeLeft < 0 then
         timeLeft = 0

@@ -5,10 +5,10 @@ AddCSLuaFile("cl_hud.lua")
 include("shared.lua")
 include("sv_hooks.lua")
 
-SetGlobalFloat("BASE_ROUND_TIME", 300)
-SetGlobalBool("RoundRunning", false)
-SetGlobalFloat("RoundStartTime", 0)
-SetGlobalFloat("CurrentRoundTime", 300)
+SetGlobal2Float("BASE_ROUND_TIME", 300)
+SetGlobal2Bool("RoundRunning", false)
+SetGlobal2Float("RoundStartTime", 0)
+SetGlobal2Float("CurrentRoundTime", 300)
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
@@ -45,9 +45,9 @@ end)
 function GM:StartRound()
     game.CleanUpMap( false, { "env_fire", "entityflame", "_firesmoke" } )
 
-    SetGlobalBool("RoundRunning", true)
-    SetGlobalFloat("RoundStartTime", RealTime())
-    SetGlobalFloat("CurrentRoundTime", GetGlobalFloat("BASE_ROUND_TIME", 300))
+    SetGlobal2Bool("RoundRunning", true)
+    SetGlobal2Float("RoundStartTime", RealTime())
+    SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("BASE_ROUND_TIME", 300))
 
     print("Round Started")
 
@@ -70,8 +70,16 @@ function GM:StartRound()
 end
 
 function GM:EndRound()
-    SetGlobalBool("RoundRunning", false)
+    SetGlobal2Bool("RoundRunning", false)
     timer.Create("RestartRound", 3, 1, function()
         GAMEMODE:StartRound()
     end)
+end
+
+function GM:PlayerLoadout(ply)
+    -- give the player the wheatleys parkour swep
+    ply:Give("parkourmod")
+
+    -- prevent the default loadout
+    return true
 end
