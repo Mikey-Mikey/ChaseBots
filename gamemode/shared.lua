@@ -74,7 +74,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
 
-        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) + 1) % table.Count(alivePlayers)
+        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) + 1) % (table.Count(alivePlayers) + 1)
 
         local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
 
@@ -89,7 +89,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
 
-        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) - 1) % table.Count(alivePlayers)
+        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) - 1) % (table.Count(alivePlayers) + 1)
 
         local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
 
