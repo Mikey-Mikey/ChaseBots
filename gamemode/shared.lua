@@ -69,7 +69,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-    if mv:KeyPressed(IN_ATTACK) then
+    if mv:KeyPressed(IN_ATTACK) and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
@@ -91,7 +91,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
     end
 
-    if mv:KeyPressed(IN_ATTACK2) then
+    if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
