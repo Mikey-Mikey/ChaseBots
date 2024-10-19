@@ -57,15 +57,17 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
-    for i, nextbotClass in ipairs(GAMEMODE.NextbotClassTable) do
-        if #GAMEMODE.CurrentNextbots >= 10 then
-            break
+    while table.Count(GAMEMODE.CurrentNextbots) < 10 do
+        local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
+        if GAMEMODE.CurrentNextbots[nextbotClass] then
+            continue
         end
         local randomPoint = GetRandomPointOnNavMesh()
         local bot = ents.Create(nextbotClass)
+
         bot:SetPos(randomPoint)
         bot:Spawn()
-        GAMEMODE.CurrentNextbots[#GAMEMODE.CurrentNextbots + 1] = bot
+        GAMEMODE.CurrentNextbots[nextbotClass] = true
     end
 end
 
