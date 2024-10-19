@@ -63,6 +63,7 @@ function GM:StartRound()
     print("Round Started")
 
     for i, ply in ipairs(player.GetAll()) do
+        ply:SetNWBool("Spectating", false)
         ply:Spawn()
     end
 

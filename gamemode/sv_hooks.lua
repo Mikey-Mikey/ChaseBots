@@ -25,11 +25,9 @@ end
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
     if GetGlobal2Bool("RoundRunning", false) then
-        timer.Simple(0.1, function()
-            ply:KillSilent()
-            ply:Spectate(OBS_MODE_CHASE)
-            ply:SpectateEntity(ply)
-        end)
+        ply:SetNWBool("Spectating", true)
+        ply:SetColor(Color(255, 255, 255, 0))
+        ply:DrawShadow(false)
     end
 
     if player.GetCount() <= 1 and not GetGlobal2Bool("RoundRunning", false) then
@@ -63,14 +61,18 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     local victim = Entity(data.entindex_killed)
 
     -- when the victim dies start spectating
-    victim:Spectate(OBS_MODE_CHASE)
-    victim:SpectateEntity(victim)
+    victim:SetNWBool("Spectating", true)
+
+    timer.Simple(0, function()
+        victim:Spawn()
+    end)
+
     CreateRagdollFromPlayer(victim)
 
     -- If there are no players left, end the round
     local playersLeft = 0
     for k, ply in ipairs(player.GetAll()) do
-        if ply:Alive() then playersLeft = playersLeft + 1 end
+        if not ply:GetNWBool("Spectating", false) then playersLeft = playersLeft + 1 end
     end
 
     if playersLeft == 0 then
@@ -94,9 +96,15 @@ end)
 gameevent.Listen("player_spawn")
 hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local ply = Player(data.userid)
-    if not ply:Alive() then return end
     ply:SetModel("models/player/group01/male_07.mdl")
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
     ply:SetJumpPower(200)
+    if ply:GetNWBool("Spectating", false) then
+        ply:SetColor(Color(255, 255, 255, 0))
+        ply:DrawShadow(false)
+    else
+        ply:SetColor(Color(255, 255, 255, 255))
+        ply:DrawShadow(true)
+    end
 end)
