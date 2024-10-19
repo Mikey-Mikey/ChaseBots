@@ -28,6 +28,7 @@ hook.Add("CalcView", "DeathView", function(ply, pos, angles, fov)
         view.origin = ply.deathEyePos
         view.angles = angles
         view.fov = fov
+        ply:SetPos(ply.deathEyePos - Vector(0,0,72))
         return view
     else
         ply.deathEyePos = nil
