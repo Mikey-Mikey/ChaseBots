@@ -79,7 +79,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         ply.PlayerSpectateID = ply.PlayerSpectateID + 1
 
-        if ply.PlayerSpectateID > table.Count(alivePlayers) then
+        if ply.PlayerSpectateID > table.Count(alivePlayers) then -- TODO: Fix this
             ply.PlayerSpectateID = 1
         end
 
@@ -91,7 +91,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
     end
 
-    if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then
+    if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then -- TODO: Fix this
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Health() > 0 and v ~= ply end)
 
