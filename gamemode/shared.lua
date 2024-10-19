@@ -21,10 +21,6 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     })
 end)
 
-hook.Add("PlayerDeathSound", "RemoveDeathSound", function()
-    return true
-end)
-
 local function lerp(from, to, t)
     return from + ( to - from ) * t
 end
