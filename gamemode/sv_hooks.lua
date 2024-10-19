@@ -59,16 +59,17 @@ end)
 gameevent.Listen("entity_killed")
 hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     local victim = Entity(data.entindex_killed)
-
+    local deathPos = victim:GetPos()
+    local deathEyeAngles = victim:EyeAngles()
     -- when the victim dies start spectating
     victim:SetNWBool("Spectating", true)
-
-    timer.Simple(0, function()
+    CreateRagdollFromPlayer(victim)
+    timer.Simple(0.02, function()
         victim:Spawn()
+        victim:SetPos(deathPos)
+        victim:SetEyeAngles(deathEyeAngles)
         victim:SetNoTarget(true)
     end)
-
-    CreateRagdollFromPlayer(victim)
 
     -- If there are no players left, end the round
     local playersLeft = 0
