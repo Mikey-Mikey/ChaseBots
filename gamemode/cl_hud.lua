@@ -32,7 +32,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- draw fft spectrum of the radio station at the bottom of the screen
 
     if IsValid(radio_station) then
-        local spectrum = radio_station:GetFFT()
+        local spectrum = {}
+        radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW() / 2
         local spectrumHeight = 100
         local spectrumX = ScrW() / 2 - spectrumWidth / 2
