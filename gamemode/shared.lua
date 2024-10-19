@@ -35,28 +35,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         ply:SetGravity(1)
         return false
     end
-    --
-    -- Set up a speed, go faster if shift is held down
-    --
-    -- frame
-    local accel = 6
 
-    --
-    -- Get information from the movedata
-    --
+    local accel = 12
+
+
     local ang = mv:GetMoveAngles()
     local pos = mv:GetOrigin()
     local vel = mv:GetVelocity()
-
-    --
-    -- Add velocities. This can seem complicated. On the first line
-    -- we're basically saying get the forward vector, then multiply it
-    -- by our forward speed (which will be &gt; 0 if we're holding W, &lt; 0 if we're
-    -- holding S and 0 if we're holding neither) - and add that to velocity.
-    -- We do that for right and up too, which gives us our free movement.
-    --
-
-
 
     local move = Vector(0,0,0)
 
