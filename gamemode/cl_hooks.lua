@@ -12,7 +12,6 @@ radio_station = radio_station or nil -- garbage collection prevention
 print("Creating radio station")
 sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err) -- play my friend's radio station for some background music while playing
     if IsValid(station) then
-        print(station:GetClass())
         station:Play()
         station:SetVolume(0.25)
         radio_station = station
