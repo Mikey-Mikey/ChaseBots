@@ -41,15 +41,6 @@ hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
     return true
 end)
 
-hook.Add("OnEntityCreated", "RemoveClientRagdoll", function(ent)
-    print(ent)
-    if ent:GetClass() == "hl2mp_ragdoll" then
-        timer.Simple(0, function()
-            ent:Remove()
-        end)
-    end
-end)
-
 hook.Add("Tick", "RoundTimer", function()
     if GetGlobal2Bool("RoundRunning", false) then
         SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("RoundStartTime", 0) - RealTime() + GetGlobal2Float("BASE_ROUND_TIME", 300))
@@ -96,7 +87,6 @@ gameevent.Listen("player_spawn")
 hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local ply = Player(data.userid)
     if not ply:Alive() then return end
-
     ply:SetModel("models/player/group01/male_07.mdl")
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
