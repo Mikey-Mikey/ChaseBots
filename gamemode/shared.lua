@@ -69,9 +69,9 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-    if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then
+    if mv:KeyPressed(IN_ATTACK) and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Health() > 0 and v ~= ply end)
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -85,7 +85,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
-        if IsValid(targetPly) and targetPly:Alive() then
+        if IsValid(targetPly) and targetPly:Health() > 0 then
             pos = targetPly:GetPos()
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
@@ -93,7 +93,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Health() > 0 and v ~= ply end)
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -107,7 +107,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
-        if IsValid(targetPly) and targetPly:Alive() then
+        if IsValid(targetPly) and targetPly:Health() > 0 then
             pos = targetPly:GetPos()
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
