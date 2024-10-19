@@ -69,18 +69,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-    ply:SetGravity(0)
-    mv:SetVelocity(vel)
-    mv:SetOrigin(pos)
-
-    return true
-
-end)
-
-hook.Add("KeyPress", "SpectatorKeyPress", function(ply, key)
-    if ply:Alive() then return end
-
-    if key == IN_ATTACK then
+    if mv:KeyPressed(IN_ATTACK) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
@@ -88,14 +77,14 @@ hook.Add("KeyPress", "SpectatorKeyPress", function(ply, key)
         ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
-
+        print(ply.PlayerSpectateID, targetPly, table.Count(alivePlayers))
         if IsValid(targetPly) then
             ply:SetPos(targetPly:GetPos())
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
 
-    if key == IN_ATTACK2 then
+    if mv:KeyPressed(IN_ATTACK2) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
@@ -103,10 +92,17 @@ hook.Add("KeyPress", "SpectatorKeyPress", function(ply, key)
         ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
 
         local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
-
+        print(ply.PlayerSpectateID, targetPly, table.Count(alivePlayers))
         if IsValid(targetPly) and targetPly:Alive() then
             ply:SetPos(targetPly:GetPos())
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
+
+    ply:SetGravity(0)
+    mv:SetVelocity(vel)
+    mv:SetOrigin(pos)
+
+    return true
+
 end)
