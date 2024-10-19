@@ -80,7 +80,6 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     ply:SetGravity(0)
     mv:SetVelocity(vel)
     mv:SetOrigin(pos)
-    ply:SetPos(pos)
 
     return true
 
