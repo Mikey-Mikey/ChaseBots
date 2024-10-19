@@ -89,14 +89,16 @@ end)
 
 gameevent.Listen("player_disconnect")
 hook.Add("player_disconnect", "RemovePlayerFromAliveList", function(data)
-    local playersLeft = 0
-    for k, ply in ipairs(player.GetAll()) do
-        if ply:Alive() then playersLeft = playersLeft + 1 end
-    end
+    timer.Simple(0.1, function()
+        local playersLeft = 0
+        for k, ply in ipairs(player.GetAll()) do
+            if ply:Alive() then playersLeft = playersLeft + 1 end
+        end
 
-    if playersLeft == 0 then
-        GAMEMODE:EndRound()
-    end
+        if playersLeft == 0 then
+            GAMEMODE:EndRound()
+        end
+    end)
 end)
 
 gameevent.Listen("player_spawn")
@@ -106,10 +108,4 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
     ply:SetJumpPower(200)
-end)
-
-hook.Add("PlayerUse", "DisableSpectatorUse", function(ply, ent)
-    if ply:GetNWBool("Spectating", false) then
-        return false
-    end
 end)
