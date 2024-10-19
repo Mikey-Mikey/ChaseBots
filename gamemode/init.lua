@@ -11,16 +11,6 @@ SetGlobal2Bool("RoundRunning", GetGlobal2Bool("RoundRunning", false))
 SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 
-function FilterTable(tbl, filter)
-    local newTable = {}
-    for k, v in pairs(tbl) do
-        if filter(v) then
-            newTable[table.Count(newTable) + 1] = v
-        end
-    end
-    return newTable
-end
-
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
     navareas = FilterTable(navareas, function(area)

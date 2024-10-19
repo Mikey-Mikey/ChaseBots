@@ -21,6 +21,16 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     })
 end)
 
+function FilterTable(tbl, filter)
+    local newTable = {}
+    for k, v in pairs(tbl) do
+        if filter(v) then
+            newTable[table.Count(newTable) + 1] = v
+        end
+    end
+    return newTable
+end
+
 local function lerp(from, to, t)
     return from + ( to - from ) * t
 end
