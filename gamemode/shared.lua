@@ -72,9 +72,15 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        if not ply.PlayerSpectateID then
+            ply.PlayerSpectateID = 0
+        end
 
-
-        ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
+        ply.PlayerSpectateID = ply.PlayerSpectateID + 1
+        
+        if ply.PlayerSpectateID > table.Count(alivePlayers) then
+            ply.PlayerSpectateID = 1
+        end
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
         print(ply.PlayerSpectateID, targetPly, table.Count(alivePlayers))
@@ -87,11 +93,16 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK2) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        if not ply.PlayerSpectateID then
+            ply.PlayerSpectateID = 0
+        end
 
+        ply.PlayerSpectateID = ply.PlayerSpectateID - 1
+        if ply.PlayerSpectateID < 1 then
+            ply.PlayerSpectateID = table.Count(alivePlayers)
+        end
 
-        ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
-
-        local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
+        local targetPly = alivePlayers[ply.PlayerSpectateID]
         print(ply.PlayerSpectateID, targetPly, table.Count(alivePlayers))
         if IsValid(targetPly) and targetPly:Alive() then
             ply:SetPos(targetPly:GetPos())
