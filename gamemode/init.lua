@@ -44,7 +44,7 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
 end)
 
 function GM:StartRound()
-    game.CleanUpMap( false, { "env_fire", "entityflame", "_firesmoke", "" } )
+    game.CleanUpMap(true, { "env_fire", "entityflame", "_firesmoke", "" })
 
     SetGlobal2Bool("RoundRunning", true)
     SetGlobal2Float("RoundStartTime", RealTime())
