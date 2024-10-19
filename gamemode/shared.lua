@@ -35,7 +35,10 @@ function LerpExpo( dt, from, to, speed )
 end
 
 hook.Add("Move", "SpectatorMovement", function( ply, mv )
-    if not ply:GetNWBool("Spectating", false) then return false end
+    if not ply:GetNWBool("Spectating", false) then
+        ply:SetGravity(1)
+        return false
+    end
     --
     -- Set up a speed, go faster if shift is held down
     --
@@ -74,7 +77,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-
+    ply:SetGravity(0)
     mv:SetVelocity(vel)
     mv:SetOrigin(pos - Vector(0,0,64))
     -- disable collision with world
