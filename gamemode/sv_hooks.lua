@@ -62,9 +62,9 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
 
     -- when the victim dies start spectating
     victim:SetNWBool("Spectating", true)
-
+    victim:Spawn()
     timer.Simple(0, function()
-        victim:Spawn()
+        victim:SetNoTarget(true)
     end)
 
     CreateRagdollFromPlayer(victim)
@@ -106,5 +106,12 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     else
         ply:SetColor(Color(255, 255, 255, 255))
         ply:DrawShadow(true)
+        ply:SetNoTarget(false)
+    end
+end)
+
+hook.Add("PlayerUse", "DisableSpectatorUse", function(ply, ent)
+    if ply:GetNWBool("Spectating", false) then
+        return false
     end
 end)
