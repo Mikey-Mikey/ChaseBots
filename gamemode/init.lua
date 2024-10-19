@@ -92,7 +92,9 @@ end
 
 function GM:PlayerLoadout(ply)
     -- give the player the wheatleys parkour swep
-    ply:Give("parkourmod")
+    if not ply:GetNWBool("Spectating", false) then
+        ply:Give("parkourmod")
+    end
 
     -- prevent the default loadout
     return true
