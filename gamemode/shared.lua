@@ -72,12 +72,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        ply.PlayerSpectateID = 0
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
         end
 
         ply.PlayerSpectateID = ply.PlayerSpectateID + 1
-        
+
         if ply.PlayerSpectateID > table.Count(alivePlayers) then
             ply.PlayerSpectateID = 1
         end
