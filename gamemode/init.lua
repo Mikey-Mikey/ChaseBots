@@ -69,7 +69,7 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
-    while table.Count(GAMEMODE.CurrentNextbots) < 10 do
+    while table.Count(GAMEMODE.CurrentNextbots) < 20 do
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
         if GAMEMODE.CurrentNextbots[nextbotClass] then
             continue
