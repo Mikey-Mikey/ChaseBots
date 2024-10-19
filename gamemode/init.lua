@@ -10,13 +10,23 @@ SetGlobal2Bool("RoundRunning", false)
 SetGlobal2Float("RoundStartTime", 0)
 SetGlobal2Float("CurrentRoundTime", 300)
 
+function FilterTable(tbl, filter)
+    local newTable = {}
+    for k, v in pairs(tbl) do
+        if filter(v) then
+            newTable[table.Count(newTable) + 1] = v
+        end
+    end
+    return newTable
+end
+
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
     navareas = FilterTable(navareas, function(area)
         for k, ply in ipairs(player.GetAll()) do
             local distSqr = ply:GetPos():DistToSqr(area:GetCenter())
 
-            if distSqr < 2000^2 then
+            if distSqr < 1000^2 then
                 return false
             end
         end

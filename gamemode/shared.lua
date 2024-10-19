@@ -7,16 +7,6 @@ GM.IsSandboxDerived = true
 GM.NextbotClassTable = {}
 GM.CurrentNextbots = {}
 
-function FilterTable(tbl, filter)
-    local newTable = {}
-    for k, v in pairs(tbl) do
-        if filter(v) then
-            newTable[k] = v
-        end
-    end
-    return newTable
-end
-
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     DrawColorModify({
         ["$pp_colour_addr"] = 0,
