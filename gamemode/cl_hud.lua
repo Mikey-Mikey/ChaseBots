@@ -40,10 +40,10 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectrumY = ScrH() - spectrumHeight - 25
 
         draw.RoundedBox(8, spectrumX, spectrumY, spectrumWidth, spectrumHeight, Color(0,0,0,200))
-
+        local barWidth = spectrumWidth / #spectrum
         for i = 1, #spectrum do
             local height = spectrum[i] * spectrumHeight
-            draw.RoundedBox(0, spectrumX + i, spectrumY + spectrumHeight - height, 1, height, Color(255,151,48))
+            draw.RoundedBox(0, spectrumX + i * barWidth, spectrumY + spectrumHeight - height, barWidth, height, Color(255,151,48))
         end
     end
 end)
