@@ -67,6 +67,8 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     timer.Simple(0.02, function()
         victim:SetPos(deathPos)
         victim:SetEyeAngles(deathEyeAngles)
+        victim:Spectate(OBS_MODE_IN_EYE)
+        victim:SpectateEntity(victim)
     end)
 
     -- If there are no players left, end the round
