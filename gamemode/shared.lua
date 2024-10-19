@@ -76,7 +76,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
 
     mv:SetVelocity(vel)
-    mv:SetOrigin(pos)
+    mv:SetOrigin(pos - Vector(0,0,64))
     -- disable collision with world
 
     --
