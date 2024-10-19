@@ -80,11 +80,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     ply:SetGravity(0)
     mv:SetVelocity(vel)
     mv:SetOrigin(pos)
-    -- disable collision with world
+    ply:SetPos(pos)
 
-    --
-    -- Return true to not use the default behavior
-    --
     return true
 
 end)
