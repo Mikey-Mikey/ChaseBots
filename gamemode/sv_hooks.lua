@@ -65,6 +65,7 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     -- when the victim dies start spectating
     victim:Spectate(OBS_MODE_CHASE)
     victim:SpectateEntity(victim)
+    CreateRagdollFromPlayer(victim)
 
     -- If there are no players left, end the round
     local playersLeft = 0
