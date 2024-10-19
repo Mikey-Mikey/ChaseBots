@@ -78,18 +78,18 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 end)
 
 hook.Add("KeyPress", "SpectatorKeyPress", function(ply, key)
-    if not ply:GetNWBool("Spectating", false) then return end
+    if ply:Alive() then return end
 
     if key == IN_ATTACK then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
 
-        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) + 1) % (table.Count(alivePlayers) + 1)
+        ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
 
-        local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
+        local targetPly = alivePlayers[ply.PlayerSpectateID]
 
-        if IsValid(targetPly) and targetPly:Alive() then
+        if IsValid(targetPly) then
             ply:SetPos(targetPly:GetPos())
             ply:SetEyeAngles(targetPly:EyeAngles())
         end
@@ -100,7 +100,7 @@ hook.Add("KeyPress", "SpectatorKeyPress", function(ply, key)
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
 
-        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) - 1) % (table.Count(alivePlayers) + 1)
+        ply.PlayerSpectateID = (ply.PlayerSpectateID or 0) % table.Count(alivePlayers)
 
         local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
 
