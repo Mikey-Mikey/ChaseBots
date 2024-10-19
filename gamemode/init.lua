@@ -5,7 +5,7 @@ AddCSLuaFile("cl_hud.lua")
 include("shared.lua")
 include("sv_hooks.lua")
 
-SetGlobal2Float("BASE_ROUND_TIME", 300)
+SetGlobal2Float("BASE_ROUND_TIME", 300) -- 5 minutes each round
 SetGlobal2Bool("RoundRunning", false)
 SetGlobal2Float("RoundStartTime", 0)
 SetGlobal2Float("CurrentRoundTime", 300)

@@ -10,7 +10,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local timerText = string.format("%02d:%02d", mins, secs)
 
-    draw.SimpleText("Time left: " .. timerText, "DermaLarge", ScrW() / 2, 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    -- draw a timer at the top of the screen in a rounded rectangle
+
+    surface.SetDrawColor(0, 0, 0, 200)
+    surface.DrawRect(ScrW() / 2 - 100, 25, 200, 50)
+
+    draw.SimpleText(timerText, "DermaLarge", ScrW() / 2, 50, Color(255,151,48), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end)
 
 
