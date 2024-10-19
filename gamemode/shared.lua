@@ -36,6 +36,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         return false
     end
 
+
     local accel = 12
 
 
@@ -57,6 +58,36 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     vel = LerpExpo(FrameTime(), vel, move * 400, accel)
 
     pos = pos + vel * FrameTime()
+
+    if ply:KeyDown(IN_ATTACK) and not ply:KeyDownLast(IN_ATTACK) then
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+
+
+        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) + 1) % table.Count(alivePlayers)
+
+        local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
+
+        if IsValid(targetPly) and targetPly:Alive() then
+            pos = targetPly:GetPos()
+            ply:SetEyeAngles(targetPly:EyeAngles())
+        end
+    end
+
+    if ply:KeyDown(IN_ATTACK2) and not ply:KeyDownLast(IN_ATTACK2) then
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+
+
+        ply.PlayerSpectateID = ((ply.PlayerSpectateID or 0) - 1) % table.Count(alivePlayers)
+
+        local targetPly = alivePlayers[ply.PlayerSpectateID + 1]
+
+        if IsValid(targetPly) and targetPly:Alive() then
+            pos = targetPly:GetPos()
+            ply:SetEyeAngles(targetPly:EyeAngles())
+        end
+    end
 
     ply:SetGravity(0)
     mv:SetVelocity(vel)
