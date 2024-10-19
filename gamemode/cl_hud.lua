@@ -5,7 +5,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timeLeft = 0
     end
 
-    draw.SimpleText("Time left: " .. math.ceil(timeLeft), "DermaLarge", ScrW() / 2, 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    local mins = math.floor(timeLeft / 60)
+    local secs = math.floor(timeLeft % 60)
+
+    local timerText = string.format("%02d:%02d", mins, secs)
+
+    draw.SimpleText("Time left: " .. timerText, "DermaLarge", ScrW() / 2, 50, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end)
 
 
