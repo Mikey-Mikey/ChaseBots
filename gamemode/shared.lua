@@ -109,6 +109,11 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if SERVER and mv:KeyPressed(IN_RELOAD) and IsFirstTimePredicted() then
         ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
+        if ply:GetNWBool("LockedToSpectatedPlayer", false) then
+            ply:SetObserverMode(OBS_MODE_IN_EYE)
+        else
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+        end
     end
 
     if ply:GetNWBool("LockedToSpectatedPlayer", false) then
@@ -128,26 +133,9 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
         end
 
-        if CLIENT then
-            targetPly:SetNoDraw(true)
-        end
-
         if SERVER and IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:EyePos() + (ply:GetPos() - ply:EyePos())
-            vel = targetPly:GetVelocity()
-            ply:SetPos(pos)
-            mv:SetVelocity(vel)
-            mv:SetOrigin(pos)
-            ply:SetEyeAngles(targetPly:EyeAngles())
+            ply:SpectateEntity(targetPly)
             return
-        end
-    else
-        if CLIENT then
-            for k, other in ipairs(player.GetAll()) do
-                if other:GetNoDraw() then
-                    other:SetNoDraw(false)
-                end
-            end
         end
     end
 
@@ -156,12 +144,4 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     return true
 
-end)
-
-hook.Add("SetupMove", "DisableSpectatorMovement", function(ply, mv, cmd)
-    if not ply:Alive() and ply:GetNWBool("LockedToSpectatedPlayer", false) then
-        cmd:ClearMovement()
-        cmd:SetMouseX(0)
-        cmd:SetMouseY(0)
-    end
 end)
