@@ -36,7 +36,7 @@ local barHeights = {}
 
 -- Create a font for the timer
 surface.CreateFont("Timer", {
-    font = "Arial",
+    font = "Roboto-Bold",
     size = 48,
     weight = 600,
     antialias = true,
@@ -45,7 +45,7 @@ surface.CreateFont("Timer", {
 })
 
 surface.CreateFont("TimerNoScan", {
-    font = "Arial",
+    font = "Roboto-Bold",
     size = 48,
     weight = 600,
     antialias = true,
@@ -54,7 +54,7 @@ surface.CreateFont("TimerNoScan", {
 
 -- Create the same font but blurred
 surface.CreateFont("TimerBlurred", {
-    font = "Arial",
+    font = "Roboto-Bold",
     size = 48,
     weight = 600,
     antialias = true,
@@ -87,7 +87,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(0, 255, 0)
     end
 
-    draw.SimpleText(timerText, "Roboto-Bold", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, Color(timerColor.r,timerColor.g,timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
