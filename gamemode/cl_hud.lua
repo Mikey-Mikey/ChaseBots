@@ -111,7 +111,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     draw.SimpleText(timerText, "Timer", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Show the player that we're spectating
-    if not LocalPlayer():Alive() and LocalPlayer():SetNWBool("LockedToSpectatedPlayer", false) then
+    if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
         local spectateX, spectateY = ScrW() / 2, 135
 
         local alivePlayers = player.GetAll()
