@@ -7,8 +7,24 @@ hook.Add("NetworkEntityCreated", "SetRagdollColors", function(ent)
     end
 end)
 
+local key_blacklist = {
+    "invnext",
+    "invprev",
+    "slot0",
+    "slot1",
+    "slot2",
+    "slot3",
+    "slot4",
+    "slot5",
+    "slot6",
+    "slot7",
+    "slot8",
+    "slot9",
+    "slot10"
+}
+
 hook.Add("PlayerBindPress", "", function(_, bind)
-    if string.StartsWith(bind, "inv") or string.StartsWith(bind, "slot") then
+    if key_blacklist[bind] then
         return true
     end
 end)
