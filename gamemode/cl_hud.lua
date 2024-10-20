@@ -39,7 +39,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
-        local spectrumWidth = ScrW()
+        local spectrumWidth = ScrW() * 0.5
         local spectrumPower = 600
         local barWidth = 10
         local spectrumY = ScrH() - spectrumPower
@@ -62,6 +62,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             local xPos = (i - 1) / table.Count(spectrum) * (spectrumWidth - barWidth)
             xPos = xPos + (spectrumWidth - barWidth) / table.Count(spectrum) - barWidth + barWidth / 4
+            xPos = xPos + spectrumWidth / 2 - ScrW()
             xPos = math.floor(xPos)
 
             -- do proper visualization of the spectrum
