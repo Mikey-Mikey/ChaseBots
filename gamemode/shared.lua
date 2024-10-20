@@ -64,6 +64,10 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyDown( IN_SPEED ) then move = move * 4 end
     if mv:KeyDown( IN_WALK ) then move = move * 0.5 end
 
+    if move:LengthSqr() > 0 then
+        move:Normalize()
+    end
+
     vel = LerpExpo(FrameTime(), vel, move * 400, accel)
 
     pos = pos + vel * FrameTime()
