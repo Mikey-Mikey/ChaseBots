@@ -139,7 +139,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local targetPly = alivePlayers[LocalPlayer():GetNWInt("SpectateID", 1)]
         surface.SetFont("SmallTimer")
         local textWidth, _ = surface.GetTextSize(targetPly:Nick())
-        local width = math.max(200,textWidth * 2 + 20)
+        local width = math.max(200,textWidth + 60)
         local height = 85
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
