@@ -128,5 +128,6 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
         local plyColor = HSVToColor(util.SharedRandom(ply:SteamID(), 0, 360), 1, 1)
         ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
         ply:SetJumpPower(200)
+        ply:SetViewEntity(ply)
     end
 end)
