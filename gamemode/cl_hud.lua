@@ -117,7 +117,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local timerText = string.format("%02d:%02d", mins, secs)
     local timerX, timerY = ScrW() / 2, 0
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(8, timerX - 100, timerY, 200, 72, Color(0,0,0,200), false, false, true, true)
+    draw.RoundedBoxEx(16, timerX - 100, timerY, 200, 72, Color(0,0,0,200), false, false, true, true)
 
     local timerColor = TIMER_COLOR
 
@@ -132,7 +132,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
-        local spectateX, spectateY = ScrW() / 2, 100
+        local spectateX, spectateY = ScrW() / 2, 132
 
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
