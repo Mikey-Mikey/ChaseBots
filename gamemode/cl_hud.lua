@@ -101,6 +101,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = 3
         local spectrumY = ScrH() - 150
 
+        local borderThickness = 2
+
 
         for i = 2, #spectrum do
             -- local barFrequency = 44100 / 256 / 2 / #spectrum
@@ -120,11 +122,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             local xPos = i * spacing - spacing * 2
 
             -- Draw the bars
-            draw.RoundedBox(0, xPos + math.floor(ScrW() * 0.5) - 1, spectrumY - barHeights[i] + barWidth - 1, barWidth + 2, barHeights[i] * 2 + 2, Color(0, 0, 0))
+            draw.RoundedBox(0, xPos + math.floor(ScrW() * 0.5) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
 
             if i == 2 then continue end
 
-            draw.RoundedBox(0, -xPos + math.floor(ScrW() * 0.5) - 1, spectrumY - barHeights[i] + barWidth - 1, barWidth + 2, barHeights[i] * 2 + 2, Color(0, 0, 0))
+            draw.RoundedBox(0, -xPos + math.floor(ScrW() * 0.5) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
         end
 
         for i = 2, #spectrum do
