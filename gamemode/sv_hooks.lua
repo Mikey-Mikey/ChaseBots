@@ -36,10 +36,12 @@ hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
         end
     end)
 
-    if GetGlobal2Bool("Empty", true) then
-        SetGlobal2Bool("Empty", false)
-        GAMEMODE:StartRound()
-    end
+    timer.Simple(0.5, function()
+        if GetGlobal2Bool("Empty", true) then
+            SetGlobal2Bool("Empty", false)
+            GAMEMODE:StartRound()
+        end
+    end)
 end)
 
 hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
