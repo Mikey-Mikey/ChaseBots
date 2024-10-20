@@ -41,7 +41,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW()
         local spectrumHeight = 200
-        local barWidth = 5
+        local barWidth = 10
         local spectrumY = ScrH() - spectrumHeight
 
         for i = 1, table.Count(spectrum) do
@@ -58,7 +58,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             xPos = xPos + (spectrumWidth - barWidth) / table.Count(spectrum) - barWidth / 2
 
             -- do proper visualization of the spectrum
-            draw.RoundedBox(10000, xPos, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
+            draw.RoundedBox(barWidth * 2, xPos, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
     end
 end)
