@@ -13,6 +13,21 @@ sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(sta
 
 end)
 
+concommand.Add("radio_reload", function()
+    if IsValid(radio_station) then
+        radio_station:Stop()
+    end
+
+    sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err)
+        if IsValid(station) then
+            station:Play()
+            station:SetVolume(0.75)
+            radio_station = station
+        end
+
+    end)
+end)
+
 local spectrum = {}
 local barHeights = {}
 
