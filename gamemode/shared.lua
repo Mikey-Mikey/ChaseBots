@@ -81,7 +81,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             ply:SetPos(pos)
             mv:SetVelocity(vel)
             mv:SetOrigin(pos)
-            timer.Simple(0.1, function() ply:SetEyeAngles(targetPly:EyeAngles()) end)
+            timer.Simple(0, function() ply:SetEyeAngles(targetPly:EyeAngles()) end)
             return
         end
     end
@@ -108,7 +108,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             ply:SetPos(pos)
             mv:SetVelocity(vel)
             mv:SetOrigin(pos)
-            timer.Simple(0.1, function() ply:SetEyeAngles(targetPly:EyeAngles()) end)
+            timer.Simple(0, function() ply:SetEyeAngles(targetPly:EyeAngles()) end)
             return
         end
     end
