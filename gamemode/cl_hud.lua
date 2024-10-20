@@ -46,15 +46,17 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         draw.RoundedBox(8, spectrumX, spectrumY, spectrumWidth, spectrumHeight, Color(0,0,0,200))
         local barWidth = spectrumWidth / table.Count(spectrum)
-        for i = 1, #spectrum do
+        for i = 1, table.Count(spectrum) do
             barHeights[i] = barHeights[i] or 0
-            local height = spectrum[i] * spectrumHeight
-            height = height * (i - 1) / #spectrum
+            local height = 20 * math.log10(spectrum[i]) + 1 -- logarithmic scale -INF to 0 dB
+            height = math.Clamp(height * spectrumHeight, 0, 100)
+
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
                 barHeights[i] = Lerp(0.3, barHeights[i] or 0, height)
             end
+            
             -- do proper visualization of the spectrum
             draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
