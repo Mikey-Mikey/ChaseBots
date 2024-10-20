@@ -31,6 +31,26 @@ end)
 -- convar for if the visualizer should be shown
 local radioVisualizerCVar = CreateClientConVar("radio_visualizer", "1", true, false, "Whether or not the radio visualizer should be shown")
 
+local radioEnabledCVar = CreateClientConVar("radio_enabled", "1", true, false, "Whether or not the radio should be enabled")
+
+local loading_station = false
+
+hook.Add("Think", "RadioThink", function()
+    if not IsValid(radio_station) and radioEnabledCVar:GetBool() and not loading_station then
+        loading_station = true
+        sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err)
+            if IsValid(station) then
+                station:Play()
+                station:SetVolume(0.75)
+                radio_station = station
+                loading_station = false
+            end
+
+        end)
+    end
+end)
+
+
 local spectrum = {}
 local barHeights = {}
 
