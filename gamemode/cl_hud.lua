@@ -38,7 +38,7 @@ local barHeights = {}
 surface.CreateFont("Timer", {
     font = "Roboto-Light",
     size = 48,
-    weight = 600,
+    weight = 200,
     antialias = true,
     scanlines = 4,
     shadow = false
@@ -47,7 +47,7 @@ surface.CreateFont("Timer", {
 surface.CreateFont("TimerNoScan", {
     font = "Roboto-Light",
     size = 48,
-    weight = 600,
+    weight = 200,
     antialias = true,
     shadow = false
 })
@@ -56,7 +56,7 @@ surface.CreateFont("TimerNoScan", {
 surface.CreateFont("TimerBlurred", {
     font = "Roboto-Light",
     size = 48,
-    weight = 600,
+    weight = 200,
     antialias = true,
     shadow = false,
     scanlines = 4,
