@@ -87,7 +87,6 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
 
         if victim:GetNWBool("LockedToSpectatedPlayer", false) then
             victim:SpectateEntity(alivePlayers[victim:GetNWInt("SpectateID", 1)])
-            victim:SetViewEntity(alivePlayers[victim:GetNWInt("SpectateID", 1)])
             victim:SetObserverMode(OBS_MODE_IN_EYE)
         else
             victim:SetObserverMode(OBS_MODE_ROAMING)
