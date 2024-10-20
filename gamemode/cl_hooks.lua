@@ -8,19 +8,19 @@ hook.Add("NetworkEntityCreated", "SetRagdollColors", function(ent)
 end)
 
 local key_blacklist = {
-    "invnext",
-    "invprev",
-    "slot0",
-    "slot1",
-    "slot2",
-    "slot3",
-    "slot4",
-    "slot5",
-    "slot6",
-    "slot7",
-    "slot8",
-    "slot9",
-    "slot10"
+    ["invnext"] = true,
+    ["invprev"] = true,
+    ["lastinv"] = true,
+    ["slot1"] = true,
+    ["slot2"] = true,
+    ["slot3"] = true,
+    ["slot4"] = true,
+    ["slot5"] = true,
+    ["slot6"] = true,
+    ["slot7"] = true,
+    ["slot8"] = true,
+    ["slot9"] = true,
+    ["slot0"] = true,
 }
 
 hook.Add("PlayerBindPress", "", function(_, bind)
