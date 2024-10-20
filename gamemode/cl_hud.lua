@@ -143,12 +143,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local height = 85
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
+        local name = "Testing Long Text"-- targetPly:Nick()
+
 
         draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height * 0.5 + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "SmallTimerBlurred", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimerBlurred", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
         draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - height * 0.5 + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "SmallTimer", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimer", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
