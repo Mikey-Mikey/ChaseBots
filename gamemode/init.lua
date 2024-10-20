@@ -13,6 +13,8 @@ SetGlobal2Bool("Empty", GetGlobal2Bool("Empty", true))
 SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 
+GAMEMODE.MaxNextbots = 15
+
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
     navareas = FilterTable(navareas, function(area)
@@ -59,7 +61,7 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
-    while table.Count(GAMEMODE.CurrentNextbots) < 20 do
+    while table.Count(GAMEMODE.CurrentNextbots) < GAMEMODE.MaxNextbots do
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
         if GAMEMODE.CurrentNextbots[nextbotClass] then
             continue
