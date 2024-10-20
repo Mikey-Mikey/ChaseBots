@@ -41,7 +41,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW() * 0.5
         local spectrumPower = 600
-        local barWidth = 10
+        local barWidth = 5
         local spectrumY = ScrH() - 150
 
         for i = 1, table.Count(spectrum) do
