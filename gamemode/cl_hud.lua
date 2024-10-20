@@ -40,15 +40,6 @@ surface.CreateFont("Timer", {
     size = 48,
     weight = 100,
     antialias = true,
-    scanlines = 4,
-    shadow = false
-})
-
-surface.CreateFont("TimerNoScan", {
-    font = "Roboto",
-    size = 48,
-    weight = 100,
-    antialias = true,
     shadow = false
 })
 
@@ -91,7 +82,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     draw.SimpleText(timerText, "Timer", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText(timerText, "TimerBlurred", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(timerText, "TimerNoScan", timerX, timerY, Color(timerColor.r,timerColor.g,timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
     if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
