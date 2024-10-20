@@ -144,9 +144,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         for i = 1, math.floor((math.sin(CurTime()) * 0.5 + 0.5) * 30) do
             name = name .. "T"
         end
-
+        local spectateTextWidth, _ = surface.GetTextSize("Spectating")
         local textWidth, _ = surface.GetTextSize(name)
-        local width = math.max(200,textWidth + 60)
+        local width = math.max(spectateTextWidth + 24,textWidth + 24)
         local height = 85
 
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
