@@ -43,7 +43,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
             local height = spectrum[i] * spectrumHeight * 4
-            draw.RoundedBox(0, spectrumX + i * barWidth, spectrumY + spectrumHeight - height, barWidth, height, Color(255,151,48))
+            -- do proper visualization of the spectrum
+            draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - height, barWidth, height, HSVToColor(i / #spectrum * 360, 1, 1))
         end
     end
 end)
