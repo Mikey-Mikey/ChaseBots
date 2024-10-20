@@ -132,7 +132,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
-        local spectateX, spectateY = ScrW() / 2, 132
+        local spectateX, spectateY = ScrW() / 2, ScrH()
 
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
@@ -146,14 +146,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local width = math.max(spectateTextWidth + 24,textWidth + 24)
         local height = 85
 
-        draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
+        draw.RoundedBoxEx(8, spectateX - width * 0.5, spectateY - height, width, height, Color(0,0,0,200), true, true, false, false)
 
 
-        draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height * 0.5 + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(name, "SmallTimerBlurred", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimerBlurred", spectateX, spectateY + height - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - height * 0.5 + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(name, "SmallTimer", spectateX, spectateY + height * 0.5 - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - height + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimer", spectateX, spectateY + height - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
