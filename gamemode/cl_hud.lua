@@ -48,7 +48,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         for i = 1, table.Count(spectrum) do
             local barFrequency = i * 44100 / 256 / 2 -- 44100 Hz sample rate, 256 samples, 0 to 22050 Hz
             barHeights[i] = barHeights[i] or 0
-            local height = spectrum[i] * barFrequency / (44100 / 256 / 2)
+            local height = spectrum[i] * barFrequency / (44100 / 256 / 2) * spectrumHeight
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
@@ -58,7 +58,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             -- do proper visualization of the spectrum
             draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
-        PrintTable(barHeights)
     end
 end)
 
