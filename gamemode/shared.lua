@@ -111,7 +111,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
     end
 
-    if SERVER and ply:GetNWBool("LockedToSpectatedPlayer", false) then
+    if ply:GetNWBool("LockedToSpectatedPlayer", false) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
@@ -119,11 +119,18 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if not IsValid(targetPly) or not targetPly:Alive() then
+            for k, other in ipairs(player.GetAll()) do
+                other:SetNoDraw(false)
+            end
             ply:SetNWInt("SpectateID", 1)
             targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
         end
 
-        if IsValid(targetPly) and targetPly:Alive() then
+        if CLIENT then
+            targetPly:SetNoDraw(true)
+        end
+
+        if SERVER and IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:EyePos()
             vel = targetPly:GetVelocity()
             ply:SetPos(pos)
