@@ -51,7 +51,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
-                barHeights[i] = Lerp(0.3, barHeights[i] or 0, height)
+                barHeights[i] = Lerp(0.15, barHeights[i] or 0, height)
             end
 
             local xPos = (i - 1) / table.Count(spectrum) * (spectrumWidth - barWidth)
