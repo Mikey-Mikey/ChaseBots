@@ -39,14 +39,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
-        local spectrumWidth = math.floor(ScrW() * 0.5)
+        local spectrumWidth = table.Count(spectrum) * 3
         local spectrumPower = 600
         local barWidth = 5
         local spectrumY = ScrH() - 150
 
         for i = 1, table.Count(spectrum) do
-            local barFrequency = i * 44100 / 256 / 2 -- 44100 Hz sample rate, 256 samples, 0 to 22050 Hz
-
             barHeights[i] = barHeights[i] or 0
 
             local height = math.sqrt(spectrum[i])
@@ -61,7 +59,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             end
 
             local xPos = math.floor((i - 1) / table.Count(spectrum) * (spectrumWidth - barWidth))
-            xPos = xPos + math.floor((spectrumWidth - barWidth) / table.Count(spectrum)) - barWidth + math.floor(barWidth / 4)
+            xPos = xPos + math.floor((spectrumWidth - barWidth) / table.Count(spectrum)) - barWidth + barWidth / 4
             xPos = xPos + math.floor(spectrumWidth / 2)
             xPos = math.floor(xPos)
 
