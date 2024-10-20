@@ -40,14 +40,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spacing = 10
-        local spectrumPower = 600
+        local spectrumPower = 500
         local barWidth = 5
         local spectrumY = ScrH() - 150
 
         for i = 1, table.Count(spectrum) do
             barHeights[i] = barHeights[i] or 0
 
-            local height = spectrum[i] ^ (1 / 4)
+            local height = spectrum[i] ^ (1 / 3)
 
             --height = height * barFrequency / (44100 / 256 / 2) * spectrumPower + barWidth * 2
             height = height * spectrumPower + barWidth * 2
