@@ -77,10 +77,8 @@ end
 function GM:EndRound()
     SetGlobal2Bool("RoundRunning", false)
     timer.Create("TryRestartRound", 0.1, 0, function()
-        if player.GetCount() < 1 then return end
-        timer.Create("RestartRound", 3, 1, function()
-            GAMEMODE:StartRound()
-        end)
+        if player.GetCount() < 1 or player.GetAll()[1]:TimeConnected() < 2 then return end
+        GAMEMODE:StartRound()
         timer.Remove("TryRestartRound")
     end)
 end
