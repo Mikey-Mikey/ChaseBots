@@ -73,7 +73,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
+            pos = targetPly:GetPos() - (ply:GetPos() - ply:GetShootPos())
             mv:SetOrigin(pos)
             ply:SetEyeAngles(targetPly:EyeAngles())
             ply:SpectateEntity(targetPly)
@@ -95,7 +95,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
+            pos = targetPly:GetPos() - (ply:GetPos() - ply:GetShootPos())
             mv:SetOrigin(pos)
             ply:SetEyeAngles(targetPly:EyeAngles())
             ply:SpectateEntity(targetPly)
@@ -129,7 +129,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
 
         if SERVER and IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
+            pos = targetPly:GetPos() - (ply:GetPos() - ply:GetShootPos())
             mv:SetOrigin(pos)
             ply:SpectateEntity(targetPly)
             return
