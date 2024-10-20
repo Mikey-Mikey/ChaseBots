@@ -82,8 +82,12 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
         victim:SetEyeAngles(deathEyeAngles)
         victim:Spectate(OBS_MODE_ROAMING)
 
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+
         if victim:GetNWBool("LockedToSpectatedPlayer", false) then
-            victim:SpectateEntity(victim:GetNWInt("SpectateID", 1))
+            victim:SpectateEntity(alivePlayers[victim:GetNWInt("SpectateID", 1)])
+            victim:SetViewEntity(alivePlayers[victim:GetNWInt("SpectateID", 1)])
             victim:SetObserverMode(OBS_MODE_IN_EYE)
         else
             victim:SetObserverMode(OBS_MODE_ROAMING)
