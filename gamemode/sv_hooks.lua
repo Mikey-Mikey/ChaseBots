@@ -114,8 +114,10 @@ end)
 
 gameevent.Listen("player_connect_client")
 hook.Add("player_connect_client", "StartRoundFromEmpty", function(data)
-    if GetGlobal2Bool("Empty", true) then
-        SetGlobal2Bool("Empty", false)
-        GAMEMODE:StartRound()
-    end
+    timer.Simple(1, function()
+        if GetGlobal2Bool("Empty", true) then
+            SetGlobal2Bool("Empty", false)
+            GAMEMODE:StartRound()
+        end
+    end)
 end)
