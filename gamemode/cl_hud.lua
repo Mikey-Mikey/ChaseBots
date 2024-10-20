@@ -63,7 +63,7 @@ surface.CreateFont("TimerBlurred", {
     blursize = 6
 })
 
-local TIMER_COLOR = Color(255, 208, 0)
+local TIMER_COLOR = Color(255, 185, 0)
 
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
@@ -83,7 +83,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local timerColor = TIMER_COLOR
 
-    if timeLeft == 0 then
+    if timeLeft < 60 and secs == 0 then
         timerColor = Color(0, 255, 0)
     end
 
