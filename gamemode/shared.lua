@@ -111,7 +111,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
     end
 
-    if ply:GetNWBool("LockedToSpectatedPlayer", false) then
+    if SERVER and ply:GetNWBool("LockedToSpectatedPlayer", false) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
