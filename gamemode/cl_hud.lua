@@ -85,6 +85,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     if timeLeft < 60 and secs == 0 then
         timerColor = Color(0, 255, 0)
+    elseif not GetGlobal2Bool("RoundRunning", false) then
+        timerColor = Color(255, 0, 0)
     end
 
     draw.SimpleText(timerText, "Timer", ScrW() / 2, 49, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
