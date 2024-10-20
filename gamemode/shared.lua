@@ -158,7 +158,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
 end)
 
-hook.Add("StartCommand", "DisableSpectatorMovement", function(ply, cmd)
+hook.Add("SetupMove", "DisableSpectatorMovement", function(ply, mv, cmd)
     if not ply:Alive() and ply:GetNWBool("LockedToSpectatedPlayer", false) then
         cmd:ClearMovement()
         cmd:SetMouseX(0)
