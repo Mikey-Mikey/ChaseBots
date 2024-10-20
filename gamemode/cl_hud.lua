@@ -49,7 +49,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         for i = 1, #spectrum do
             local height = spectrum[i] * spectrumHeight / radio_station:GetVolume()
 
-            barHeights[i] = Lerp(0.3 + (height > barHeights[i] and 0.7 or 0), barHeights[i] or 0, height)
+            barHeights[i] = Lerp(0.3 + (height > (barHeights[i] or 0) and 0.7 or 0), barHeights[i] or 0, height)
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             end
