@@ -143,7 +143,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local height = 85
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
-        local name = "Testing Long Text"-- targetPly:Nick()
+        local name = ""--targetPly:Nick()
+
+        for i = 1, math.floor((math.sin(CurTime()) * 0.5 + 0.5) * 30) do
+            name = name .. "T"
+        end
 
 
         draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height * 0.5 + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
