@@ -76,7 +76,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local mins = math.floor(timeLeft / 60)
     local secs = math.floor(timeLeft % 60)
 
-    local timerText = string.format("%02d %02d", mins, secs)
+    local timerText = string.format("%02d:%02d", mins, secs)
 
     -- Draw a timer at the top of the screen
     draw.RoundedBox(8, ScrW() / 2 - 100, 25, 200, 50, Color(0,0,0,200))
@@ -87,7 +87,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(0, 255, 0)
     end
 
-    draw.SimpleText(timerText, "HealthAmmo", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "GModToolName", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, Color(timerColor.r,timerColor.g,timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
