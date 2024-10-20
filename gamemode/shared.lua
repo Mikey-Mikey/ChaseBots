@@ -119,8 +119,10 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if not IsValid(targetPly) or not targetPly:Alive() then
-            for k, other in ipairs(player.GetAll()) do
-                other:SetNoDraw(false)
+            if CLIENT then
+                for k, other in ipairs(player.GetAll()) do
+                    other:SetNoDraw(false)
+                end
             end
             ply:SetNWInt("SpectateID", 1)
             targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
@@ -140,9 +142,11 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             return
         end
     else
-        for k, other in ipairs(player.GetAll()) do
-            if other:GetNoDraw() then
-                other:SetNoDraw(false)
+        if CLIENT then
+            for k, other in ipairs(player.GetAll()) do
+                if other:GetNoDraw() then
+                    other:SetNoDraw(false)
+                end
             end
         end
     end
