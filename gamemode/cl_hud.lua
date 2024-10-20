@@ -140,14 +140,15 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         surface.SetFont("SmallTimer")
         local textWidth = surface.GetTextSize(targetPly:Nick())
         local width = math.max(200,textWidth + 20)
-        draw.RoundedBox(8, spectateX - width * 0.5, spectateY - 50, width, 100, Color(0,0,0,200))
+        local height = 100
+        draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
 
-        draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "SmallTimerBlurred", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height + 48, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "SmallTimerBlurred", spectateX, spectateY + height - 48, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "SmallTimer", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - height + 48, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "SmallTimer", spectateX, spectateY + height - 48, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
