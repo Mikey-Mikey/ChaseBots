@@ -120,11 +120,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         draw.RoundedBox(8, spectateX - 250, spectateY - 50, 500, 100, Color(0,0,0,200))
 
-        draw.SimpleText("Spectating", "TimerBlurred", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "TimerBlurred", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "TimerBlurred", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "TimerBlurred", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Spectating", "Timer", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "Timer", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "Timer", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "Timer", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
