@@ -117,11 +117,11 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
     end
 
-    if mv:KeyPressed(IN_RELOAD) and IsFirstTimePredicted() then
-        ply.LockedToSpectatedPlayer = not ply.LockedToSpectatedPlayer
+    if SERVER and mv:KeyPressed(IN_RELOAD) and IsFirstTimePredicted() then
+        ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
     end
 
-    if ply.LockedToSpectatedPlayer then
+    if ply:GetNWBool("LockedToSpectatedPlayer", false) then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
