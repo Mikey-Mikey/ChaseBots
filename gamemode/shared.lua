@@ -78,7 +78,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:GetPos() + Vector(0,0,64)
             vel = targetPly:GetVelocity()
-            mv:SetMoveAngles(targetPly:EyeAngles())
+            ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
 
@@ -101,7 +101,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:GetPos() + Vector(0,0,64)
             vel = targetPly:GetVelocity()
-            mv:SetMoveAngles(targetPly:EyeAngles())
+            ply:SetEyeAngles(targetPly:EyeAngles())
         end
     end
 
