@@ -4,11 +4,14 @@ if IsValid(radio_station) then
     radio_station:Stop()
 end
 
+local loading_station = true
+
 sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err) -- play my friend's radio station for some background music while playing
     if IsValid(station) then
         station:Play()
         station:SetVolume(0.75)
         radio_station = station
+        loading_station = false
     end
 
 end)
@@ -32,8 +35,6 @@ end)
 local radioVisualizerCVar = CreateClientConVar("radio_visualizer", "1", true, false, "Whether or not the radio visualizer should be shown")
 
 local radioEnabledCVar = CreateClientConVar("radio_enabled", "1", true, false, "Whether or not the radio should be enabled")
-
-local loading_station = false
 
 hook.Add("Think", "RadioThink", function()
     if not IsValid(radio_station) and radioEnabledCVar:GetBool() and not loading_station then
