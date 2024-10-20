@@ -59,8 +59,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
                 barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
             end
 
-            local xPos = i * spacing
-            xPos = xPos
+            local xPos = i * spacing - spacing * 0.5
 
             -- do proper visualization of the spectrum
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5), spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
