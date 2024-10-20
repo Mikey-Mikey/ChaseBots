@@ -59,7 +59,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     pos = pos + vel * FrameTime()
 
-    if mv:KeyPressed(IN_ATTACK) and IsFirstTimePredicted() then
+    if mv:KeyPressed(IN_ATTACK) and SERVER and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
@@ -82,15 +82,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             mv:SetVelocity(vel)
             mv:SetOrigin(pos)
 
-            if SERVER then
-                ply:SetEyeAngles(targetPly:EyeAngles())
-            end
+            ply:SetEyeAngles(targetPly:EyeAngles())
 
             return
         end
     end
 
-    if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then -- TODO: Fix this
+    if mv:KeyPressed(IN_ATTACK2) and SERVER and IsFirstTimePredicted() then -- TODO: Fix this
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
@@ -112,11 +110,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             ply:SetPos(pos)
             mv:SetVelocity(vel)
             mv:SetOrigin(pos)
-            
-            if SERVER then
-                ply:SetEyeAngles(targetPly:EyeAngles())
-            end
-
+            ply:SetEyeAngles(targetPly:EyeAngles())
             return
         end
     end
