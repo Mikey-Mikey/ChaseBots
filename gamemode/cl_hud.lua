@@ -97,7 +97,7 @@ surface.CreateFont("SmallTimerBlurred", {
     antialias = true,
     shadow = false,
     scanlines = 4,
-    blursize = 6
+    blursize = 4
 })
 
 local TIMER_COLOR = Color(255,246,43)
