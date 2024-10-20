@@ -40,7 +40,7 @@ surface.CreateFont("Timer", {
     size = 48,
     weight = 600,
     antialias = true,
-    scanlines = 2,
+    scanlines = 4,
     shadow = false
 })
 
@@ -51,7 +51,7 @@ surface.CreateFont("TimerBlurred", {
     weight = 600,
     antialias = true,
     shadow = false,
-    scanlines = 2,
+    scanlines = 4,
     blursize = 6
 })
 
