@@ -74,8 +74,6 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
-            vel = targetPly:GetVelocity()
-            mv:SetVelocity(vel)
             mv:SetOrigin(pos)
             ply:SetEyeAngles(targetPly:EyeAngles())
             ply:SpectateEntity(targetPly)
@@ -98,8 +96,6 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
-            vel = targetPly:GetVelocity()
-            mv:SetVelocity(vel)
             mv:SetOrigin(pos)
             ply:SetEyeAngles(targetPly:EyeAngles())
             ply:SpectateEntity(targetPly)
@@ -135,8 +131,6 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         if SERVER and IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:GetPos() - (ply:GetPos() - ply:EyePos())
-            vel = targetPly:GetVelocity()
-            mv:SetVelocity(vel)
             mv:SetOrigin(pos)
             ply:SpectateEntity(targetPly)
             return
