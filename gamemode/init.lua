@@ -52,8 +52,6 @@ function GM:StartRound()
     SetGlobal2Float("RoundStartTime", RealTime())
     SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("BASE_ROUND_TIME", 300))
 
-    print("Round Started")
-
     for i, ply in ipairs(player.GetAll()) do
         ply:SetNWBool("Spectating", false)
         ply:Spawn()
@@ -73,6 +71,8 @@ function GM:StartRound()
         bot:Spawn()
         GAMEMODE.CurrentNextbots[nextbotClass] = true
     end
+
+    print("Round Started")
 end
 
 function GM:EndRound()
@@ -89,6 +89,8 @@ function GM:EndRound()
             end)
         end
     end)
+
+    print("Round Ended")
 end
 
 function GM:PlayerLoadout(ply)
