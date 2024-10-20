@@ -7,20 +7,6 @@ GM.IsSandboxDerived = true
 GM.NextbotClassTable = {}
 GM.CurrentNextbots = {}
 
-hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
-    DrawColorModify({
-        ["$pp_colour_addr"] = 0,
-        ["$pp_colour_addg"] = 0,
-        ["$pp_colour_addb"] = 0,
-        ["$pp_colour_brightness"] = 0,
-        ["$pp_colour_contrast"] = 1,
-        ["$pp_colour_colour"] = 1,
-        ["$pp_colour_mulr"] = 0,
-        ["$pp_colour_mulg"] = 0,
-        ["$pp_colour_mulb"] = 0
-    })
-end)
-
 function FilterTable(tbl, filter)
     local newTable = {}
     for k, v in pairs(tbl) do

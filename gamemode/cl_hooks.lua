@@ -7,6 +7,8 @@ hook.Add("NetworkEntityCreated", "SetRagdollColors", function(ent)
     end
 end)
 
+
+-- Disable weapon switching
 local key_blacklist = {
     ["invnext"] = true,
     ["invprev"] = true,
@@ -27,4 +29,28 @@ hook.Add("PlayerBindPress", "", function(_, bind)
     if key_blacklist[bind] then
         return true
     end
+end)
+
+hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
+    local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
+    nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextbot() end)
+
+    local grayAmount = 0
+
+    for i, nextbot in ipairs(nearbyNextbots) do
+        local dist = LocalPlayer():GetPos():DistToSqr(nextbot:GetPos())
+        grayAmount = math.max(grayAmount, 1 - (dist / 800^2))
+    end
+
+    DrawColorModify({
+        ["$pp_colour_addr"] = 0,
+        ["$pp_colour_addg"] = 0,
+        ["$pp_colour_addb"] = 0,
+        ["$pp_colour_brightness"] = 0,
+        ["$pp_colour_contrast"] = 1,
+        ["$pp_colour_colour"] = 1 - grayAmount,
+        ["$pp_colour_mulr"] = 0,
+        ["$pp_colour_mulg"] = 0,
+        ["$pp_colour_mulb"] = 0
+    })
 end)
