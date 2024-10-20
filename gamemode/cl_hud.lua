@@ -1,6 +1,9 @@
 radio_station = radio_station or nil -- garbage collection prevention
 
-print("Creating radio station")
+if IsValid(radio_station) then
+    radio_station:Stop()
+end
+
 sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err) -- play my friend's radio station for some background music while playing
     if IsValid(station) then
         station:Play()
