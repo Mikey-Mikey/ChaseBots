@@ -60,7 +60,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
                 barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
             end
 
-            local xPos = math.floor((i - 1) / table.Count(spectrum)) * (spectrumWidth - barWidth)
+            local xPos = math.floor((i - 1) / table.Count(spectrum) * (spectrumWidth - barWidth))
             xPos = xPos + math.floor((spectrumWidth - barWidth) / table.Count(spectrum)) - barWidth + math.floor(barWidth / 4)
             xPos = xPos + math.floor(spectrumWidth / 2)
             xPos = math.floor(xPos)
