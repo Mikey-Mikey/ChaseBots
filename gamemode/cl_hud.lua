@@ -48,8 +48,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
             barHeights[i] = barHeights[i] or 0
-            local height = spectrum[i] * spectrumHeight
-            height = height * (i - 1) / #spectrum * radio_station:GetSamplingRate()
+            local height = spectrum[i]
+            height = height * (i - 1) / #spectrum
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
