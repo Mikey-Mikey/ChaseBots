@@ -60,13 +60,13 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             end
 
             local xPos = i * spacing - spacing * 2
-            if i == 2 then continue end
             local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
             -- do proper visualization of the spectrum
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
 
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
             
+            if i == 2 then continue end
 
             draw.RoundedBox(barWidth, -xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
 
