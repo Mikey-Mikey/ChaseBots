@@ -66,7 +66,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             xPos = math.floor(xPos)
 
             -- do proper visualization of the spectrum
-            draw.RoundedBox(barWidth, xPos, spectrumY + spectrumPower - barHeights[i] + barWidth, barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
+            draw.RoundedBox(barWidth, xPos, spectrumY - barHeights[i] * 0.5 + barWidth, barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
     end
 end)
