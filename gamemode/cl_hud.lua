@@ -81,6 +81,7 @@ surface.CreateFont("TimerBlurred", {
 })
 
 local TIMER_COLOR = Color(255,246,43)
+local SPECTATE_COLOR = Color(255,246,43)
 
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
@@ -108,6 +109,23 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     draw.SimpleText(timerText, "TimerBlurred", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText(timerText, "Timer", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    -- Show the player that we're spectating
+    if LocalPlayer():GetNWBool("Spectating", false) and LocalPlayer():SetNWBool("LockedToSpectatedPlayer", false) then
+        local spectateX, spectateY = ScrW() / 2, 135
+
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+
+        draw.RoundedBox(8, spectateX - 250, spectateY - 50, 500, 100, Color(0,0,0,200))
+
+        draw.SimpleText("Spectating", "TimerBlurred", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "TimerBlurred", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+        draw.SimpleText("Spectating", "Timer", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "Timer", spectateX, spectateY, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
     if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
