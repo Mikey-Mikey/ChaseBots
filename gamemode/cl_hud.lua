@@ -47,8 +47,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         draw.RoundedBox(8, spectrumX, spectrumY, spectrumWidth, spectrumHeight, Color(0,0,0,200))
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
-            local height = spectrum[i] * spectrumHeight
-            barHeights[i] = Lerp(0.1, barHeights[i] or 0, height)
+            local height = spectrum[i] * spectrumHeight / radio_station:GetVolume()
+            barHeights[i] = Lerp(0.3, barHeights[i] or 0, height)
             -- do proper visualization of the spectrum
             draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
