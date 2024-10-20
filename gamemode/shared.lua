@@ -73,7 +73,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:EyePos()
+            pos = targetPly:EyePos() + (ply:GetPos() - ply:EyePos())
             vel = targetPly:GetVelocity()
             ply:SetPos(pos)
             mv:SetVelocity(vel)
@@ -97,7 +97,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:EyePos()
+            pos = targetPly:EyePos() + (ply:GetPos() - ply:EyePos())
             vel = targetPly:GetVelocity()
             ply:SetPos(pos)
             mv:SetVelocity(vel)
@@ -133,7 +133,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
 
         if SERVER and IsValid(targetPly) and targetPly:Alive() then
-            pos = targetPly:EyePos()
+            pos = targetPly:EyePos() + (ply:GetPos() - ply:EyePos())
             vel = targetPly:GetVelocity()
             ply:SetPos(pos)
             mv:SetVelocity(vel)
