@@ -99,6 +99,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spacing = 3
         local spectrumPower = 300
         local barWidth = 1
+        local spectrumX = 300
         local spectrumY = ScrH() - 150
 
         local borderThickness = 1
@@ -122,11 +123,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             local xPos = i * spacing - spacing * 2
 
             -- Draw the bars
-            draw.RoundedBox(0, xPos + math.floor(ScrW() * 0.5) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
+            draw.RoundedBox(0, xPos + math.floor(spectrumX) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
 
             if i == 2 then continue end
 
-            draw.RoundedBox(0, -xPos + math.floor(ScrW() * 0.5) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
+            draw.RoundedBox(0, -xPos + math.floor(spectrumX) - borderThickness, spectrumY - barHeights[i] + barWidth - borderThickness, barWidth + borderThickness * 2, barHeights[i] * 2 + borderThickness * 2, Color(0, 0, 0))
         end
 
         for i = 2, #spectrum do
@@ -134,11 +135,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             local brightness = math.min(math.sqrt(barHeights[i] / spectrumPower) * 2 + 0.25, 1)
 
             -- Draw the bars
-            draw.RoundedBox(0, xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
+            draw.RoundedBox(0, xPos + math.floor(spectrumX), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
 
             if i == 2 then continue end
 
-            draw.RoundedBox(0, -xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
+            draw.RoundedBox(0, -xPos + math.floor(spectrumX), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
         end
     end
 end)
