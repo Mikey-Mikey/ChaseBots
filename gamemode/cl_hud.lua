@@ -43,9 +43,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectrumHeight = 200
         local spacing = 2
         local spectrumX = ScrW() / 2 - spectrumWidth / 2 * spacing
-        local spectrumY = ScrH() - spectrumHeight - 25
+        local spectrumY = ScrH() - spectrumHeight
 
-        local barWidth = spectrumWidth / table.Count(spectrum)
+        local barWidth = spectrumWidth / table.Count(spectrum) / spacing
         for i = 1, table.Count(spectrum) do
             local barFrequency = i * 44100 / 256 / 2 -- 44100 Hz sample rate, 256 samples, 0 to 22050 Hz
             barHeights[i] = barHeights[i] or 0
