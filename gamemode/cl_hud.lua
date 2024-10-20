@@ -60,12 +60,18 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             end
 
             local xPos = i * spacing
-            xPos = xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5)
+            xPos = xPos
 
             -- do proper visualization of the spectrum
-            draw.RoundedBox(barWidth, xPos + 3, spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
+            draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5), spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
 
-            draw.RoundedBox(barWidth, xPos, spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, math.sqrt(height / spectrumPower) + 0.25))
+            draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, math.sqrt(height / spectrumPower) + 0.25))
+            
+
+            draw.RoundedBox(barWidth, -xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5), spectrumY - barHeights[i] + barWidth + 3, barWidth, barHeights[i] * 2, Color(0, 0, 0, 127))
+
+            draw.RoundedBox(barWidth, -xPos + math.floor(ScrW() * 0.5 - #spectrum * spacing * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, math.sqrt(height / spectrumPower) + 0.25))
+        
         end
     end
 end)
