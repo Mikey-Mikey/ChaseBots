@@ -81,9 +81,15 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a timer at the top of the screen
     draw.RoundedBox(8, ScrW() / 2 - 100, 25, 200, 50, Color(0,0,0,200))
 
-    draw.SimpleText(timerText, "TimerBlurred", ScrW() / 2, 50, TIMER_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(timerText, "Timer", ScrW() / 2, 50, TIMER_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(timerText, "TimerNoScan", ScrW() / 2, 50, Color(TIMER_COLOR.r,TIMER_COLOR.g,TIMER_COLOR.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    local timerColor = TIMER_COLOR
+
+    if timeLeft == 0 then
+        timerColor = Color(0, 255, 0)
+    end
+
+    draw.SimpleText(timerText, "TimerBlurred", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerNoScan", ScrW() / 2, 50, Color(timerColor.r,timerColor.g,timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
     if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
