@@ -7,7 +7,7 @@ end
 sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err) -- play my friend's radio station for some background music while playing
     if IsValid(station) then
         station:Play()
-        station:SetVolume(0.25)
+        station:SetVolume(0.5)
         radio_station = station
     end
 
@@ -48,7 +48,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
             barHeights[i] = barHeights[i] or 0
-            local height = spectrum[i] * spectrumHeight / radio_station:GetVolume()
+            local height = spectrum[i] * spectrumHeight
+            height = height * (i - 1) / #spectrum * radio_station:GetSamplingRate()
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
