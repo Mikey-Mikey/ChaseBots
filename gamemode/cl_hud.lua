@@ -44,7 +44,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = 3
         local spectrumY = ScrH() - 150
 
-        for i = 1, #spectrum do
+        for i = 2, #spectrum do
             local barFrequency = 44100 / 256 / 2 / #spectrum
             barHeights[i] = barHeights[i] or 0
 
@@ -59,7 +59,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
                 barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
             end
 
-            local xPos = i * spacing - spacing * 0.5
+            local xPos = i * spacing - spacing
 
             local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
             -- do proper visualization of the spectrum
