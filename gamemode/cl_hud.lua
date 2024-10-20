@@ -132,7 +132,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
-        local spectateX, spectateY = ScrW() / 2, 135
+        local spectateX, spectateY = ScrW() / 2, 150
 
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
@@ -140,7 +140,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         surface.SetFont("SmallTimer")
         local textWidth = surface.GetTextSize(targetPly:Nick())
         local width = math.max(200,textWidth + 20)
-        local height = 100
+        local height = 85
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
 
