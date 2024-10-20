@@ -47,8 +47,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         draw.RoundedBox(8, spectrumX, spectrumY, spectrumWidth, spectrumHeight, Color(0,0,0,200))
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
+            barHeights[i] = barHeights[i] or 0
             local height = spectrum[i] * spectrumHeight / radio_station:GetVolume()
-
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
             else
