@@ -1,7 +1,7 @@
 --------------------------------------------------
 local AFK_TIME = 120
 
-local AFK_WARN_TIME = 60
+local AFK_WARN_TIME = 80
 --------------------------------------------------
 
 hook.Add("PlayerInitialSpawn", "MakeAFKVar", function(ply)
@@ -11,7 +11,7 @@ end)
 hook.Add("Think", "HandleAFKPlayers", function()
     for _, ply in pairs (player.GetAll()) do
         if ( ply:IsConnected() and ply:IsFullyAuthenticated() ) then
-            if (!ply.NextAFK) then
+            if not ply.NextAFK or not ply:Alive() then
                 ply.NextAFK = CurTime() + AFK_TIME
             end
 
@@ -19,7 +19,7 @@ hook.Add("Think", "HandleAFKPlayers", function()
 
             ply:SetNWBool("KickingSoon", CurTime() >= afktime - AFK_WARN_TIME)
 
-            if (CurTime() >= afktime - AFK_WARN_TIME) and (!ply.Warning) then
+            if (CurTime() >= afktime - AFK_WARN_TIME) and not ply.Warning then
                 ply.Warning = true
             elseif (CurTime() >= afktime) and ply.Warning then
                 ply.Warning = nil
