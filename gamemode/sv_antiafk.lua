@@ -1,7 +1,7 @@
 --------------------------------------------------
-local AFK_TIME = 60
+local AFK_TIME = 120
 
-local AFK_WARN_TIME = 30
+local AFK_WARN_TIME = 60
 --------------------------------------------------
 
 hook.Add("PlayerInitialSpawn", "MakeAFKVar", function(ply)
