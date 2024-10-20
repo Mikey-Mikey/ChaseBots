@@ -42,7 +42,6 @@ end
 
 hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if not ply:GetNWBool("Spectating", false) then
-        ply:SetGravity(1)
         return false
     end
 
@@ -71,7 +70,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if mv:KeyPressed(IN_ATTACK) and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Health() > 0 and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -85,14 +84,15 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
-        if IsValid(targetPly) and targetPly:Health() > 0 then
-            pos = targetPly:GetShootPos()
+        if IsValid(targetPly) and targetPly:Alive() then
+            pos = targetPly:GetPos() + Vector(0,0,64)
+            vel = targetPly:GetVelocity()
         end
     end
 
     if mv:KeyPressed(IN_ATTACK2) and IsFirstTimePredicted() then -- TODO: Fix this
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Health() > 0 and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -106,12 +106,12 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
-        if IsValid(targetPly) and targetPly:Health() > 0 then
-            pos = targetPly:GetShootPos()
+        if IsValid(targetPly) and targetPly:Alive() then
+            pos = targetPly:GetPos() + Vector(0,0,64)
+            vel = targetPly:GetVelocity()
         end
     end
 
-    ply:SetGravity(0)
     mv:SetVelocity(vel)
     mv:SetOrigin(pos)
 
