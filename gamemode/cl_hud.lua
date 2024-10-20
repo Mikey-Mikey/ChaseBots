@@ -59,7 +59,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
                 barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
             end
 
-            local xPos = i * spacing - spacing
+            local xPos = i * spacing - spacing * 2
 
             local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
             -- do proper visualization of the spectrum
