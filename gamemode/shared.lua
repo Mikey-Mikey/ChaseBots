@@ -66,8 +66,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) - 1)
 
-        if ply:GetNWInt("SpectateID", 1) > table.Count(alivePlayers) then
-            ply:SetNWInt("SpectateID", 1)
+        if ply:GetNWInt("SpectateID", 1) < 1 then
+            ply:SetNWInt("SpectateID", table.Count(alivePlayers))
         end
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
@@ -90,8 +90,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) + 1)
 
-        if ply:GetNWInt("SpectateID", 1) < 1 then
-            ply:SetNWInt("SpectateID", table.Count(alivePlayers))
+        if ply:GetNWInt("SpectateID", 1) > table.Count(alivePlayers) then
+            ply:SetNWInt("SpectateID", 1)
         end
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
