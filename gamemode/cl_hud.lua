@@ -63,7 +63,7 @@ surface.CreateFont("TimerBlurred", {
     blursize = 6
 })
 
-local TIMER_COLOR = Color(255, 185, 0)
+local TIMER_COLOR = Color(255,246,43)
 
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
