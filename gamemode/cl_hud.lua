@@ -40,7 +40,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW()
-        local spectrumHeight = 60
+        local spectrumHeight = 40
         local barWidth = 10
         local spectrumY = ScrH() - spectrumHeight
 
