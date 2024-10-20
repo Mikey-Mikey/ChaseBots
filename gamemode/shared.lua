@@ -116,7 +116,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then
-            ply:SetNWBool("LockedToSpectatedPlayer", true)
+            ply:SetNWBool("LockedToSpectatedPlayer", false)
             ply:SetObserverMode(OBS_MODE_ROAMING)
             return
         end
