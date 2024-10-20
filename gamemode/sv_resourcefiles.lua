@@ -28,7 +28,7 @@ for i = 1, 2 do
     resource.AddFile("sound/parkourmod/die_female_0" .. i .. ".wav")
 end
 
-resource.AddFile("sound/parkourmod/door_burst.wav")
+resource.AddFile("sound/parkourmod/door_brust.wav")
 
 for i = 1, 3 do
     resource.AddFile("sound/parkourmod/die_combine_0" .. i .. ".wav")
