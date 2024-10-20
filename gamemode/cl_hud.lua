@@ -50,7 +50,7 @@ surface.CreateFont("TimerBlurred", {
     weight = 500,
     antialias = true,
     shadow = false,
-    blurside = 6
+    blursize = 6
 })
 
 
