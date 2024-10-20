@@ -138,8 +138,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         local targetPly = alivePlayers[LocalPlayer():GetNWInt("SpectateID", 1)]
         surface.SetFont("SmallTimer")
-        local textWidth = surface.GetTextSize(targetPly:Nick())
-        local width = math.max(200,textWidth + 20)
+        local textWidth, _ = surface.GetTextSize(targetPly:Nick())
+        local width = math.max(200,textWidth * 2 + 20)
         local height = 85
         draw.RoundedBox(8, spectateX - width * 0.5, spectateY - height * 0.5, width, height, Color(0,0,0,200))
 
