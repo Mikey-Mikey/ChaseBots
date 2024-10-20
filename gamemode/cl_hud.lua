@@ -118,7 +118,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             end
 
             local xPos = i * spacing - spacing * 2
-            local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
 
             -- Draw the bars
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5) - 1, spectrumY - barHeights[i] + barWidth - 1, barWidth + 2, barHeights[i] * 2 + 2, Color(0, 0, 0))
@@ -129,22 +128,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         end
 
         for i = 2, #spectrum do
-            -- local barFrequency = 44100 / 256 / 2 / #spectrum
-            barHeights[i] = barHeights[i] or 0
-
-            local height = math.sqrt(spectrum[i])
-
-            -- height = height * barFrequency * spectrumPower + barWidth * 2
-            height = height * spectrumPower + barWidth
-
-            if height < barHeights[i] then
-                barHeights[i] = math.max(0, barHeights[i] - 2)
-            else
-                barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
-            end
-
             local xPos = i * spacing - spacing * 2
-            local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
+            local brightness = math.min(math.sqrt(barHeights[i] / spectrumPower) * 2 + 0.25, 1)
 
             -- Draw the bars
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
