@@ -38,7 +38,7 @@ local barHeights = {}
 surface.CreateFont("Timer", {
     font = "Arial",
     size = 48,
-    weight = 1000,
+    weight = 700,
     antialias = true,
     shadow = false
 })
@@ -47,7 +47,7 @@ surface.CreateFont("Timer", {
 surface.CreateFont("TimerBlurred", {
     font = "Arial",
     size = 48,
-    weight = 1000,
+    weight = 700,
     antialias = true,
     shadow = false,
     blursize = 6
