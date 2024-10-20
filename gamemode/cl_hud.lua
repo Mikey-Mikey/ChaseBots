@@ -80,6 +80,26 @@ surface.CreateFont("TimerBlurred", {
     blursize = 6
 })
 
+-- Create a font for the timer
+surface.CreateFont("SmallTimer", {
+    font = "Roboto",
+    size = 36,
+    weight = 100,
+    antialias = true,
+    shadow = false
+})
+
+-- Create the same font but blurred
+surface.CreateFont("SmallTimerBlurred", {
+    font = "Roboto",
+    size = 36,
+    weight = 100,
+    antialias = true,
+    shadow = false,
+    scanlines = 4,
+    blursize = 6
+})
+
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
 
@@ -120,11 +140,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         draw.RoundedBox(8, spectateX - 250, spectateY - 50, 500, 100, Color(0,0,0,200))
 
-        draw.SimpleText("Spectating", "TimerBlurred", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "TimerBlurred", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "SmallTimerBlurred", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-        draw.SimpleText("Spectating", "Timer", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(targetPly:Nick(), "Timer", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(targetPly:Nick(), "SmallTimer", spectateX, spectateY + 26, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
