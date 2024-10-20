@@ -39,7 +39,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
-        local spectrumWidth = table.Count(spectrum) * 3
+        local spacing = 10
         local spectrumPower = 600
         local barWidth = 5
         local spectrumY = ScrH() - 150
@@ -58,9 +58,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
                 barHeights[i] = LerpExpo(FrameTime(), barHeights[i] or 0, height, 30)
             end
 
-            local xPos = math.floor((i - 1) / table.Count(spectrum) * (spectrumWidth - barWidth))
-            xPos = xPos + math.floor((spectrumWidth - barWidth) / table.Count(spectrum)) - barWidth + barWidth / 4
-            xPos = xPos + math.floor(ScrW() * 0.5 - spectrumWidth / 2)
+            local xPos = i * spacing
+            xPos = xPos + math.floor(ScrW() * 0.5 - table.Count(spectrum) * spacing)
 
             -- do proper visualization of the spectrum
             draw.RoundedBox(barWidth, xPos, spectrumY - barHeights[i] * 0.5 + barWidth, barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
