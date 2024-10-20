@@ -33,7 +33,7 @@ end)
 
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
-    nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextbot() end)
+    nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
 
     local grayAmount = 0
 
