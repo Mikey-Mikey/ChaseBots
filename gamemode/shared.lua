@@ -70,7 +70,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         ply.PlayerSpectateID = ply.PlayerSpectateID + 1
 
-        if ply.PlayerSpectateID > table.Count(alivePlayers) then -- TODO: Fix this
+        if ply.PlayerSpectateID > table.Count(alivePlayers) then
             ply.PlayerSpectateID = 1
         end
 
@@ -89,7 +89,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
     end
 
-    if mv:KeyPressed(IN_ATTACK2) and SERVER and IsFirstTimePredicted() then -- TODO: Fix this
+    if mv:KeyPressed(IN_ATTACK2) and SERVER and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
@@ -117,11 +117,15 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
     end
 
-    if mv:KeyPressed(IN_RELOAD) and SERVER and IsFirstTimePredicted() and ply.PlayerSpectateID then -- TODO: Fix this
+    if mv:KeyPressed(IN_RELOAD) and SERVER and IsFirstTimePredicted() then
+        ply.LockedToSpectatedPlayer = not ply.LockedToSpectatedPlayer
+    end
+
+    if SERVER and ply.LockedToSpectatedPlayer then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
-        
+
         local targetPly = alivePlayers[ply.PlayerSpectateID]
 
         if not IsValid(targetPly) or not targetPly:Alive() then
