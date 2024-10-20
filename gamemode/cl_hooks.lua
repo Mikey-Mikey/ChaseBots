@@ -32,17 +32,17 @@ hook.Add("PlayerBindPress", "", function(_, bind)
 end)
 
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
-    local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 300)
+    local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 400)
     nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
 
     local grayAmount = 0
 
     for i, nextbot in ipairs(nearbyNextbots) do
         local dist = LocalPlayer():GetPos():DistToSqr(nextbot:GetPos())
-        grayAmount = math.max(grayAmount, 1 - (dist / 300^2))
+        grayAmount = math.max(grayAmount, 1 - (dist / 400^2))
     end
 
-    util.ScreenShake(LocalPlayer():GetPos(), grayAmount, 100, 0.1, 10, true)
+    util.ScreenShake(LocalPlayer():GetPos(), grayAmount * 3, 100, 0.1, 10, true)
 
     DrawColorModify({
         ["$pp_colour_addr"] = 0,
