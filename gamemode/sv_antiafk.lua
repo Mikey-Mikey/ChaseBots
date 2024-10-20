@@ -1,7 +1,7 @@
 --------------------------------------------------
-local AFK_TIME = 120
+local AFK_TIME = 240
 
-local AFK_WARN_TIME = 60
+local AFK_WARN_TIME = 120
 --------------------------------------------------
 
 hook.Add("PlayerInitialSpawn", "MakeAFKVar", function(ply)
@@ -17,12 +17,15 @@ hook.Add("Think", "HandleAFKPlayers", function()
 
             local afktime = ply.NextAFK
             if (CurTime() >= afktime - AFK_WARN_TIME) and (!ply.Warning) then
-                ply:ChatPrint("Warning: You will be kicked soon if you are inactive.")
+                ply:SetNWBool("KickingSoon", true)
                 ply.Warning = true
             elseif (CurTime() >= afktime) and ply.Warning then
+                ply:SetNWBool("KickingSoon", false)
                 ply.Warning = nil
                 ply.NextAFK = nil
                 ply:Kick("Kicked for being AFK")
+            else
+                ply:SetNWBool("KickingSoon", false)
             end
         end
     end

@@ -132,6 +132,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             draw.RoundedBox(0, -xPos + math.floor(spectrumX), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
         end
     end
+
+    -- Draw text in the middle of the screen when LocalPlayer():GetNWBool("KickingSoon", false)
+
+    if LocalPlayer():GetNWBool("KickingSoon", false) then
+        draw.SimpleText("Warning: You will be kicked soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    end
 end)
 
 
