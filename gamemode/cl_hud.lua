@@ -36,8 +36,10 @@ local radioVisualizerCVar = CreateClientConVar("radio_visualizer", "1", true, fa
 
 local radioEnabledCVar = CreateClientConVar("radio_enabled", "1", true, false, "Whether or not the radio should be enabled")
 
+
+
 hook.Add("Think", "RadioThink", function()
-    if not IsValid(radio_station) and radioEnabledCVar:GetBool() and not loading_station then
+    if (not IsValid(radio_station) or radio_station:GetState() == GMOD_CHANNEL_STOPPED) and radioEnabledCVar:GetBool() and not loading_station then
         loading_station = true
         sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(station, errorID, err)
             if IsValid(station) then
@@ -46,7 +48,6 @@ hook.Add("Think", "RadioThink", function()
                 radio_station = station
                 loading_station = false
             end
-
         end)
     end
 
