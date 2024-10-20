@@ -77,7 +77,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local secs = math.floor(timeLeft % 60)
 
     local timerText = string.format("%02d:%02d", mins, secs)
-    local timerX, timerY = ScrW() / 2, 100
+    local timerX, timerY = ScrW() / 2, 75
     -- Draw a timer at the top of the screen
     draw.RoundedBox(8, timerX - 100, timerY - 25, 200, 50, Color(0,0,0,200))
 
@@ -100,7 +100,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectrumPower = 200
         local barWidth = 1
         local spectrumX = 400
-        local spectrumY = 100
+        local spectrumY = 75
 
         local borderThickness = 1
 
