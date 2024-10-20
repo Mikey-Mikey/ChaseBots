@@ -36,6 +36,12 @@ local radioVisualizerCVar = CreateClientConVar("radio_visualizer", "1", true, fa
 
 local radioEnabledCVar = CreateClientConVar("radio_enabled", "1", true, false, "Whether or not the radio should be enabled")
 
+cvars.AddChangeCallback("radio_enabled", function(name, old, new)
+    if new == "0" and IsValid(radio_station) then
+        radio_station:Stop()
+    end
+end, "RadioEnabledCallback")
+
 hook.Add("Think", "RadioThink", function()
     if not IsValid(radio_station) and radioEnabledCVar:GetBool() and not loading_station then
         loading_station = true
