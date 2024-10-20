@@ -123,7 +123,3 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     return true
 
 end)
-
-hook.Add("PlayerSwitchWeapon", "DisableWeaponSwitching", function( ply, oldWeapon, newWeapon )
-    return true
-end)
