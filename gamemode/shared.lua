@@ -105,10 +105,18 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if SERVER and mv:KeyPressed(IN_RELOAD) and IsFirstTimePredicted() then
         ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
+
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+
         if ply:GetNWBool("LockedToSpectatedPlayer", false) then
             ply:SetObserverMode(OBS_MODE_IN_EYE)
         else
             ply:SetObserverMode(OBS_MODE_ROAMING)
+            pos = pos + (targetPly:GetShootPos() - ply:GetShootPos())
+            mv:SetOrigin(pos)
         end
     end
 
