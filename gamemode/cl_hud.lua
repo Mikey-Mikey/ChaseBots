@@ -40,19 +40,19 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW()
-        local spectrumHeight = 200
+        local spectrumPower = 600
         local barWidth = 10
-        local spectrumY = ScrH() - spectrumHeight
+        local spectrumY = ScrH() - spectrumPower
 
         for i = 1, table.Count(spectrum) do
             local barFrequency = i * 44100 / 256 / 2 -- 44100 Hz sample rate, 256 samples, 0 to 22050 Hz
 
             barHeights[i] = barHeights[i] or 0
 
-            local height = spectrum[i] ^ (1 / 6)
+            local height = spectrum[i] ^ (1 / 2)
 
-            --height = height * barFrequency / (44100 / 256 / 2) * spectrumHeight + barWidth * 2
-            height = height * spectrumHeight + barWidth
+            --height = height * barFrequency / (44100 / 256 / 2) * spectrumPower + barWidth * 2
+            height = height * spectrumPower + barWidth
 
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
@@ -64,7 +64,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             xPos = xPos + (spectrumWidth - barWidth) / table.Count(spectrum) - barWidth + barWidth / 4
 
             -- do proper visualization of the spectrum
-            draw.RoundedBox(barWidth, xPos, spectrumY + spectrumHeight - barHeights[i] + barWidth, barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
+            draw.RoundedBox(barWidth, xPos, spectrumY + spectrumPower - barHeights[i] + barWidth, barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
     end
 end)
