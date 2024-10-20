@@ -62,6 +62,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK) and SERVER and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        if table.Count(alivePlayers) == 0 then return end
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -91,6 +92,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     if mv:KeyPressed(IN_ATTACK2) and SERVER and IsFirstTimePredicted() then -- TODO: Fix this
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        if table.Count(alivePlayers) == 0 then return end
 
         if not ply.PlayerSpectateID then
             ply.PlayerSpectateID = 0
@@ -103,6 +105,29 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
 
         local targetPly = alivePlayers[ply.PlayerSpectateID]
+
+        if IsValid(targetPly) and targetPly:Alive() then
+            pos = targetPly:EyePos()
+            vel = targetPly:GetVelocity()
+            ply:SetPos(pos)
+            mv:SetVelocity(vel)
+            mv:SetOrigin(pos)
+            ply:SetEyeAngles(targetPly:EyeAngles())
+            return
+        end
+    end
+
+    if mv:KeyPressed(IN_RELOAD) and SERVER and IsFirstTimePredicted() and ply.PlayerSpectateID then -- TODO: Fix this
+        local alivePlayers = player.GetAll()
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        if table.Count(alivePlayers) == 0 then return end
+        
+        local targetPly = alivePlayers[ply.PlayerSpectateID]
+
+        if not IsValid(targetPly) or not targetPly:Alive() then
+            ply.PlayerSpectateID = 1
+            targetPly = alivePlayers[ply.PlayerSpectateID]
+        end
 
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:EyePos()
