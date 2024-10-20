@@ -13,6 +13,9 @@ sound.PlayURL("https://radio.blueberry.coffee/radio.mp3", "noplay", function(sta
 
 end)
 
+local spectrum = {}
+local barHeights = {}
+
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Float("CurrentRoundTime", 0)
@@ -35,7 +38,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- draw fft spectrum of the radio station at the bottom of the screen
 
     if IsValid(radio_station) then
-        local spectrum = {}
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW() / 2
         local spectrumHeight = 100
@@ -46,8 +48,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local barWidth = spectrumWidth / table.Count(spectrum)
         for i = 1, #spectrum do
             local height = spectrum[i] * spectrumHeight
+            barHeights[i] = Lerp(0.1, barHeights[i] or 0, height)
             -- do proper visualization of the spectrum
-            draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - height, barWidth, height, HSVToColor(i / #spectrum * 360, 1, 1))
+            draw.RoundedBox(0, spectrumX + (i - 1) * barWidth, spectrumY + spectrumHeight - barHeights[i], barWidth, barHeights[i], HSVToColor(i / #spectrum * 360, 1, 1))
         end
     end
 end)
