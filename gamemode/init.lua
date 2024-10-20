@@ -4,6 +4,7 @@ AddCSLuaFile("cl_hooks.lua")
 AddCSLuaFile("cl_hud.lua")
 include("shared.lua")
 include("sv_hooks.lua")
+include("sv_antiafk.lua")
 
 SetGlobal2Float("BASE_ROUND_TIME", 300) -- 5 minutes each round
 
