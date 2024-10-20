@@ -127,8 +127,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(255, 0, 0)
     end
 
-    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 32, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(timerText, "Timer", timerX, timerY + 32, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
