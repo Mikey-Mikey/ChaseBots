@@ -9,6 +9,7 @@ include("sv_antiafk.lua")
 SetGlobal2Float("BASE_ROUND_TIME", 300) -- 5 minutes each round
 
 SetGlobal2Bool("RoundRunning", GetGlobal2Bool("RoundRunning", false))
+SetGlobal2Bool("Empty", GetGlobal2Bool("Empty", true))
 SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 
@@ -76,10 +77,17 @@ end
 
 function GM:EndRound()
     SetGlobal2Bool("RoundRunning", false)
-    timer.Create("TryRestartRound", 0.1, 0, function()
-        if player.GetCount() < 1 or player.GetAll()[1]:TimeConnected() < 2 then return end
-        GAMEMODE:StartRound()
-        timer.Remove("TryRestartRound")
+    timer.Simple(1, function()
+        if player.GetCount() < 1 then
+            SetGlobal2Bool("Empty", true)
+            return
+        end
+
+        if not timer.Exists("RoundRestart") then
+            timer.Create("RoundRestart", 5, 1, function()
+                GAMEMODE:StartRound()
+            end)
+        end
     end)
 end
 

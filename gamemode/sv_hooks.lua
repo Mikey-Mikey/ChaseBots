@@ -111,3 +111,11 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
     ply:SetJumpPower(200)
 end)
+
+gameevent.Listen("player_connect_client")
+hook.Add("player_connect_client", "StartRoundFromEmpty", function(data)
+    if GetGlobal2Bool("Empty", true) then
+        SetGlobal2Bool("Empty", false)
+        GAMEMODE:StartRound()
+    end
+end)
