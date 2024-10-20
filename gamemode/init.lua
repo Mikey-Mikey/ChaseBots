@@ -21,7 +21,7 @@ local function GetRandomPointOnNavMesh()
         for k, ply in ipairs(player.GetAll()) do
             local distSqr = ply:GetPos():DistToSqr(area:GetCenter())
 
-            if distSqr < 4000^2 then
+            if distSqr < 3000^2 and #navareas > 1 then
                 return false
             end
         end
@@ -61,6 +61,8 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
+    local chances = 100
+
     while table.Count(GAMEMODE.CurrentNextbots) < GAMEMODE.MaxNextbots do
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
         if GAMEMODE.CurrentNextbots[nextbotClass] then
@@ -72,6 +74,7 @@ function GM:StartRound()
         bot:SetPos(randomPoint)
         bot:Spawn()
         GAMEMODE.CurrentNextbots[nextbotClass] = true
+        chances = chances - 1
     end
 
     print("Round Started")

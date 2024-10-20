@@ -6,3 +6,9 @@ hook.Add("NetworkEntityCreated", "SetRagdollColors", function(ent)
         end
     end
 end)
+
+hook.Add("PlayerBindPress", "", function(_, bind)
+    if string.StartsWith(bind, "inv") or string.StartsWith(bind, "slot") then
+        return true
+    end
+end)
