@@ -139,6 +139,12 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             ply:SetEyeAngles(targetPly:EyeAngles())
             return
         end
+    else
+        for k, other in ipairs(player.GetAll()) do
+            if other:GetNoDraw() then
+                other:SetNoDraw(false)
+            end
+        end
     end
 
     mv:SetVelocity(vel)
