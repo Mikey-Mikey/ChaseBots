@@ -106,6 +106,7 @@ hook.Add("player_disconnect", "RemovePlayerFromAliveList", function(data)
 
         if playersLeft == 0 then
             GAMEMODE:EndRound()
+            game.CleanUpMap(true, { "env_fire", "entityflame", "_firesmoke", "" })
         end
     end)
 end)
