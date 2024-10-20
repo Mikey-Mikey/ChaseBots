@@ -87,7 +87,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(0, 255, 0)
     end
 
-    draw.SimpleText(timerText, "ScoreboardDefaultTitle", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Roboto-Bold", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     --draw.SimpleText(timerText, "HudNumbers", ScrW() / 2, 50, Color(timerColor.r,timerColor.g,timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
