@@ -36,7 +36,7 @@ local barHeights = {}
 
 -- Create a font for the timer
 surface.CreateFont("Timer", {
-    font = "Roboto-Black",
+    font = "Roboto-Light",
     size = 48,
     weight = 600,
     antialias = true,
@@ -45,7 +45,7 @@ surface.CreateFont("Timer", {
 })
 
 surface.CreateFont("TimerNoScan", {
-    font = "Roboto-Black",
+    font = "Roboto-Light",
     size = 48,
     weight = 600,
     antialias = true,
@@ -54,7 +54,7 @@ surface.CreateFont("TimerNoScan", {
 
 -- Create the same font but blurred
 surface.CreateFont("TimerBlurred", {
-    font = "Roboto-Black",
+    font = "Roboto-Light",
     size = 48,
     weight = 600,
     antialias = true,
