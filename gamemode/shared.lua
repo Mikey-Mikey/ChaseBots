@@ -157,3 +157,9 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
     return true
 
 end)
+
+hook.Add("StartCommand", "DisableSpectatorMovement", function(ply, cmd)
+    if not ply:Alive() and ply:GetNWBool("LockedToSpectatedPlayer", false) then
+        cmd:ClearMovement()
+    end
+end)
