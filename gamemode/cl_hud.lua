@@ -99,8 +99,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spacing = 3
         local spectrumPower = 250
         local barWidth = 1
-        local spectrumX = 400
-        local spectrumY = ScrH() - 100
+        local spectrumX = ScrW() * 0.5
+        local spectrumY = 200
 
         local borderThickness = 1
 
