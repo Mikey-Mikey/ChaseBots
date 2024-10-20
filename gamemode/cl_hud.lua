@@ -40,7 +40,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spectrumWidth = ScrW()
-        local spectrumHeight = 200
+        local spectrumHeight = 60
         local barWidth = 10
         local spectrumY = ScrH() - spectrumHeight
 
@@ -51,7 +51,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             local height = spectrum[i] ^ (1 / 2)
 
-            height = height * barFrequency / (44100 / 256 / 2) + barWidth * 2
+            height = height * barFrequency / (44100 / 256 / 2) * spectrumHeight + barWidth * 2
 
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
