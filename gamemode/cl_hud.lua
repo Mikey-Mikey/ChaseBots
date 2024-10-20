@@ -97,7 +97,7 @@ surface.CreateFont("SmallTimerBlurred", {
     antialias = true,
     shadow = false,
     scanlines = 4,
-    blursize = 12
+    blursize = 6
 })
 
 local TIMER_COLOR = Color(255,246,43)
@@ -150,10 +150,10 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
 
         draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(name, "SmallTimerBlurred", spectateX, spectateY + height - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimerBlurred", spectateX, spectateY - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
         draw.SimpleText("Spectating", "SmallTimer", spectateX, spectateY - height + 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-        draw.SimpleText(name, "SmallTimer", spectateX, spectateY + height - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        draw.SimpleText(name, "SmallTimer", spectateX, spectateY - 24, SPECTATE_COLOR, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 
     -- Draw audio visualizer if the radio is playing and the convar is set to true
