@@ -24,11 +24,13 @@ function CreateRagdollFromPlayer(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
-    if GetGlobal2Bool("RoundRunning", false) then
-        ply:SetNWBool("Spectating", true)
-        ply:SetColor(Color(255, 255, 255, 0))
-        ply:DrawShadow(false)
-    end
+    timer.Simple(0.1, function()
+        if GetGlobal2Bool("RoundRunning", false) then
+            ply:SetNWBool("Spectating", true)
+            ply:Spectate(OBS_MODE_ROAMING)
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+        end
+    end)
 
     if player.GetCount() <= 1 and not GetGlobal2Bool("RoundRunning", false) then
         GAMEMODE:StartRound()
