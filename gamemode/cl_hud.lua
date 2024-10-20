@@ -116,7 +116,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
-        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+        local targetPly = alivePlayers[LocalPlayer():GetNWInt("SpectateID", 1)]
 
         draw.RoundedBox(8, spectateX - 250, spectateY - 50, 500, 100, Color(0,0,0,200))
 
