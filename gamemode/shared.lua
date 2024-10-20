@@ -64,17 +64,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
 
-        if not ply.PlayerSpectateID then
-            ply.PlayerSpectateID = 0
+        ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) - 1)
+
+        if ply:GetNWInt("SpectateID", 1) > table.Count(alivePlayers) then
+            ply:SetNWInt("SpectateID", 1)
         end
 
-        ply.PlayerSpectateID = ply.PlayerSpectateID + 1
-
-        if ply.PlayerSpectateID > table.Count(alivePlayers) then
-            ply.PlayerSpectateID = 1
-        end
-
-        local targetPly = alivePlayers[ply.PlayerSpectateID]
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:EyePos()
@@ -82,9 +78,7 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
             ply:SetPos(pos)
             mv:SetVelocity(vel)
             mv:SetOrigin(pos)
-
             ply:SetEyeAngles(targetPly:EyeAngles())
-
             return
         end
     end
@@ -94,17 +88,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
 
-        if not ply.PlayerSpectateID then
-            ply.PlayerSpectateID = 0
+        ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) + 1)
+
+        if ply:GetNWInt("SpectateID", 1) < 1 then
+            ply:SetNWInt("SpectateID", table.Count(alivePlayers))
         end
 
-        ply.PlayerSpectateID = ply.PlayerSpectateID - 1
-
-        if ply.PlayerSpectateID < 1 then
-            ply.PlayerSpectateID = table.Count(alivePlayers)
-        end
-
-        local targetPly = alivePlayers[ply.PlayerSpectateID]
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if IsValid(targetPly) and targetPly:Alive() then
             pos = targetPly:EyePos()
@@ -126,11 +116,11 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
         if table.Count(alivePlayers) == 0 then return end
 
-        local targetPly = alivePlayers[ply.PlayerSpectateID]
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if not IsValid(targetPly) or not targetPly:Alive() then
-            ply.PlayerSpectateID = 1
-            targetPly = alivePlayers[ply.PlayerSpectateID]
+            ply:SetNWInt("SpectateID", 1)
+            targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
         end
 
         if IsValid(targetPly) and targetPly:Alive() then
