@@ -28,8 +28,30 @@ concommand.Add("radio_reload", function()
     end)
 end)
 
+-- convar for if the visualizer should be shown
+local radioVisualizerCVar = CreateClientConVar("radio_visualizer", "1", true, false, "Whether or not the radio visualizer should be shown")
+
 local spectrum = {}
 local barHeights = {}
+
+-- Create a font for the timer
+surface.CreateFont("Timer", {
+    font = "Arial",
+    size = 32,
+    weight = 500,
+    antialias = true,
+    shadow = false
+})
+
+-- Create the same font but blurred
+surface.CreateFont("TimerBlurred", {
+    font = "Arial",
+    size = 32,
+    weight = 500,
+    antialias = true,
+    shadow = false,
+    blurside = 6
+})
 
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
@@ -44,15 +66,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local timerText = string.format("%02d:%02d", mins, secs)
 
-    -- draw a timer at the top of the screen in a rounded rectangle
-
+    -- Draw a timer at the top of the screen
     draw.RoundedBox(8, ScrW() / 2 - 100, 25, 200, 50, Color(0,0,0,200))
 
-    draw.SimpleText(timerText, "DermaLarge", ScrW() / 2, 50, Color(255,151,48), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", ScrW() / 2, 50, Color(255,151,48), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", ScrW() / 2, 50, Color(255,151,48), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-    -- draw fft spectrum of the radio station at the bottom of the screen
-
-    if IsValid(radio_station) then
+    -- Draw audio visualizer if the radio is playing and the convar is set to true
+    if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spacing = 5
         local spectrumPower = 300
@@ -60,12 +81,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectrumY = ScrH() - 150
 
         for i = 2, #spectrum do
-            local barFrequency = 44100 / 256 / 2 / #spectrum
+            -- local barFrequency = 44100 / 256 / 2 / #spectrum
             barHeights[i] = barHeights[i] or 0
 
             local height = math.sqrt(spectrum[i])
 
-            --height = height * barFrequency * spectrumPower + barWidth * 2
+            -- height = height * barFrequency * spectrumPower + barWidth * 2
             height = height * spectrumPower + barWidth
 
             if height < barHeights[i] then
@@ -76,17 +97,17 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             local xPos = i * spacing - spacing * 2
             local brightness = math.min(math.sqrt(height / spectrumPower) * 2 + 0.25, 1)
-            -- do proper visualization of the spectrum
+
+            -- Draw the bars
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5) - 1, spectrumY - barHeights[i] + barWidth - 1, barWidth + 2, barHeights[i] * 2 + 2, Color(0, 0, 0))
 
             draw.RoundedBox(barWidth, xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
-            
+
             if i == 2 then continue end
 
             draw.RoundedBox(barWidth, -xPos + math.floor(ScrW() * 0.5) - 1, spectrumY - barHeights[i] + barWidth - 1, barWidth + 2, barHeights[i] * 2 + 2, Color(0, 0, 0))
 
             draw.RoundedBox(barWidth, -xPos + math.floor(ScrW() * 0.5), spectrumY - barHeights[i] + barWidth, barWidth, barHeights[i] * 2, HSVToColor(0, 0, brightness))
-        
         end
     end
 end)
