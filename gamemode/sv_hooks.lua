@@ -113,9 +113,11 @@ end)
 
 gameevent.Listen("player_spawn")
 hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
-    local ply = Player(data.userid)
-    ply:SetModel("models/player/group01/male_07.mdl")
-    local plyColor = HSVToColor(util.SharedRandom(ply:SteamID(), 0, 360), 1, 1)
-    ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
-    ply:SetJumpPower(200)
+    if SERVER then
+        local ply = Player(data.userid)
+        ply:SetModel("models/player/group01/male_07.mdl")
+        local plyColor = HSVToColor(util.SharedRandom(ply:SteamID(), 0, 360), 1, 1)
+        ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
+        ply:SetJumpPower(200)
+    end
 end)
