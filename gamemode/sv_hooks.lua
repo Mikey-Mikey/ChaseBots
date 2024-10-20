@@ -35,6 +35,13 @@ hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
             ply:SetObserverMode(OBS_MODE_ROAMING)
         end
     end)
+
+    timer.Simple(5, function()
+        if GetGlobal2Bool("Empty", true) then
+            SetGlobal2Bool("Empty", false)
+            GAMEMODE:StartRound()
+        end
+    end)
 end)
 
 hook.Add("PlayerDeathThink", "PreventRespawn", function(ply)
@@ -110,14 +117,4 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     local plyColor = HSVToColor(util.SharedRandom(ply:SteamID64(), 0, 360), 1, 1)
     ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
     ply:SetJumpPower(200)
-end)
-
-gameevent.Listen("player_connect_client")
-hook.Add("player_connect_client", "StartRoundFromEmpty", function(data)
-    timer.Simple(1, function()
-        if GetGlobal2Bool("Empty", true) then
-            SetGlobal2Bool("Empty", false)
-            GAMEMODE:StartRound()
-        end
-    end)
 end)
