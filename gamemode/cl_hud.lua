@@ -63,7 +63,7 @@ local barHeights = {}
 -- Create a font for the timer
 surface.CreateFont("Timer", {
     font = "Roboto",
-    size = 48,
+    size = 64,
     weight = 100,
     antialias = true,
     shadow = false
@@ -72,7 +72,7 @@ surface.CreateFont("Timer", {
 -- Create the same font but blurred
 surface.CreateFont("TimerBlurred", {
     font = "Roboto",
-    size = 48,
+    size = 64,
     weight = 100,
     antialias = true,
     shadow = false,
@@ -115,9 +115,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local secs = math.floor(timeLeft % 60)
 
     local timerText = string.format("%02d:%02d", mins, secs)
-    local timerX, timerY = ScrW() / 2, 25
+    local timerX, timerY = ScrW() / 2, 0
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(8, timerX - 100, timerY - 25, 200, 50, Color(0,0,0,200), false, false, true, true)
+    draw.RoundedBoxEx(8, timerX - 100, timerY, 200, 50, Color(0,0,0,200), false, false, true, true)
 
     local timerColor = TIMER_COLOR
 
@@ -127,8 +127,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(255, 0, 0)
     end
 
-    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(timerText, "Timer", timerX, timerY, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 32, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", timerX, timerY + 32, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
