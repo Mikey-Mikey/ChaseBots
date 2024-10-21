@@ -137,7 +137,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(255, 0, 0)
     end
 
-    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, timerPulse * 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
