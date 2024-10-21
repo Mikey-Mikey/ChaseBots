@@ -103,7 +103,7 @@ surface.CreateFont("SmallTimerBlurred", {
 -- Scoreboard Fonts
 surface.CreateFont("ScoreboardTitle", {
     font = "Roboto",
-    size = 32,
+    size = 36,
     weight = 500,
     antialias = true,
     shadow = false
