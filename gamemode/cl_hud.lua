@@ -270,13 +270,27 @@ end
 
 local scoreboardShowing = false
 
+local scoreboardBlurPanel = nil
+
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardShowing = true
+
+    scoreboardBlurPanel = vgui.Create("DPanel")
+    scoreboardBlurPanel:SetSize(800, 600)
+    scoreboardBlurPanel:SetPos(ScrW() / 2 - 400, ScrH() / 2 - 300)
+    scoreboardBlurPanel.startTime = CurTime()
+
+    scoreboardBlurPanel.Paint = function(self, w, h)
+        Derma_DrawBackgroundBlur(self, self.startTime)
+    end
+
     return true
 end)
 
 hook.Add("ScoreboardHide", "HideScoreboard", function()
     scoreboardShowing = false
+    scoreboardBlurPanel:Remove()
+    scoreboardBlurPanel = nil
     return true
 end)
 
