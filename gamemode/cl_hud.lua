@@ -270,35 +270,23 @@ end
 
 local scoreboardShowing = false
 
-local scoreboardBlurPanel = nil
-
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardShowing = true
-
-    scoreboardBlurPanel = vgui.Create("DPanel")
-    scoreboardBlurPanel:SetSize(800, 600)
-    scoreboardBlurPanel:SetPos(ScrW() / 2 - 400, ScrH() / 2 - 300)
-    scoreboardBlurPanel.startTime = CurTime()
-
-    scoreboardBlurPanel.Paint = function(self, w, h)
-        
-    end
 
     return true
 end)
 
 hook.Add("ScoreboardHide", "HideScoreboard", function()
     scoreboardShowing = false
-    scoreboardBlurPanel:Remove()
-    scoreboardBlurPanel = nil
     return true
 end)
 
 hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     if not scoreboardShowing then return end
+
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
-    Derma_DrawBackgroundBlur(scoreboardBlurPanel, scoreboardBlurPanel.startTime)
+
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
