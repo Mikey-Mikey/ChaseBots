@@ -309,7 +309,9 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    render.SetScissorRect(x, y, x + w, y + h, true)
+    draw.RoundedBox(12, x + 10, y + rowY - 6, w - 20, h, Color(0, 0, 0, 36))
+
+    render.SetScissorRect(x + 10, y + rowY - 6, x + w - 20, y + h, true)
 
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
