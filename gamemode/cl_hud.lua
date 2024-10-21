@@ -281,7 +281,7 @@ hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardBlurPanel.startTime = CurTime()
 
     scoreboardBlurPanel.Paint = function(self, w, h)
-        Derma_DrawBackgroundBlur(self, self.startTime)
+        
     end
 
     return true
@@ -298,7 +298,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     if not scoreboardShowing then return end
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
-
+    Derma_DrawBackgroundBlur(scoreboardBlurPanel, scoreboardBlurPanel.startTime)
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
