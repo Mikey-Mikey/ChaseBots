@@ -88,6 +88,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
+        if targetPly == ply then return end
+
         if IsValid(targetPly) and targetPly:Alive() then
             pos = pos + (targetPly:GetShootPos() - ply:GetShootPos())
             mv:SetOrigin(pos)
@@ -110,6 +112,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
+        if targetPly == ply then return end
+
         if IsValid(targetPly) and targetPly:Alive() then
             pos = pos + (targetPly:GetShootPos() - ply:GetShootPos())
             mv:SetOrigin(pos)
@@ -126,6 +130,8 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+
+        if targetPly == ply then return end
 
         if ply:GetNWBool("LockedToSpectatedPlayer", false) then
             ply:SetObserverMode(OBS_MODE_IN_EYE)
@@ -146,6 +152,12 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         end
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+
+        if targetPly == ply then
+            ply:SetNWBool("LockedToSpectatedPlayer", false)
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+            return
+        end
 
         if not IsValid(targetPly) or not targetPly:Alive() then
             ply:SetNWInt("SpectateID", 1)
