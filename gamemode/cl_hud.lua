@@ -235,6 +235,10 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 255))
 
+    if not ply:Alive() then
+        draw.RoundedBox(8, x, y, w, h, Color(255, 0, 0, 50))
+    end
+
     draw.SimpleText(ply:Nick(), "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local ping = ply:Ping()
