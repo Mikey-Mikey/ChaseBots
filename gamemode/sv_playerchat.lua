@@ -3,5 +3,5 @@ hook.Add("PlayerSay", "PlayerSay", function( ply, text, teamChat)
 
     PrintMessage(HUD_PRINTTALK, newChat)
 
-    return newChat
+    return ""
 end)
