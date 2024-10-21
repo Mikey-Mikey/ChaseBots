@@ -241,11 +241,20 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.SimpleText(pingText, "DermaDefault", x + w - pingWidth - 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 end
 
+local scoreboardShowing = false
+
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
+    scoreboardShowing = true
+    return true
+end)
+
+hook.Add("ScoreboardHide", "HideScoreboard", function()
+    scoreboardShowing = false
     return true
 end)
 
 hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
+    if not scoreboardShowing then return end
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
 
