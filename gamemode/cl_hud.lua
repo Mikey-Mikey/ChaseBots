@@ -239,9 +239,8 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     local ping = ply:Ping()
     local pingText = "Ping: " .. ping
-    local pingWidth, _ = surface.GetTextSize(pingText)
 
-    draw.SimpleText(pingText, "DermaDefault", x + w - pingWidth - 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(pingText, "DermaDefault", x + w - 140, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
