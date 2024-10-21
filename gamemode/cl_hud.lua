@@ -311,7 +311,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     draw.RoundedBox(12, x + 8, rowY, w - 16, h - 20 - 90, Color(0, 0, 0, 127))
 
-    render.SetScissorRect(x + 8, rowY - 2, x + w - 8, y + h - 20 - 90, true)
+    render.SetScissorRect(x + 8, rowY - 2, x + w - 10, y + h - 20 - 90, true)
 
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
