@@ -247,7 +247,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
 
-    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
