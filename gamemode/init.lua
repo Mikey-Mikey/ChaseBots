@@ -14,7 +14,7 @@ SetGlobal2Bool("Empty", GetGlobal2Bool("Empty", true))
 SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 
-GAMEMODE.MaxNextbots = 15
+GM.MaxNextbots = 15
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
