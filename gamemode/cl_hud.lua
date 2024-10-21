@@ -265,7 +265,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     draw.SimpleText("Scoreboard", "DermaLarge", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-    local rowHeight = 32
+    local rowHeight = 48
     local rowY = y + 40
 
     for i, ply in ipairs(players) do
