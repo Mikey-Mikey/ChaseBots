@@ -273,6 +273,6 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     for i, ply in ipairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
-        rowY = rowY + rowHeight + 2
+        rowY = rowY + rowHeight + 6
     end
 end)
