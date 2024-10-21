@@ -100,6 +100,26 @@ surface.CreateFont("SmallTimerBlurred", {
     blursize = 6
 })
 
+
+-- Scoreboard Fonts
+surface.CreateFont("ScoreboardInfo", {
+    font = "Roboto",
+    size = 32,
+    weight = 500,
+    antialias = true,
+    shadow = false
+})
+
+surface.CreateFont("ScoreboardInfoBold", {
+    font = "Roboto",
+    size = 32,
+    weight = 1000,
+    antialias = true,
+    shadow = false
+})
+
+
+
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
 
@@ -240,13 +260,14 @@ local function DrawPlayerRow(ply, x, y, w, h)
     end
 
     local name = ply:Nick()
-    draw.SimpleText(name, "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(name, "ScoreboardInfo", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
-    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(name, "ScoreboardInfoBold", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(role, "ScoreboardInfo", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local ping = ply:Ping()
-    draw.SimpleText(ping, "DermaLarge", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(ping, "ScoreboardInfo", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
