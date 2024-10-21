@@ -8,19 +8,21 @@ GM.NextbotClassTable = {}
 GM.CurrentNextbots = {}
 
 ROLE_COLORS = {
-    ["Owner"] = Color(255, 0, 98),
-    ["Co-Owner"] = Color(180, 0, 69),
-    ["Admin"] = Color(255, 0, 0),
-    ["Regular"] = Color(0,119,255),
-    ["Guest"] = Color(255, 211, 144),
+    ["Owner"] = Color(207, 0, 79),
+    ["Co-Owner"] = Color(126, 0, 48),
+    ["Superadmin"] = Color(0, 194, 136),
+    ["Admin"] = Color(0,196,0),
+    ["Regular"] = Color(0,90,192),
+    ["Guest"] = Color(202, 167, 115),
 }
 
 ROLE_PRIORITY = {
     ["Owner"] = 1,
     ["Co-Owner"] = 2,
-    ["Admin"] = 3,
-    ["Regular"] = 4,
-    ["Guest"] = 5,
+    ["Superadmin"] = 3,
+    ["Admin"] = 4,
+    ["Regular"] = 5,
+    ["Guest"] = 6,
 }
 
 function FilterTable(tbl, filter)
