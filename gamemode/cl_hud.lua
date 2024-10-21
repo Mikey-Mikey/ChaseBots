@@ -297,9 +297,9 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local rowHeight = 48
     local rowY = y + 90
 
-    draw.SimpleText("Name", "DermaLarge", x + 20, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-    draw.SimpleText("Role", "DermaLarge", x + w * 0.5, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText("Ping", "DermaLarge", x + w - 48 - 10, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Name", "ScoreboardInfo", x + 20, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Role", "ScoreboardInfo", x + w * 0.5, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Ping", "ScoreboardInfo", x + w - 48 - 10, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     -- Order the players by their role
 
