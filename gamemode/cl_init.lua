@@ -6,6 +6,14 @@ ROLE_COLORS = {
     ["Guest"] = Color(255, 211, 144),
 }
 
+ROLE_PRIORITY = {
+    [1] = "Owner",
+    [2] = "Co-Owner",
+    [3] = "Admin",
+    [4] = "Regular",
+    [5] = "Guest",
+}
+
 include("shared.lua")
 include("cl_hooks.lua")
 include("cl_hud.lua")

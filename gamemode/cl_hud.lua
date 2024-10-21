@@ -281,6 +281,14 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     draw.SimpleText("Role", "DermaLarge", x + w * 0.5, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText("Ping", "DermaLarge", x + w - 48, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
+    -- Order the players by their role
+
+    players = table.sort(players, function(a, b)
+        local rolePriorityA = table.KeyFromValue(ROLE_PRIORITY, a:GetUserGroup())
+        local rolePriorityB = table.KeyFromValue(ROLE_PRIORITY, b:GetUserGroup())
+        return rolePriorityA < rolePriorityB
+    end)
+
     for i, ply in ipairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
         rowY = rowY + rowHeight + 6
