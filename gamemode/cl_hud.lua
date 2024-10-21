@@ -283,7 +283,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     -- Order the players by their role
 
-    players = table.sort(players, function(a, b)
+    table.sort(players, function(a, b)
         local rolePriorityA = ROLE_PRIORITY[a:GetUserGroup()]
         local rolePriorityB = ROLE_PRIORITY[b:GetUserGroup()]
         return rolePriorityA < rolePriorityB
