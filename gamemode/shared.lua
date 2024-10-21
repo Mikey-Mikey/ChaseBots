@@ -129,9 +129,9 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         local alivePlayers = player.GetAll()
         alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
 
-        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
+        if table.Count(alivePlayers) == 0 or targetPly == ply then return end
 
-        if targetPly == ply then return end
+        local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
         if ply:GetNWBool("LockedToSpectatedPlayer", false) then
             ply:SetObserverMode(OBS_MODE_IN_EYE)
