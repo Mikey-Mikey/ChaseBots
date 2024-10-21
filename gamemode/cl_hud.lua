@@ -103,6 +103,10 @@ surface.CreateFont("SmallTimerBlurred", {
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
 
+local timerPulse = 0
+
+local lastSec = 0
+
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Float("CurrentRoundTime", 0)
@@ -113,6 +117,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local mins = math.floor(timeLeft / 60)
     local secs = math.floor(timeLeft % 60)
+
+    if secs ~= lastSec then
+        timerPulse = 1
+    else
+        timerPulse = LerpExpo(FrameTime(), timerPulse, 0, 2)
+    end
 
     local timerText = string.format("%02d:%02d", mins, secs)
     local timerX, timerY = ScrW() / 2, 0
@@ -128,7 +138,12 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, timerPulse * 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
     draw.SimpleText(timerText, "Timer", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    lastSec = secs
 
     -- Show the player that we're spectating
     if not LocalPlayer():Alive() and LocalPlayer():GetNWBool("LockedToSpectatedPlayer", false) then
