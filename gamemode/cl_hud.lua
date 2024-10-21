@@ -288,9 +288,10 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         local rolePriorityB = ROLE_PRIORITY[b:GetUserGroup()]
         return rolePriorityA < rolePriorityB
     end)
-
+    render.SetScissorRect(x, y, x + w, y + h, true)
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
         rowY = rowY + rowHeight + 6
     end
+    render.SetScissorRect(0, 0, 0, 0, false)
 end)
