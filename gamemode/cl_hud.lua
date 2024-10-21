@@ -263,7 +263,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.SimpleText(name, "ScoreboardInfo", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
-    draw.SimpleText(name, "ScoreboardInfoBold", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(role, "ScoreboardInfoBold", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText(role, "ScoreboardInfo", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local ping = ply:Ping()
