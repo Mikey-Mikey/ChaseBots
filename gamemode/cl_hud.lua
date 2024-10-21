@@ -289,7 +289,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    for i, ply in ipairs(players) do
+    for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
         rowY = rowY + rowHeight + 6
     end
