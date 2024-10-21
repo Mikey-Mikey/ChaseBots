@@ -233,7 +233,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     draw.RoundedBox(10, x - 2, y - 2, w + 4, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 200))
 
-    draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 200))
+    draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 255))
 
     draw.SimpleText(ply:Nick(), "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
