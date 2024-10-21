@@ -244,6 +244,10 @@ local function DrawPlayerRow(ply, x, y, w, h)
     local ping = ply:Ping()
 
     draw.SimpleText(ping, "DermaLarge", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    local role = table.KeyFromValue(ROLE_COLORS, roleColor)
+
+    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
@@ -271,7 +275,11 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     draw.SimpleText("Scoreboard", "DermaLarge", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local rowHeight = 48
-    local rowY = y + 40
+    local rowY = y + 90
+
+    draw.SimpleText("Name", "DermaLarge", x + 10, rowY - 36, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Role", "DermaLarge", x + w * 0.5, rowY - 36, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Ping", "DermaLarge", x + w - 48, rowY - 36, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     for i, ply in ipairs(players) do
         DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
