@@ -238,9 +238,8 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.SimpleText(ply:Nick(), "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local ping = ply:Ping()
-    local pingText = "Ping: " .. ping
 
-    draw.SimpleText(pingText, "DermaDefault", x + w - 64, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+    draw.SimpleText(ping, "DermaLarge", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
