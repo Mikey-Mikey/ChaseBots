@@ -7,7 +7,7 @@ net.Receive("PlayerChatted", function()
     local text = net.ReadString()
     roleColor = roleColors[ply:GetUserGroup()] or color_white
 
-    local role = table.GetKeys(roleColors)[table.KeyFromValue(roleColors, roleColor)]
+    local role = table.KeyFromValue(roleColors, roleColor)
 
     chat.AddText(Color(255,246,43), "[", roleColor, role, Color(255,246,43), "] ", roleColor, ply:Nick(), color_white, ": " .. text)
 end)
