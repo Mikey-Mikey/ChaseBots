@@ -1,0 +1,5 @@
+net.Receive("PlayerChatted", function()
+    local ply = net.ReadEntity()
+    local text = net.ReadString()
+    chat.AddText(Color(255,246,43), "[", ply, Color(255,246,43), "]:" .. text)
+end)

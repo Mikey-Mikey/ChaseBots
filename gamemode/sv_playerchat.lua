@@ -1,7 +1,10 @@
-hook.Add("PlayerSay", "PlayerSay", function( ply, text, teamChat)
-    local newChat = "[" .. ply:Nick() .. "]" .. ": " .. text
+util.AddNetworkString("PlayerChatted")
 
-    PrintMessage(HUD_PRINTTALK, newChat)
+hook.Add("PlayerSay", "PlayerSay", function( ply, text, teamChat)
+    net.Start("PlayerChatted")
+    net.WriteEntity(ply)
+    net.WriteString(text)
+    net.Broadcast()
 
     return ""
 end)
