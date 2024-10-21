@@ -7,6 +7,22 @@ GM.IsSandboxDerived = true
 GM.NextbotClassTable = {}
 GM.CurrentNextbots = {}
 
+ROLE_COLORS = {
+    ["Owner"] = Color(255, 0, 98),
+    ["Co-Owner"] = Color(180, 0, 69),
+    ["Admin"] = Color(255, 0, 0),
+    ["Regular"] = Color(0,119,255),
+    ["Guest"] = Color(255, 211, 144),
+}
+
+ROLE_PRIORITY = {
+    ["Owner"] = 1,
+    ["Co-Owner"] = 2,
+    ["Admin"] = 3,
+    ["Regular"] = 4,
+    ["Guest"] = 5,
+}
+
 function FilterTable(tbl, filter)
     local newTable = {}
     for k, v in pairs(tbl) do

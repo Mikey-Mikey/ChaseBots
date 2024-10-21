@@ -24,6 +24,11 @@ function CreateRagdollFromPlayer(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "PlayerFirstSpawned", function(ply)
+    local rolePriority = ROLE_PRIORITY[ply:GetUserGroup()]
+    if not rolePriority then
+        ply:SetUserGroup("Guest")
+    end
+
     if GetGlobal2Bool("RoundRunning", false) then
         ply:SetNWBool("Spectating", true)
     end
