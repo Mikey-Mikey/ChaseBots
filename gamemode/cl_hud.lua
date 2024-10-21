@@ -224,3 +224,43 @@ hook.Add("HUDShouldDraw", "HideDefaultHUD", function(name)
         return false
     end
 end)
+
+-- Custom Scoreboard
+
+local function DrawPlayerRow(ply, x, y, w, h)
+    if not IsValid(ply) then return end
+
+    draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 200))
+
+    draw.SimpleText(ply:Nick(), "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+
+    local ping = ply:Ping()
+    local pingText = "Ping: " .. ping
+    local pingWidth, _ = surface.GetTextSize(pingText)
+
+    draw.SimpleText(pingText, "DermaDefault", x + w - pingWidth - 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+end
+
+hook.Add("ScoreboardShow", "ShowScoreboard", function()
+    return true
+end)
+
+hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
+    local players = player.GetAll()
+    table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
+
+    local w, h = 800, 600
+    local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
+
+    draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 200))
+
+    draw.SimpleText("Scoreboard", "DermaLarge", x + w / 2, y + 10, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
+    local rowHeight = 32
+    local rowY = y + 40
+
+    for i, ply in ipairs(players) do
+        DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
+        rowY = rowY + rowHeight + 2
+    end
+end)
