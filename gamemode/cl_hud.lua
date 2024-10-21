@@ -100,25 +100,23 @@ surface.CreateFont("SmallTimerBlurred", {
     blursize = 6
 })
 
-
 -- Scoreboard Fonts
-surface.CreateFont("ScoreboardInfo", {
+surface.CreateFont("ScoreboardTitle", {
     font = "Roboto",
-    size = 32,
+    size = 28,
     weight = 500,
     antialias = true,
     shadow = false
 })
 
-surface.CreateFont("ScoreboardInfoBold", {
+-- Scoreboard Fonts
+surface.CreateFont("ScoreboardInfo", {
     font = "Roboto",
-    size = 32,
-    weight = 1000,
+    size = 28,
+    weight = 500,
     antialias = true,
     shadow = false
 })
-
-
 
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
@@ -263,7 +261,6 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.SimpleText(name, "ScoreboardInfo", x + 10, y + h / 2, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
-    draw.SimpleText(role, "ScoreboardInfoBold", x + w * 0.5, y + h / 2, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText(role, "ScoreboardInfo", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local ping = ply:Ping()
@@ -292,7 +289,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 200))
 
-    draw.SimpleText("Scoreboard", "DermaLarge", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local rowHeight = 48
     local rowY = y + 90
