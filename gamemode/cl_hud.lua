@@ -239,15 +239,14 @@ local function DrawPlayerRow(ply, x, y, w, h)
         draw.RoundedBox(8, x, y, w, h, Color(255, 0, 0, 20))
     end
 
-    draw.SimpleText(ply:Nick(), "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
-
-    local ping = ply:Ping()
-
-    draw.SimpleText(ping, "DermaLarge", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    local name = ply:Nick()
+    draw.SimpleText(name, "DermaLarge", x + 10, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
+    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, roleColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-    draw.SimpleText(role, "DermaLarge", x + w * 0.5, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    local ping = ply:Ping()
+    draw.SimpleText(ping, "DermaLarge", x + w - 48, y + h / 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
 local scoreboardShowing = false
