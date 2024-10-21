@@ -174,7 +174,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw audio visualizer if the radio is playing and the convar is set to true
     if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
-        local spacing = 3
+        local spacing = 1
         local spectrumPower = 200
         local barWidth = 1
         local spectrumX = ScrW() * 0.5
