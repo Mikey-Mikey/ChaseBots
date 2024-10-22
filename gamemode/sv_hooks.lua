@@ -121,6 +121,9 @@ hook.Add("player_disconnect", "RemovePlayerFromAliveList", function(data)
 
         if playersLeft == 0 then
             GAMEMODE:EndRound()
+            local clearEnts = ents.FindByClass("npc_*")
+            table.Add(clearEnts, ents.FindByClass("prop_ragdoll"))
+
             for k, ent in pairs(ents.FindByClass("*")) do
                 if ent:IsNextBot() or ent:GetNW2Bool("IsGamemodeRagdoll", false) == true then
                     ent:Remove()
