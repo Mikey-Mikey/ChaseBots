@@ -72,6 +72,23 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
         if navmesh.IsLoaded() then
             timer.Remove("NavmeshLoad")
             GAMEMODE.AllowedNavareas = navmesh.GetAllNavAreas()
+            -- Get Navmesh size
+            local navareas = navmesh.GetAllNavAreas()
+            local min = Vector(0, 0, 0)
+            local max = Vector(0, 0, 0)
+            for k, navarea in pairs(navareas) do
+                local corners = navarea:GetCornerVectors()
+                for i, corner in pairs(corners) do
+                    min = Vector(math.min(min.x, corner.x), math.min(min.y, corner.y), math.min(min.z, corner.z))
+                    max = Vector(math.max(max.x, corner.x), math.max(max.y, corner.y), math.max(max.z, corner.z))
+                end
+            end
+
+            -- Base nextbot count on map size
+            local mapSize = max - min
+            local mapArea = mapSize.x * mapSize.y
+            local nextbotCount = math.floor(mapArea / 10000)
+            GAMEMODE.MaxNextbots = nextbotCount
         end
     end)
 end)
