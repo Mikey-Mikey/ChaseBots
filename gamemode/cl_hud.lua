@@ -325,7 +325,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    draw.RoundedBoxEx(12, x + 8, rowY, w - 16, h - 8 - 90, Color(0, 0, 0, 127), true, true, false, false)
+    draw.RoundedBox(0, x + 8, rowY, w - 16, h - 8 - 90, Color(0, 0, 0, 127))
 
     render.SetScissorRect(x + 8, rowY - 2, x + w - 8, y + h - 8 - 90, true)
 
