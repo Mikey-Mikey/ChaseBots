@@ -91,21 +91,24 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
-    local chances = 100
-
-    while table.Count(GAMEMODE.CurrentNextbots) < GAMEMODE.MaxNextbots do
+    timer.Create("SpawnNextbots", 0.1, GAMEMODE.MaxNextbots, function()
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
+
         if GAMEMODE.CurrentNextbots[nextbotClass] then
-            continue
+            return
         end
+
         local randomPoint = GetRandomPointOnNavMesh()
         local bot = ents.Create(nextbotClass)
 
         bot:SetPos(randomPoint)
         bot:Spawn()
         GAMEMODE.CurrentNextbots[nextbotClass] = true
-        chances = chances - 1
-    end
+
+        if table.Count(GAMEMODE.CurrentNextbots) >= GAMEMODE.MaxNextbots then
+            timer.Remove("SpawnNextbots")
+        end
+    end)
 
     print("Round Started")
     SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0) + 1)
