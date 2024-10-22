@@ -84,9 +84,9 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
 
             -- Base nextbot count on map size
             local mapSize = max - min
-            local mapArea = mapSize.x * mapSize.y
+            local mapArea = math.sqrt(mapSize.x * mapSize.y)
             local nextbotCount = math.floor(mapArea / 10000 * 0.1)
-            GAMEMODE.MaxNextbots = nextbotCount
+            GAMEMODE.MaxNextbots = math.Clamp(nextbotCount, 10, 50)
         end
     end)
 end)
