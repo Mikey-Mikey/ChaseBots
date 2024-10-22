@@ -123,7 +123,7 @@ end
 function GM:PlayerLoadout(ply)
     -- give the player the wheatleys parkour swep
     timer.Simple(0.1, function()
-        if ply:GetNWBool("Spectating", false) then return end
+        if not IsValid(ply) or ply:GetNWBool("Spectating", false) then return end
         ply:Give("parkourmod")
     end)
 
