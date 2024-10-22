@@ -31,12 +31,12 @@ local function GetRandomPointOnNavMesh()
     local randomPoint = nil
     local navCount = table.Count(GAMEMODE.AllowedNavareas)
 
-    for sample = 1, 25 do
+    for sample = 1, 5 do
         navarea = GAMEMODE.AllowedNavareas[math.random(1, navCount)]
         if not IsValid(navarea) then
             continue
         end
-        randomPoint = navarea:GetRandomPoint()
+        randomPoint = navarea:GetCenter()
 
         local canSpawn = true
 
@@ -91,7 +91,7 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
-    timer.Create("SpawnNextbots", 0.1, GAMEMODE.MaxNextbots, function()
+    timer.Create("SpawnNextbots", 0.25, GAMEMODE.MaxNextbots, function()
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
 
         if GAMEMODE.CurrentNextbots[nextbotClass] then
