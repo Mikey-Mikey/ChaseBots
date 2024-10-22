@@ -39,9 +39,9 @@ local function GetRandomPointOnNavMesh()
         randomPoint = navarea:GetCenter()
 
         local canSpawn = true
-
-        for k, ply in player.Iterator() do
-            if randomPoint:DistToSqr(ply:GetPos()) < 4000^2 then
+        local playerSpawns = ents.FindByClass("info_player_start")
+        for k, spawn in playerSpawns do
+            if randomPoint:DistToSqr(spawn:GetPos()) < 4000^2 then
                 canSpawn = false
                 break
             end
