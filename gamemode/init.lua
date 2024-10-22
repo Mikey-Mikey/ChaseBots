@@ -24,14 +24,23 @@ GM.AllowedNavareas = {}
 local function GetRandomPointOnNavMesh()
     local navarea = nil
     local randomPoint = nil
+    local navCount = table.Count(GAMEMODE.AllowedNavareas)
 
     for sample = 1, 25 do
-        navarea = GAMEMODE.AllowedNavareas[math.random(1, table.Count(GAMEMODE.AllowedNavareas))]
+        navarea = GAMEMODE.AllowedNavareas[math.random(1, navCount)]
         randomPoint = navarea:GetRandomPoint()
+
+        local canSpawn = true
+
         for k, ply in player.Iterator() do
-            if randomPoint:DistToSqr(ply:GetPos()) > 4000^2 then
+            if randomPoint:DistToSqr(ply:GetPos()) < 4000^2 then
+                canSpawn = false
                 break
             end
+        end
+
+        if canSpawn then
+            break
         end
     end
 
