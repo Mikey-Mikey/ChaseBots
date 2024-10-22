@@ -78,10 +78,8 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
             local max = Vector(0, 0, 0)
             for k, navarea in pairs(navareas) do
                 local navPos = navarea:GetCenter()
-                for i, corner in pairs(corners) do
-                    min = Vector(math.min(min.x, navPos.x), math.min(min.y, navPos.y), math.min(min.z, navPos.z))
-                    max = Vector(math.max(max.x, navPos.x), math.max(max.y, navPos.y), math.max(max.z, navPos.z))
-                end
+                min = Vector(math.min(min.x, navPos.x), math.min(min.y, navPos.y), math.min(min.z, navPos.z))
+                max = Vector(math.max(max.x, navPos.x), math.max(max.y, navPos.y), math.max(max.z, navPos.z))
             end
 
             -- Base nextbot count on map size
