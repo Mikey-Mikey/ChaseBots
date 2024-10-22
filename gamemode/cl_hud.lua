@@ -127,7 +127,7 @@ local lastSec = 0
 
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
-    local timeLeft = GetGlobal2Float("CurrentRoundTime", 0)
+    local timeLeft = GetGlobal2Int("CurrentRoundTime", 0)
 
     if timeLeft < 0 then
         timeLeft = 0
@@ -158,7 +158,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(255, 0, 0)
     end
 
-    local roundCounterText = "Round " .. GetGlobal2Float("CurrentRound", 0)
+    local roundCounterText = "Round " .. GetGlobal2Int("CurrentRound", 0)
 
     draw.SimpleText(roundCounterText, "SmallTimerBlurred", timerX, timerY + 25, Color(timerColor.r, timerColor.g, timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     draw.SimpleText(roundCounterText, "SmallTimer", timerX, timerY + 25, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -202,7 +202,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectrumPower = 200
         local barWidth = 1
         local spectrumX = ScrW() * 0.5
-        local spectrumY = 71
+        local spectrumY = 109
 
 
         for i = 2, #spectrum do
