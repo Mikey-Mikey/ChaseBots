@@ -144,7 +144,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local timerText = string.format("%02d:%02d", mins, secs)
     local timerX, timerY = ScrW() / 2, 0
-    local timerWidth, timerHeight = 295, 72
+    local timerWidth, timerHeight = 295, 110
+    -- Draw a round counter at the top of the screen
+
     -- Draw a timer at the top of the screen
     draw.RoundedBoxEx(16, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(0,0,0,200), false, false, true, true)
 
@@ -156,11 +158,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         timerColor = Color(255, 0, 0)
     end
 
-    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    local roundCounterText = "Round " .. GetGlobal2Float("CurrentRound", 0)
 
-    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, timerPulse * 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(roundCounterText, "SmallTimerBlurred", timerX, timerY + 36, Color(timerColor.r, timerColor.g, timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(roundCounterText, "SmallTimer", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
-    draw.SimpleText(timerText, "Timer", timerX, timerY + 36, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 64, Color(timerColor.r, timerColor.g, timerColor.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "TimerBlurred", timerX, timerY + 64, Color(timerColor.r, timerColor.g, timerColor.b, timerPulse * 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText(timerText, "Timer", timerX, timerY + 64, timerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     lastSec = secs
 
