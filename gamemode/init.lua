@@ -107,6 +107,8 @@ function GM:StartRound()
 
     GAMEMODE.CurrentNextbots = {}
 
+    print("Spawning " .. GAMEMODE.MaxNextbots .. " nextbots")
+
     timer.Create("SpawnNextbots", 0.25, GAMEMODE.MaxNextbots, function()
         local nextbotClass = GAMEMODE.NextbotClassTable[math.random(1, #GAMEMODE.NextbotClassTable)]
 
