@@ -77,10 +77,10 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
             local min = Vector(0, 0, 0)
             local max = Vector(0, 0, 0)
             for k, navarea in pairs(navareas) do
-                local corners = navarea:GetCornerVectors()
+                local navPos = navarea:GetCenter()
                 for i, corner in pairs(corners) do
-                    min = Vector(math.min(min.x, corner.x), math.min(min.y, corner.y), math.min(min.z, corner.z))
-                    max = Vector(math.max(max.x, corner.x), math.max(max.y, corner.y), math.max(max.z, corner.z))
+                    min = Vector(math.min(min.x, navPos.x), math.min(min.y, navPos.y), math.min(min.z, navPos.z))
+                    max = Vector(math.max(max.x, navPos.x), math.max(max.y, navPos.y), math.max(max.z, navPos.z))
                 end
             end
 
