@@ -19,11 +19,20 @@ SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0))
 GM.MaxNextbots = 15
 GM.MaxRoundsOnMap = 10
 
-GM.AllowedNextbotNavareas = {}
-
 local function GetRandomPointOnNavMesh()
-    local navarea = GAMEMODE.AllowedNextbotNavareas[math.random(1, table.Count(GAMEMODE.AllowedNextbotNavareas))]
-    local randomPoint = navarea:GetRandomPoint()
+    local navarea = nil
+    local randomPoint = nil
+
+    for sample = 1, 25 do
+        navarea = navmesh.GetAllNavAreas()[math.random(1, table.Count(navmesh.GetAllNavAreas()))]
+        randomPoint = navarea:GetRandomPoint()
+        for k, ply in player.Iterator() do
+            if randomPoint:DistToSqr(ply:GetPos()) > 4000^2 then
+                break
+            end
+        end
+    end
+
     return randomPoint
 end
 
@@ -40,20 +49,6 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
     end
 
     navmesh.Load()
-
-    local navareas = navmesh.GetAllNavAreas()
-    navareas = FilterTable(navareas, function(area)
-        for k, ply in ipairs(player.GetAll()) do
-            local distSqr = ply:GetPos():DistToSqr(area:GetCenter())
-
-            if distSqr < 3000^2 and #navareas > 1 then
-                return false
-            end
-        end
-        return area:IsValid()
-    end)
-
-    GAMEMODE.AllowedNextbotNavareas = navareas
 end)
 
 function GM:StartRound()
