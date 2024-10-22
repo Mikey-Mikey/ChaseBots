@@ -281,7 +281,7 @@ local scoreboardScroll = 0
 
 hook.Add("StartCommand", "ScoreboardScroll", function(ply, cmd)
     if scoreboardShowing and ply == LocalPlayer() then
-        scoreboardScroll = math.max(0, scoreboardScroll + cmd:GetMouseWheel() * 12)
+        scoreboardScroll = math.min(0, scoreboardScroll + cmd:GetMouseWheel() * 12)
     end
 end)
 
