@@ -206,13 +206,13 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
 
         for i = 2, #spectrum do
-            -- local barFrequency = 44100 / 256 / 2 / #spectrum
+            local barFrequency = 44100 / 256 / 2 / #spectrum
             barHeights[i] = barHeights[i] or 0
 
             local height = math.sqrt(spectrum[i])
 
-            -- height = height * barFrequency * spectrumPower + barWidth * 2
-            height = height * spectrumPower + barWidth
+            height = height * barFrequency * spectrumPower + barWidth * 2
+            --height = height * spectrumPower + barWidth
 
             if height < barHeights[i] then
                 barHeights[i] = math.max(0, barHeights[i] - 2)
