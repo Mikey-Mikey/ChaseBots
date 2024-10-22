@@ -17,7 +17,7 @@ SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0))
 
 GM.MaxNextbots = 15
-GM.MaxRoundsOnMap = 5
+GM.MaxRoundsOnMap = 10
 
 local function GetRandomPointOnNavMesh()
     local navareas = navmesh.GetAllNavAreas()
@@ -89,6 +89,11 @@ function GM:StartRound()
     SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0) + 1)
 end
 
+function GM:ResetRounds()
+    SetGlobal2Int("CurrentRound", 0)
+    GAMEMODE:StartRound()
+end
+
 function GM:EndRound()
     print("Round Ended")
     SetGlobal2Bool("RoundRunning", false)
@@ -97,12 +102,11 @@ function GM:EndRound()
         -- Run a votemap
         MapVote.Start(20, true, 24)
         timer.Create("MapVoteEnd", 20, 1, function()
-            GAMEMODE.MaxRoundsOnMap = GAMEMODE.MaxRoundsOnMap + 5
+            GAMEMODE:ResetRounds()
             if player.GetCount() < 1 then
                 SetGlobal2Bool("Empty", true)
                 return
             end
-            GAMEMODE:StartRound()
         end)
     end
 
