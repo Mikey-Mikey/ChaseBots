@@ -21,7 +21,12 @@ GM.MaxRoundsOnMap = 10
 
 GM.AllowedNavareas = {}
 
+GM.AllowedNextbotSpawnpoints = {}
+
 local function GetRandomPointOnNavMesh()
+    if table.Count(GAMEMODE.AllowedNextbotSpawnpoints) >= GAMEMODE.MaxNextbots then
+        return GAMEMODE.AllowedNextbotSpawnpoints[math.random(1, #GAMEMODE.AllowedNextbotSpawnpoints)]
+    end
     local navarea = nil
     local randomPoint = nil
     local navCount = table.Count(GAMEMODE.AllowedNavareas)
@@ -46,7 +51,7 @@ local function GetRandomPointOnNavMesh()
             break
         end
     end
-
+    GAMEMODE.AllowedNextbotSpawnpoints[#GAMEMODE.AllowedNextbotSpawnpoints + 1] = randomPoint
     return randomPoint
 end
 
