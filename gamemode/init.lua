@@ -40,7 +40,7 @@ local function GetRandomPointOnNavMesh()
 
         local canSpawn = true
         local playerSpawns = ents.FindByClass("info_player_start")
-        for k, spawn in playerSpawns do
+        for k, spawn in pairs(playerSpawns) do
             if randomPoint:DistToSqr(spawn:GetPos()) < 4000^2 then
                 canSpawn = false
                 break
