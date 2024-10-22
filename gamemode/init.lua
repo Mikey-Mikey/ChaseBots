@@ -92,7 +92,7 @@ function GM:EndRound()
     if GetGlobal2Int("CurrentRound", 0) == GAMEMODE.MaxRoundsOnMap then
         -- Run a votemap
         MapVote.Start(20, true, 24)
-        return
+        GAMEMODE.MaxRoundsOnMap = GAMEMODE.MaxRoundsOnMap + 5
     end
 
     timer.Simple(1, function()
