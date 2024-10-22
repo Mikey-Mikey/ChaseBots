@@ -225,7 +225,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             local xPos = i * spacing - spacing * 2
 
-            local brightness = math.min(barHeights[i] / spectrumPower * 2 + 0.25, 1)
+            local brightness = math.min(barHeights[i] / spectrumPower * 4 + 0.25, 1)
 
             -- Draw the bars
             draw.RoundedBox(0, xPos + math.floor(spectrumX), spectrumY + barWidth, barWidth, barHeights[i], HSVToColor(0, 0, brightness))
