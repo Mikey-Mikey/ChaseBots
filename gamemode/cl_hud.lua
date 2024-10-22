@@ -211,10 +211,10 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             local height = spectrum[i]
 
-            height = 20 * math.log10(height^2)
-            height = math.max(0, height + 40)
-
             height = height * barFrequency * spectrumPower + barWidth * 2
+
+            height = 20 * math.log10(height^2)
+            height = math.max(0, height + 30)
             --height = height * spectrumPower + barWidth
 
             if height < barHeights[i] then
