@@ -91,7 +91,7 @@ function GM:EndRound()
 
     if GetGlobal2Float("CurrentRound", 0) == GAMEMODE.MaxRoundsOnMap then
         -- Run a votemap
-        MapVote.Start(20, false, 24)
+        MapVote.Start(20, true, 24)
         return
     end
 
