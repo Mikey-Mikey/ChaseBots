@@ -102,6 +102,7 @@ function GM:StartRound()
         ply:SetNWBool("Spectating", false)
         ply:GodDisable()
         ply:Spawn()
+        ply:AllowFlashlight(true)
     end
 
     GAMEMODE.CurrentNextbots = {}
