@@ -309,6 +309,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     -- Order the players by their role
 
     table.sort(players, function(a, b)
+        if not IsValid(a) or not IsValid(b) then return false end
         local rolePriorityA = ROLE_PRIORITY[a:GetUserGroup()]
         local rolePriorityB = ROLE_PRIORITY[b:GetUserGroup()]
         return rolePriorityA < rolePriorityB
