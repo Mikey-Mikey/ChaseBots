@@ -39,6 +39,8 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
         end
     end
 
+    navmesh.Load()
+
     local navareas = navmesh.GetAllNavAreas()
     navareas = FilterTable(navareas, function(area)
         for k, ply in ipairs(player.GetAll()) do
@@ -52,19 +54,10 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
     end)
 
     GAMEMODE.AllowedNextbotNavareas = navareas
-
-    navmesh.Load()
 end)
 
 function GM:StartRound()
-    local clearEnts = ents.FindByClass("npc_*")
-    table.Add(clearEnts, ents.FindByClass("prop_ragdoll"))
-
-    for k, ent in pairs(ents.FindByClass("*")) do
-        if ent:IsNextBot() or ent:GetNW2Bool("IsGamemodeRagdoll", false) == true then
-            ent:Remove()
-        end
-    end
+    game.CleanUpMap(true, { "env_fire", "entityflame", "_firesmoke" })
 
     SetGlobal2Bool("RoundRunning", true)
     SetGlobal2Float("RoundStartTime", RealTime())
