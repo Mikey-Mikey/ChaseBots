@@ -70,6 +70,9 @@ hook.Add("Tick", "RoundTimer", function()
     if GetGlobal2Bool("RoundRunning", false) then
         SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("RoundStartTime", 0) - RealTime() + GetGlobal2Float("BASE_ROUND_TIME", 300))
         if GetGlobal2Float("CurrentRoundTime", 0) <= 0 then
+            for k, ply in ipairs(player.GetAll()) do
+                ply:GodEnable()
+            end
             GAMEMODE:EndRound()
         end
     end

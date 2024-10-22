@@ -80,6 +80,7 @@ function GM:StartRound()
 
     for i, ply in ipairs(player.GetAll()) do
         ply:SetNWBool("Spectating", false)
+        ply:GodDisable()
         ply:Spawn()
     end
 
