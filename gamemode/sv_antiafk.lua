@@ -17,14 +17,14 @@ hook.Add("Think", "HandleAFKPlayers", function()
 
             local afktime = ply.NextAFK
 
-            ply:SetNWBool("KickingSoon", CurTime() >= afktime - AFK_WARN_TIME)
+            ply:SetNWBool("KillingSoon", CurTime() >= afktime - AFK_WARN_TIME)
 
             if (CurTime() >= afktime - AFK_WARN_TIME) and not ply.Warning then
                 ply.Warning = true
             elseif (CurTime() >= afktime) and ply.Warning then
                 ply.Warning = nil
                 ply.NextAFK = nil
-                ply:Kick("Kicked for being AFK")
+                ply:Kill()
             end
         end
     end
