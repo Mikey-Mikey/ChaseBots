@@ -134,7 +134,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     local mins = math.ceil(timeLeft / 60)
-    local secs = math.ceil(timeLeft % 60)
+    local secs = math.floor((timeLeft % 60) + 1)
 
     if secs ~= lastSec then
         timerPulse = 1
