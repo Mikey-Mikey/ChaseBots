@@ -14,7 +14,7 @@ SetGlobal2Bool("RoundRunning", GetGlobal2Bool("RoundRunning", false))
 SetGlobal2Bool("Empty", GetGlobal2Bool("Empty", true))
 SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
-SetGlobal2Int("CurrentRound", 0)
+SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0))
 
 GM.MaxNextbots = 15
 GM.MaxRoundsOnMap = 5
