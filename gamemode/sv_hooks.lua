@@ -87,6 +87,7 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     victim:SetNWBool("Spectating", true)
     CreateRagdollFromPlayer(victim)
     timer.Simple(0.02, function()
+        if not IsValid(victim) or not victim:IsPlayer() then return end
         victim:SetPos(deathPos)
         victim:SetEyeAngles(deathEyeAngles)
         victim:Spectate(OBS_MODE_ROAMING)
