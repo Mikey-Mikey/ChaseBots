@@ -52,9 +52,9 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
 end)
 
 function GM:StartRound()
-    for k, npc in pairs(ents.FindByClass("npc_*")) do
-        if npc:IsNextBot() then
-            npc:Remove()
+    for k, ent in pairs(ents.FindByClass("*")) do
+        if ent:IsNextBot() or ent:GetNW2Bool("IsGamemodeRagdoll", false) == true then
+            ent:Remove()
         end
     end
 

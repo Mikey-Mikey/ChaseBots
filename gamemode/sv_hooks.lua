@@ -5,6 +5,7 @@ function CreateRagdollFromPlayer(ply)
     ragdoll:Spawn()
     ragdoll:Activate()
     ragdoll:SetNW2Entity("RagdollOwner", ply)
+    ragdoll:SetNW2Bool("IsGamemodeRagdoll", true)
 
 
     for i = 0, ragdoll:GetPhysicsObjectCount() - 1 do
