@@ -199,7 +199,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if radioVisualizerCVar:GetBool() and IsValid(radio_station) then
         radio_station:FFT(spectrum, FFT_256)
         local spacing = 1
-        local spectrumPower = 200
+        local spectrumPower = 750
         local barWidth = 1
         local spectrumX = ScrW() * 0.5
         local spectrumY = 109
