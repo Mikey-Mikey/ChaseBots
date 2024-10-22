@@ -209,7 +209,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             local barFrequency = 44100 / 256 / 2 / #spectrum
             barHeights[i] = barHeights[i] or 0
 
-            local height = spectrum[i]
+            local height = math.sqrt(spectrum[i]) + 0.001
 
             height = height * barFrequency * spectrumPower
 
