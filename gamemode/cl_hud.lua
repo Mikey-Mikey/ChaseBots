@@ -310,7 +310,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local rowHeight = 48
-    local rowY = y + 90
+    local rowY = y + 92
 
     draw.SimpleText("Name", "ScoreboardInfo", x + 20, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     draw.SimpleText("Role", "ScoreboardInfo", x + w * 0.5, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -325,9 +325,9 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    draw.RoundedBox(0, x + 8, rowY, w - 16, h - 8 - 90, Color(0, 0, 0, 127))
+    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0, 0, 0, 127))
 
-    render.SetScissorRect(x + 8, rowY, x + w - 8, y + h - 8, true)
+    render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY + scoreboardScroll, w - 20, rowHeight)
