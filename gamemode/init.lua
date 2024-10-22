@@ -126,7 +126,7 @@ function GM:EndRound()
     if GetGlobal2Int("CurrentRound", 0) == GAMEMODE.MaxRoundsOnMap then
         -- Run a votemap
         MapVote.Start(20, true, 24)
-        timer.Create("MapVoteEnd", 24, 1, function()
+        timer.Create("MapVoteEnd", 26, 1, function()
             GAMEMODE:ResetRounds()
             if player.GetCount() < 1 then
                 SetGlobal2Bool("Empty", true)
