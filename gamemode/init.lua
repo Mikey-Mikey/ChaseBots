@@ -133,6 +133,7 @@ function GM:EndRound()
                 return
             end
         end)
+        return
     end
 
     timer.Simple(1, function()
