@@ -277,6 +277,13 @@ local function DrawPlayerRow(ply, x, y, w, h)
 end
 
 local scoreboardShowing = false
+local scoreboardScroll = 0
+
+hook.Add("StartCommand", "ScoreboardScroll", function(ply, cmd)
+    if scoreboardShowing and ply == LocalPlayer() then
+        scoreboardScroll = math.max(0, scoreboardScroll + cmd:GetMouseWheel())
+    end
+end)
 
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardShowing = true
@@ -323,7 +330,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     render.SetScissorRect(x + 8, rowY - 2, x + w - 8, y + h - 8 - 90, true)
 
     for i, ply in pairs(players) do
-        DrawPlayerRow(ply, x + 10, rowY, w - 20, rowHeight)
+        DrawPlayerRow(ply, x + 10, rowY - scoreboardScroll, w - 20, rowHeight)
         rowY = rowY + rowHeight + 6
     end
 
