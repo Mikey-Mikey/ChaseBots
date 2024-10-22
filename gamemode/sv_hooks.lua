@@ -81,6 +81,7 @@ end)
 gameevent.Listen("entity_killed")
 hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
     local victim = Entity(data.entindex_killed)
+    if not IsValid(victim) or not victim:IsPlayer() then return end
     local deathPos = victim:GetPos() + Vector(0,0,60)
     local deathEyeAngles = victim:EyeAngles()
     -- when the victim dies start spectating
