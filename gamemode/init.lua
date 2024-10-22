@@ -52,7 +52,11 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
 end)
 
 function GM:StartRound()
-    game.CleanUpMap(true, { "env_fire", "entityflame", "_firesmoke", "" })
+    for k, npc in pairs(ents.FindByClass("npc_*")) do
+        if npc:IsNextBot() then
+            npc:Remove()
+        end
+    end
 
     SetGlobal2Bool("RoundRunning", true)
     SetGlobal2Float("RoundStartTime", RealTime())
