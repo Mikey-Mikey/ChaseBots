@@ -28,6 +28,9 @@ local function GetRandomPointOnNavMesh()
 
     for sample = 1, 25 do
         navarea = GAMEMODE.AllowedNavareas[math.random(1, navCount)]
+        if not IsValid(navarea) then
+            continue
+        end
         randomPoint = navarea:GetRandomPoint()
 
         local canSpawn = true
@@ -60,7 +63,12 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
     end
 
     navmesh.Load()
-    GAMEMODE.AllowedNavareas = navmesh.GetAllNavAreas()
+    timer.Create("NavmeshLoad", 0, 0, function()
+        if navmesh.IsLoaded() then
+            timer.Remove("NavmeshLoad")
+            GAMEMODE.AllowedNavareas = navmesh.GetAllNavAreas()
+        end
+    end)
 end)
 
 function GM:StartRound()
