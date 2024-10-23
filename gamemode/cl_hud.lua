@@ -246,7 +246,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     -- Draw a circular minimap in the bottom left corner
-    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
+    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
     surface.SetMaterial(minimapMat)
     local circle = {}
 
