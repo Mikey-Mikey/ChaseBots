@@ -28,7 +28,7 @@ function ENT:Initialize()
                 local ang = math.rad(a)
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
-                mesh.Color(Color(127, 0, 0))
+                mesh.Color(127, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
