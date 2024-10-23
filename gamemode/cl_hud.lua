@@ -255,6 +255,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             right = 80,
 
         },
+        drawviewer = true,
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
         w = minimapSize, h = minimapSize,
     })
