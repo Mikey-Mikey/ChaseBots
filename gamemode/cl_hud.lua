@@ -261,7 +261,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         })
     
         local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
-        render.Clear(0,0,0,0, false, false)
+        render.DrawQuadEasy(LocalPlayer():GetPos() + Vector(0,0, -150), Vector(0,0,1), 8000, 8000, Color(0,0,0), 90)
 
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
