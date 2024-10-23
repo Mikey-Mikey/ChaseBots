@@ -31,11 +31,13 @@ function ENT:Initialize()
 
                 mesh.TexCoord(0, 0, 0)
                 mesh.Color(255, 0, 0, 255)
+                mesh.Normal(self:GetUp())
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
 
                 mesh.TexCoord(0, 0, 0)
                 mesh.Color(255, 0, 0, 255)
+                mesh.Normal(self:GetUp())
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
                 mesh.AdvanceVertex()
             end
