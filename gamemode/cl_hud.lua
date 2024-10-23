@@ -292,7 +292,7 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         drawviewer = true,
         fov = 30,
         znear = 1500 - math.min(dist + 0, 1500),
-        zfar = 1500 + 100
+        zfar = 1500 + 150
     })
 
     minimapDraw = false
