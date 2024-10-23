@@ -66,7 +66,7 @@ if CLIENT then
 
             mat:Translate(pos)
             mat:Rotate(ang)
-            mat:Translate(Vector(0, 0, offset))
+            mat:Translate(Vector(0, 0, -offset))
             render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
