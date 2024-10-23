@@ -272,6 +272,7 @@ end)
 
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.PushRenderTarget(minimapRT)
+    local old = render.EnableClipping(true)
     minimapDraw = true
 
     local heightTr = util.TraceHull({
@@ -295,6 +296,7 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     })
 
     minimapDraw = false
+    render.EnableClipping(old)
     render.PopRenderTarget()
 end)
 
