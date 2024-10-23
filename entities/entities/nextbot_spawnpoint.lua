@@ -101,6 +101,8 @@ function ENT:Initialize()
             end
         mesh.End()
 
+        self.starRot = 0
+
     end
 end
 
@@ -137,12 +139,11 @@ if CLIENT then
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
                 spawnpoint.hollowCircleMesh:Draw()
-                for z = 0, 10 do
-                    render.SetBlend(1 - (z / 10))
-                    spawnpoint.starMesh:Draw()
-                    mat:Translate(Vector(0, 0, -1))
-                end
+                mat:Rotate(Angle(0, spawnpoint.starRot, 0))
+                spawnpoint.starMesh:Draw()
             cam.PopModelMatrix()
+
+            spawnpoint.starRot = spawnpoint.starRot + FrameTime() * 10
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
         end
