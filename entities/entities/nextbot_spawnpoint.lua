@@ -63,18 +63,18 @@ function ENT:OnRemove()
 end
 
 if CLIENT then
+    local whiteMat = Material("lights/white")
+
     local pentagonMat = CreateMaterial("pentagonMat", "UnlitGeneric", {
-        ["$basetexture"] = "models/debug/debugwhite",
+        ["$basetexture"] = whiteMat:GetTexture("$basetexture"):GetName(),
         ["$model"] = 1,
-        ["$alpha"] = 1,
         ["$color"] = "[0 0 0]",
         ["$color2"] = "[1 0 0]"
     })
 
     local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
-        ["$basetexture"] = "models/debug/debugwhite",
+        ["$basetexture"] = whiteMat:GetTexture("$basetexture"):GetName(),
         ["$model"] = 1,
-        ["$alpha"] = 1,
         ["$color"] = "[0 0 0]",
         ["$color2"] = "[0 0 0]"
     })
