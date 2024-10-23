@@ -288,7 +288,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             local x = math.cos(ang) * minimapSize * 0.5
             local y = math.sin(ang) * minimapSize * 0.5
 
-            local angOffset = math.rad(minimapRot)
+            local angOffset = math.rad(-minimapRot)
 
             circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
         end
