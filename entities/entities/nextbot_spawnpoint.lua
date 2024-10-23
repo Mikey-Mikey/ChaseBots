@@ -40,7 +40,10 @@ function ENT:Initialize()
         mesh.End()
 
         self.circleMesh = Mesh()
-        mesh.Begin(self.circleMesh, MATERIAL_POLYGON, 1)
+        mesh.Begin(self.circleMesh, MATERIAL_TRIANGLE_STRIP, 360 / 5)
+            mesh.Color(0, 0, 0, 255)
+            mesh.Position(Vector(0, 0, 0))
+            mesh.AdvanceVertex()
             for a = 0, 360, 5 do
                 local ang = math.rad(a)
                 local x = math.cos(ang) * radius
