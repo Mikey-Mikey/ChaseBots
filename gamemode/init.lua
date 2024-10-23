@@ -121,6 +121,15 @@ function GM:StartRound()
         local randomPoint = GetRandomPointOnNavMesh()
         local botSpawner = ents.Create("nextbot_spawnpoint")
         botSpawner:SetPos(randomPoint)
+
+        local ang_tr = util.TraceLine({
+            start = randomPoint + 3,
+            endpos = randomPoint + Vector(0, 0, -1000),
+            mask = MASK_SOLID_BRUSHONLY,
+        })
+
+        botSpawner:SetAngles(ang_tr.HitNormal:Angle() + Angle(90,0,0))
+
         botSpawner.nextbotClass = nextbotClass
         botSpawner:Spawn()
 

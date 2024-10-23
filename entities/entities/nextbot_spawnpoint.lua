@@ -19,6 +19,16 @@ function ENT:Initialize()
             self.nextbot:Spawn()
             self:SetNWBool("NextbotSpawned", true)
         end)
+
+    else
+        self.circleVerts = {}
+        -- Cache the circle
+        for a = 0, 360, 360 / 32 do
+            local size = 80
+            local x = math.cos(math.rad(a)) * size
+            local y = math.sin(math.rad(a)) * size
+            spawnpoint.circleVerts[#spawnpoint.circleVerts + 1] = {x = x, y = y}
+        end
     end
 end
 
@@ -34,26 +44,18 @@ end
 
 if CLIENT then
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
-        for k, v in pairs(ents.FindByClass("nextbot_spawnpoint")) do
-            if v:GetNWBool("NextbotSpawned", false) then
+        for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
+            if spawnpoint:GetNWBool("NextbotSpawned", false) then
                 continue
             end
             -- draw a 2d pentagram on the ground
-            local pos = v:GetPos()
-            local ang = v:GetAngles()
-            local size = 60
+            local pos = spawnpoint:GetPos()
+            local ang = spawnpoint:GetAngles()
             local offset = 1
 
-            cam.Start3D2D(pos + v:GetUp() * offset, ang, 1)
-                -- Draw the circle
-                local circleVerts = {}
-                for a = 0, 360, 360 / 32 do
-                    local x = math.cos(math.rad(a)) * size
-                    local y = math.sin(math.rad(a)) * size
-                    circleVerts[#circleVerts + 1] = {x = x, y = y}
-                end
+            cam.Start3D2D(pos + spawnpoint:GetUp() * offset, ang, 1)
                 surface.SetDrawColor(200, 0, 0)
-                surface.DrawPoly(circleVerts)
+                surface.DrawPoly(spawnpoint.circleVerts)
             cam.End3D2D()
         end
     end)
