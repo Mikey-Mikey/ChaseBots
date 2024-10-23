@@ -80,11 +80,13 @@ if CLIENT then
             mat:Translate(Vector(0, 0, -offset))
 
             render.SetColorMaterial()
+            render.SetColorModulation(0, 0, 0)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
             cam.PopModelMatrix()
 
             render.SetColorMaterial()
+            render.SetColorModulation(1, 0, 0)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
