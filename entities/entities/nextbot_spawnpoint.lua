@@ -72,8 +72,6 @@ if CLIENT then
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
         ["$vertexcolor"] = 1,
-        ["$color"] = "[1.0 1.0 1.0]",
-        ["$color2"] = "[1.0 0.0 0.0]",
 
       } )
 
@@ -81,8 +79,6 @@ if CLIENT then
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
         ["$vertexcolor"] = 1,
-        ["$color"] = "[1.0 1.0 1.0]",
-        ["$color2"] = "[0.0 0.0 0.0]",
     })
 
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
@@ -101,7 +97,7 @@ if CLIENT then
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, -offset))
 
-            render.SetMaterial(pentagonMat)
+            render.SetColorMaterial()
 
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
