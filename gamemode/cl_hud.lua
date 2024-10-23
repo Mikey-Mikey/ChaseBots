@@ -261,11 +261,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         })
     
         local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
-        render.FogStart(minimapViewDist)
-        render.FogColor(0, 0, 0)
-        render.FogMode(MATERIAL_FOG_LINEAR)
-        render.FogMaxDensity(1)
-        render.FogEnd(minimapViewDist + 1)
+        render.Clear(0,0,0,0, false, false)
 
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
