@@ -273,6 +273,9 @@ hook.Add("ShouldDrawLocalPlayer", "MinimapDrawLocalPlayer", function(ply)
     return minimapDraw
 end)
 
+
+local minimapViewDist = 3000
+
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.PushRenderTarget(minimapRT)
     local old = render.EnableClipping(true)
@@ -280,27 +283,27 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
 
     local heightTr = util.TraceHull({
         start = LocalPlayer():GetPos() + Vector(0,0,1),
-        endpos = LocalPlayer():GetPos() + Vector(0,0,1500),
+        endpos = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
         mins = Vector(-15,-15,0),
         maxs = Vector(-15,-15,0),
         filter = LocalPlayer()
     })
 
     local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
-    render.FogStart(1500)
+    render.FogStart(minimapViewDist)
     render.FogColor(0, 0, 0)
     render.FogMode(MATERIAL_FOG_LINEAR)
     render.FogMaxDensity(1)
-    render.FogEnd(1500 + 1)
+    render.FogEnd(minimapViewDist + 1)
 
     render.RenderView({
-        origin = LocalPlayer():GetPos() + Vector(0,0,1500),
+        origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
         angles = Angle(90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
         fov = 30,
-        znear = 1500 - math.Clamp(dist - 36, 0, 1500),
-        zfar = 1500 + 150
+        znear = minimapViewDist - math.Clamp(dist - 36, 0, minimapViewDist),
+        zfar = minimapViewDist + 150
     })
 
     minimapDraw = false
