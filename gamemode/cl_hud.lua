@@ -277,8 +277,8 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         w = minimapSize, h = minimapSize,
         ortho = {
             top = 100,
-            bottom = 100,
-            left = 100,
+            bottom = -100,
+            left = -100,
             right = 100,
         }
     })
