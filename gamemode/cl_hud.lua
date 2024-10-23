@@ -244,12 +244,15 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
 
+    local oldClip = render.EnableClipping(true)
     render.RenderView({
         origin = LocalPlayer():GetPos() + Vector(0,0,80),
         angles = Angle(0, 0, 0),
+        ortho = {top = true},
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
         w = minimapSize, h = minimapSize,
     })
+    render.EnableClipping(oldClip)
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
