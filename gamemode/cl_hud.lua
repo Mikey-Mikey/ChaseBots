@@ -245,7 +245,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
 
     render.RenderView({
-        origin = LocalPlayer():GetPos() + 80,
+        origin = LocalPlayer():GetPos() + Vector(0,0,80),
         angles = Angle(0, 0, 0),
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
         w = minimapSize, h = minimapSize,
