@@ -310,7 +310,11 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.EnableClipping(old)
     render.PopRenderTarget()
 
-    render.RenderView()
+    render.RenderView({
+        origin = origin,
+        angles = angles,
+        fov = fov
+    })
 
     return true
 end)
