@@ -59,8 +59,8 @@ if CLIENT then
                 local hollowCircleVerts = {}
 
                 for i, vert in ipairs(spawnpoint.circleVerts) do
-                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x * 0.8, y = vert.y * 0.8}
                     hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x, y = vert.y}
+                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x * 0.8, y = vert.y * 0.8}
                 end
                 surface.SetDrawColor(127, 0, 0)
                 surface.DrawPoly(hollowCircleVerts)
