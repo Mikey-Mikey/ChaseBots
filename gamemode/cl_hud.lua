@@ -288,10 +288,10 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
 
     local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
     render.FogStart(1500)
-    render.FogColor(0, 0, 0)
+    render.FogColor(255, 0, 0)
     render.FogMode(MATERIAL_FOG_LINEAR)
     render.FogMaxDensity(1)
-    render.FogEnd(1500 + 150)
+    render.FogEnd(1500 + 100)
 
     render.RenderView({
         origin = LocalPlayer():GetPos() + Vector(0,0,1500),
