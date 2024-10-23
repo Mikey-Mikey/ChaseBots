@@ -68,6 +68,7 @@ if CLIENT then
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
+            debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
         end
     end)
 end
