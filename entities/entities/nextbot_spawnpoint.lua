@@ -28,7 +28,7 @@ function ENT:Initialize()
                 local ang = math.rad(a)
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
-                mesh.Color(127, 0, 0, 255)
+                mesh.Color(1, 0.1, 0.1, 1)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
@@ -67,6 +67,7 @@ if CLIENT then
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, offset))
             render.SetMaterial(pentagonMat)
+            --render.SetColorModulation(1, 0, 0)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
