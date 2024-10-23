@@ -273,7 +273,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             drawviewmodel = false,
             drawviewer = true,
             fov = 30,
-            znear = minimapViewDist - math.Clamp(dist - 24, 0, minimapViewDist),
+            znear = minimapViewDist - math.Clamp(dist - 24, 0, minimapViewDist - 2900),
             zfar = minimapViewDist + 150
         })
     
