@@ -266,12 +266,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         render.FogMode(MATERIAL_FOG_LINEAR)
         render.FogMaxDensity(1)
         render.FogEnd(minimapViewDist + 1)
-        local viewEntity = LocalPlayer():GetViewEntity()
 
-        if viewEntity:IsValid() and not viewEntity:TestPVS(LocalPlayer():GetPos() + Vector(0,0,minimapViewDist)) then -- If we don't test if the PVS is already loaded, it could crash the server.
+        if IsValid(LocalPlayer()) and not LocalPlayer():TestPVS(LocalPlayer():GetPos() + Vector(0,0,minimapViewDist)) then -- If we don't test if the PVS is already loaded, it could crash the server.
             AddOriginToPVS(LocalPlayer():GetPos() + Vector(0,0,minimapViewDist))
         end
-    
+
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
             angles = Angle(90, 0, 0),
