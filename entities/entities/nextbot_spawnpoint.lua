@@ -75,7 +75,9 @@ if CLIENT then
             mat:Translate(Vector(0, 0, -offset))
             render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
+                render.SetColorModulation(1, 0, 0)
                 spawnpoint.hollowCircleMesh:Draw()
+                render.SetColorModulation(1, 1, 1)
             cam.PopModelMatrix()
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
