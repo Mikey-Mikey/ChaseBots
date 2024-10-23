@@ -29,19 +29,37 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
-                mesh.TexCoord(0, 0, 0)
-                mesh.Color(255, 0, 0, 255)
-                mesh.Normal(self:GetUp())
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
 
-                mesh.TexCoord(0, 0, 0)
-                mesh.Color(255, 0, 0, 255)
-                mesh.Normal(self:GetUp())
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
                 mesh.AdvanceVertex()
             end
         mesh.End()
+
+        self.starMesh = Mesh()
+
+        mesh.Begin(self.starMesh, MATERIAL_QUADS, 5)
+            for i = 0, 4 do
+                local ang = math.rad(i * 72)
+                local x = math.cos(ang) * radius
+                local y = math.sin(ang) * radius
+
+                mesh.Position(Vector(x, y, 0))
+                mesh.AdvanceVertex()
+
+                mesh.Position(Vector(0, 0, 0))
+                mesh.AdvanceVertex()
+
+                mesh.Position(Vector(0, 0, 0))
+                mesh.AdvanceVertex()
+
+                mesh.Position(Vector(x * 1.1, y * 1.1, 0))
+                mesh.AdvanceVertex()
+            end
+        mesh.End()
+
+
     end
 end
 
@@ -76,9 +94,8 @@ if CLIENT then
             mat:Translate(Vector(0, 0, -offset))
             render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
-                render.SetColorModulation(1, 0, 0)
                 spawnpoint.hollowCircleMesh:Draw()
-                render.SetColorModulation(1, 1, 1)
+                spawnpoint.starMesh:Draw()
             cam.PopModelMatrix()
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
