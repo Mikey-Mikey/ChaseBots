@@ -249,8 +249,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         origin = LocalPlayer():GetPos() + Vector(0,0,80),
         angles = Angle(90, 0, 0),
         ortho = {
-            top = 80,
+            top = 0,
             bottom = -80,
+            left = -80,
+            right = 80,
+
         },
         drawviewer = true,
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
