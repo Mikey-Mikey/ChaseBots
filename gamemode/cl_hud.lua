@@ -174,7 +174,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spectateX, spectateY = ScrW() / 2, ScrH()
 
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= LocalPlayer() end)
         local targetPly = alivePlayers[LocalPlayer():GetNWInt("SpectateID", 1)]
         surface.SetFont("SmallTimer")
 
@@ -236,7 +236,11 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         end
     end
 
-    -- Draw text in the middle of the screen when LocalPlayer():GetNWBool("KickingSoon", false)
+    -- Draw a circular minimap in the bottom left corner
+    local minimapSize = 200
+    local minimapX, minimapY = 0, ScrH() - minimapSize
+
+    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 200))
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)

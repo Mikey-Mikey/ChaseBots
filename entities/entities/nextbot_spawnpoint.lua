@@ -117,7 +117,6 @@ function ENT:OnRemove()
 end
 
 if CLIENT then
-
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
             if spawnpoint:GetNWBool("NextbotSpawned", false) then
