@@ -70,8 +70,7 @@ if CLIENT then
         ["$model"] = 1,
         ["$translucent"] = 1,
         ["$vertexalpha"] = 1,
-        ["$vertexcolor"] = 1,
-        ["$color"] = "[1.0 0.0 0.0]",
+        ["$vertexcolor"] = 0,
         ["$color2"] = "[1.0 0.0 0.0]",
 
       } )
@@ -81,8 +80,7 @@ if CLIENT then
         ["$model"] = 1,
         ["$translucent"] = 1,
         ["$vertexalpha"] = 1,
-        ["$vertexcolor"] = 1,
-        ["$color"] = "[0.0 0.0 0.0]",
+        ["$vertexcolor"] = 0,
         ["$color2"] = "[0.0 0.0 0.0]",
     })
 
