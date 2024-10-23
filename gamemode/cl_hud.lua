@@ -313,6 +313,7 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.RenderView({
         origin = origin,
         angles = angles,
+        drawhud = true,
         fov = fov
     })
 
