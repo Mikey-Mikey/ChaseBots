@@ -27,7 +27,7 @@ function ENT:Initialize()
             local size = 80
             local x = math.cos(math.rad(a)) * size
             local y = math.sin(math.rad(a)) * size
-            spawnpoint.circleVerts[#spawnpoint.circleVerts + 1] = {x = x, y = y}
+            self.circleVerts[#self.circleVerts + 1] = {x = x, y = y}
         end
     end
 end
