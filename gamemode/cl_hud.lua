@@ -309,7 +309,7 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     minimapDraw = false
     render.EnableClipping(old)
     render.PopRenderTarget()
-    render.ClearDepth()
+    render.DepthRange(0, 1)
     render.RenderView({
         origin = origin,
         angles = angles,
