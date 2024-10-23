@@ -139,7 +139,10 @@ if CLIENT then
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
                 spawnpoint.hollowCircleMesh:Draw()
-                mat:Rotate(Angle(0, spawnpoint.starRot, 0))
+            cam.PopModelMatrix()
+
+            mat:Rotate(Angle(0, spawnpoint.starRot, 0))
+            cam.PushModelMatrix(mat, false)
                 spawnpoint.starMesh:Draw()
             cam.PopModelMatrix()
 
