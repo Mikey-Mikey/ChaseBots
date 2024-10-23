@@ -23,9 +23,11 @@ GM.AllowedNavareas = {}
 
 GM.AllowedNextbotSpawnpoints = {}
 
+GM.CurrentNextbots = {}
+
 local function GetRandomPointOnNavMesh()
     if table.Count(GAMEMODE.AllowedNextbotSpawnpoints) >= GAMEMODE.MaxNextbots then
-        return GAMEMODE.AllowedNextbotSpawnpoints[math.random(1, #GAMEMODE.AllowedNextbotSpawnpoints)]
+        return GAMEMODE.AllowedNextbotSpawnpoints[table.Count(GAMEMODE.CurrentNextbots) + 1]
     end
     local navarea = nil
     local randomPoint = nil
@@ -117,10 +119,10 @@ function GM:StartRound()
         end
 
         local randomPoint = GetRandomPointOnNavMesh()
-        local bot = ents.Create(nextbotClass)
+        local botSpawner = ents.Create("nextbot_spawnpoint")
+        botSpawner:SetPos(randomPoint)
+        botSpawner.nextbotClass = nextbotClass
 
-        bot:SetPos(randomPoint)
-        bot:Spawn()
         GAMEMODE.CurrentNextbots[nextbotClass] = true
 
         if table.Count(GAMEMODE.CurrentNextbots) >= GAMEMODE.MaxNextbots then
