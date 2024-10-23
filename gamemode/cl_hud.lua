@@ -247,16 +247,14 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local oldClip = render.EnableClipping(true)
     render.RenderView({
         origin = LocalPlayer():GetPos() + Vector(0,0,80),
-        angles = Angle(90, 0, 0),
+        angles = Angle(0, 0, 0),
         ortho = {
-            top = 800,
-            bottom = -800,
-            left = -800,
-            right = 800,
+            top = 80,
+            bottom = -80,
+            left = -80,
+            right = 80,
 
         },
-        znear = 1,
-        zfar = 1000,
         drawviewmodel = false,
         drawviewer = true,
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
