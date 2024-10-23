@@ -278,8 +278,8 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     local heightTr = util.TraceHull({
         start = LocalPlayer():GetPos() + Vector(0,0,1),
         endpos = LocalPlayer():GetPos() + Vector(0,0,1500),
-        mins = Vector(-8,-8,0),
-        maxs = Vector(-8,-8,0),
+        mins = Vector(-15,-15,0),
+        maxs = Vector(-15,-15,0),
         filter = LocalPlayer()
     })
 
