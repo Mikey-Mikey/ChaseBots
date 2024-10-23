@@ -272,7 +272,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             zfar = minimapViewDist + 150
         })
 
-        render.DrawQuadEasy(LocalPlayer():GetPos() + Vector(0,0, -150), Vector(0,0,1), 8000, 8000, Color(0,0,0), 90)
+        render.DrawQuadEasy(LocalPlayer():GetPos() + Vector(0,0, -145), Vector(0,0,1), 8000, 8000, Color(0,0,0), 90)
     
         minimapDraw = false
         render.EnableClipping(old)
