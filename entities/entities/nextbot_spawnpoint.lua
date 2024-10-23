@@ -86,7 +86,7 @@ function ENT:Initialize()
         end
 
         self.starMesh = Mesh()
-        mesh.Begin(self.starMesh, MATERIAL_TRIANGLE_STRIP, 360 / 5 * 2)
+        mesh.Begin(self.starMesh, MATERIAL_TRIANGLE_STRIP, 360 / 5)
             for a = 0, 360, 360 / 5 do
                 local prevAng = math.rad(a - 360 / 5 + 180)
                 local ang = math.rad(a + 360 / 5 + 180)
