@@ -122,6 +122,7 @@ function GM:StartRound()
         local botSpawner = ents.Create("nextbot_spawnpoint")
         botSpawner:SetPos(randomPoint)
         botSpawner.nextbotClass = nextbotClass
+        botSpawner:Spawn()
 
         GAMEMODE.CurrentNextbots[nextbotClass] = true
 
