@@ -254,6 +254,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
         w = minimapSize, h = minimapSize,
     })
+    LocalPlayer():DrawModel()
     render.EnableClipping(oldClip)
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
