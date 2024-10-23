@@ -269,20 +269,12 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     minimapDraw = true
 
     render.RenderView({
-        origin = LocalPlayer():GetPos() + Vector(0,0,80),
+        origin = LocalPlayer():GetPos() + Vector(0,0,500),
         angles = Angle(90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
-        x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
-        w = minimapSize, h = minimapSize,
-        znear = 5,
-        zfar = 200,
-        ortho = {
-            top = 500,
-            bottom = -500,
-            left = -500,
-            right = 500,
-        }
+        fov = 30,
+        znear = 428
     })
 
     minimapDraw = false
