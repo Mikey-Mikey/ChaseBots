@@ -123,7 +123,7 @@ function GM:StartRound()
         botSpawner:SetPos(randomPoint)
 
         local ang_tr = util.TraceLine({
-            start = randomPoint + 3,
+            start = randomPoint + Vector(0,0,2),
             endpos = randomPoint + Vector(0, 0, -1000),
             mask = MASK_SOLID_BRUSHONLY,
         })
