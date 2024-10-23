@@ -91,8 +91,8 @@ function ENT:Initialize()
                 local prevAng = math.rad(a - 360 / 5 + 180)
                 local ang = math.rad(a + 360 / 5 + 180)
 
-                local px = math.cos(prevAng) * 20
-                local py = math.sin(prevAng) * 20
+                local px = math.cos(prevAng) * radius
+                local py = math.sin(prevAng) * radius
 
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
