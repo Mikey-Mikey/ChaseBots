@@ -314,6 +314,8 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         origin = origin,
         angles = angles,
         drawhud = true,
+        znear = 5,
+        zfar = 10000,
         fov = fov
     })
 
