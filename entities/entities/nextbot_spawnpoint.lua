@@ -144,10 +144,10 @@ if CLIENT then
             mat:Rotate(Angle(0, spawnpoint.starRot, 0))
             for i = 1, 5 do
                 cam.PushModelMatrix(mat, false)
-                    render.SetBlend(0.1)
                     spawnpoint.starMesh:Draw()
                 cam.PopModelMatrix()
-                mat:Rotate(Angle(0, 360 / 5, 0))
+                mat:Rotate(Angle(0, 360 / 5 + i * 5, 0))
+                mat:Translate(Vector(0, 0, -2))
             end
 
             spawnpoint.starRot = spawnpoint.starRot + FrameTime() * 10
