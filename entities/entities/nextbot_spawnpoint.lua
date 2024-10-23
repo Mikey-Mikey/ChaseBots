@@ -85,11 +85,13 @@ if CLIENT then
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, -offset))
 
+            render.SetMaterial(pentagonBlackMat)
             cam.PushModelMatrix(mat, false)
-                render.SetMaterial(pentagonBlackMat)
                 spawnpoint.circleMesh:Draw()
+            cam.PopModelMatrix()
 
-                render.SetMaterial(pentagonMat)
+            render.SetMaterial(pentagonMat)
+            cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
 
