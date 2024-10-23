@@ -65,16 +65,16 @@ end
 if CLIENT then
     local pentagonMat = CreateMaterial("pentagonMat", "UnlitGeneric", {
         ["$basetexture"] = "lights/white",
-        ["$translucent"] = 1,
-        ["$vertexcolor"] = 1,
-        ["$color"] = "[1 0 0]"
+        ["$alpha"] = 1,
+        ["$color"] = "[0 0 0]",
+        ["$color2"] = "[1 0 0]"
     })
 
     local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
         ["$basetexture"] = "lights/white",
-        ["$translucent"] = 1,
-        ["$vertexcolor"] = 1,
-        ["$color"] = "[0 0 0]"
+        ["$alpha"] = 1,
+        ["$color"] = "[0 0 0]",
+        ["$color2"] = "[0 0 0]"
     })
 
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
