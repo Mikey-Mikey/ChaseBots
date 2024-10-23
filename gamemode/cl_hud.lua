@@ -286,12 +286,12 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
     print(dist, heightTr.HitPos)
     render.RenderView({
-        origin = LocalPlayer():GetPos() + Vector(0,0,dist),
+        origin = LocalPlayer():GetPos() + Vector(0,0,1500),
         angles = Angle(90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
         fov = 30,
-        znear = 1500 - math.min(dist - 72, 1488),
+        znear = 1500 - math.min(dist + 5, 1488),
         zfar = 1500 + 100
     })
 
