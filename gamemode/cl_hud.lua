@@ -250,8 +250,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         angles = Angle(-90, 0, 0),
         ortho = {
             top = 80,
-            bottom = 80,
-            left = 80,
+            bottom = -500,
+            left = -80,
             right = 80,
 
         },
