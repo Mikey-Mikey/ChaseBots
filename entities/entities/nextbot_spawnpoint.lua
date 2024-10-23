@@ -57,6 +57,7 @@ end
 
 if CLIENT then
     local pentagonMat = Material("lights/white")
+    pentagonMat:SetVector("$color", Vector(1, 0, 0))
 
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
