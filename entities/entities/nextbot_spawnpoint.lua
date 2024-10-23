@@ -15,8 +15,8 @@ function ENT:Initialize()
 
         timer.Create(tostring(self) .. " SpawnNextbot", 10, 1, function()
             self.nextbot = ents.Create(self.nextbotClass)
-            nextbot:SetPos(self:GetPos())
-            nextbot:Spawn()
+            self.nextbot:SetPos(self:GetPos())
+            self.nextbot:Spawn()
             self:SetNWBool("NextbotSpawned", true)
         end)
     end
