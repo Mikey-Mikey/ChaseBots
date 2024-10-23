@@ -127,6 +127,10 @@ local lastSec = 0
 
 local minimapRT = GetRenderTarget("MinimapRT", 512, 512, false)
 
+local minimapMat = CreateMaterial("MinimapMat", "UnlitGeneric", {
+    ["$basetexture"] = minimapRT:GetName() -- Make the material use our render target texture
+})
+
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Int("CurrentRoundTime", 0)
@@ -244,7 +248,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
 
-    surface.SetTexture(minimapRT)
+    surface.SetMaterial(minimapMat)
     surface.DrawTexturedRect(minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize)
     draw.NoTexture()
 
@@ -254,8 +258,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 end)
 
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
+    render.PushRenderTarget(minimapRT)
     local oldClip = render.EnableClipping(true)
-    render.SetRenderTarget("MinimapRT")
     render.RenderView({
         origin = LocalPlayer():GetPos() + Vector(0,0,80),
         angles = Angle(90, 0, 0),
@@ -264,6 +268,7 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         fov = 50,
     })
     render.EnableClipping(oldClip)
+    render.PopRenderTarget()
 end)
 
 
