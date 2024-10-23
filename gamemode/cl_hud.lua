@@ -244,6 +244,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             draw.RoundedBox(0, -xPos + math.floor(spectrumX), spectrumY + barWidth, barWidth, barHeights[i], HSVToColor(0, 0, brightness))
         end
     end
+
     if LocalPlayer():Alive() then
         -- Draw a circular minimap in the bottom left corner
         draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
@@ -286,6 +287,11 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     })
 
     local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
+    render.FogStart(1500)
+    render.FogColor(0, 0, 0)
+    render.FogMode(MATERIAL_FOG_LINEAR)
+    render.FogMaxDensity(1)
+    render.FogEnd(1500 + 50)
 
     render.RenderView({
         origin = LocalPlayer():GetPos() + Vector(0,0,1500),
