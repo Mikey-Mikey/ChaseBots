@@ -49,6 +49,8 @@ function ENT:OnRemove()
 end
 
 if CLIENT then
+    local pentagonMat = Material("lights/white")
+
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
             if spawnpoint:GetNWBool("NextbotSpawned", false) then
@@ -64,12 +66,11 @@ if CLIENT then
             mat:Translate(pos)
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, offset))
-
+            render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
-                render.SuppressEngineLighting(true)
                 spawnpoint.hollowCircleMesh:Draw()
-                render.SuppressEngineLighting(false)
             cam.PopModelMatrix()
+
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
         end
     end)
