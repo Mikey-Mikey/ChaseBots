@@ -64,14 +64,16 @@ end
 
 if CLIENT then
     local pentagonMat = CreateMaterial("pentagonMat", "UnlitGeneric", {
-        ["$basetexture"] = "lights/white",
+        ["$basetexture"] = "models/debug/debugwhite",
+        ["$model"] = 1,
         ["$alpha"] = 1,
         ["$color"] = "[0 0 0]",
         ["$color2"] = "[1 0 0]"
     })
 
     local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
-        ["$basetexture"] = "lights/white",
+        ["$basetexture"] = "models/debug/debugwhite",
+        ["$model"] = 1,
         ["$alpha"] = 1,
         ["$color"] = "[0 0 0]",
         ["$color2"] = "[0 0 0]"
