@@ -251,7 +251,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         render.PushRenderTarget(minimapRT)
         local old = render.EnableClipping(true)
         minimapDraw = true
-    
+
         local heightTr = util.TraceHull({
             start = LocalPlayer():GetPos() + Vector(0,0,1),
             endpos = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
@@ -259,11 +259,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             maxs = Vector(-15,-15,0),
             filter = LocalPlayer()
         })
-    
-        local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
 
-        
-        render.DrawQuadEasy(LocalPlayer():GetPos() + Vector(0,0, -145), Vector(0,0,1), 8000, 8000, Color(0,0,0), 90)
+        local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
 
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
@@ -274,7 +271,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             znear = minimapViewDist - math.Clamp(dist - 24, 0, minimapViewDist - 2900),
             zfar = minimapViewDist + 150
         })
-    
+
         minimapDraw = false
         render.EnableClipping(old)
         render.PopRenderTarget()
