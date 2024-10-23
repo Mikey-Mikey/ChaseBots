@@ -13,7 +13,7 @@ function ENT:Initialize()
 
         self:SetNWBool("NextbotSpawned", false)
 
-        timer.Create(tostring(self) .. " SpawnNextbot", 10, 1, function()
+        timer.Create(tostring(self) .. " SpawnNextbot", 30, 1, function()
             self.nextbot = ents.Create(self.nextbotClass)
             self.nextbot:SetPos(self:GetPos())
             self.nextbot:Spawn()
