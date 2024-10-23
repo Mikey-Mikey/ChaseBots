@@ -56,6 +56,18 @@ function ENT:Initialize()
             end
         mesh.End()
 
+        self.starMesh = Mesh()
+        mesh.Begin(self.starMesh, MATERIAL_LINE_STRIP, 360 / 5 * 2)
+            for a = 0, 360, 5 do
+                local ang = math.rad(a)
+                local x = math.cos(ang) * radius
+                local y = math.sin(ang) * radius
+                mesh.Color(0, 255, 0, 255)
+                mesh.Position(Vector(x * 1.1, y * 1.1, 0))
+                mesh.AdvanceVertex()
+            end
+        mesh.End()
+
     end
 end
 
@@ -91,10 +103,8 @@ if CLIENT then
 
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
-            cam.PopModelMatrix()
-
-            cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
+                spawnpoint.starMesh:Draw()
             cam.PopModelMatrix()
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
