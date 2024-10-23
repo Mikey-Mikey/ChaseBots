@@ -268,15 +268,15 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     minimapDraw = true
     local oldClip = render.EnableClipping(true)
     render.RenderView({
-        origin = LocalPlayer():GetPos() + Vector(0,0,4000),
+        origin = LocalPlayer():GetPos() + Vector(0,0,80),
         angles = Angle(-90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
         ortho = {
-            top = 1000,
-            bottom = 1000,
-            left = 1000,
-            right = 1000
+            top = 300,
+            bottom = 300,
+            left = 300,
+            right = 300
         }
     })
     render.EnableClipping(oldClip)
