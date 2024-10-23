@@ -65,7 +65,7 @@ end
 if CLIENT then
     local whiteMat = Material("lights/white")
 
-    local pentagonMat = CreateMaterial( "pentagon_mat", "VertexLitGeneric", {
+    local pentagonMat = CreateMaterial( "pentagon_mat", "UnlitGeneric", {
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
         ["$translucent"] = 1,
@@ -73,7 +73,7 @@ if CLIENT then
         ["$vertexcolor"] = 1
       } )
 
-    local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "VertexLitGeneric", {
+    local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
         ["$translucent"] = 1,
