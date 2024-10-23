@@ -63,6 +63,24 @@ function ENT:OnRemove()
 end
 
 if CLIENT then
+    local pentagonMat = CreateMaterial("pentagonMat", "UnlitGeneric", {
+        ["$basetexture"] = "color/white",
+        ["$model"] = 1,
+        ["$translucent"] = 1,
+        ["$vertexalpha"] = 1,
+        ["$vertexcolor"] = 1,
+        ["$color"] = "[1 0 0]"
+    })
+
+    local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
+        ["$basetexture"] = "color/white",
+        ["$model"] = 1,
+        ["$translucent"] = 1,
+        ["$vertexalpha"] = 1,
+        ["$vertexcolor"] = 1,
+        ["$color"] = "[0 0 0]"
+    })
+
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
             if spawnpoint:GetNWBool("NextbotSpawned", false) then
@@ -79,14 +97,12 @@ if CLIENT then
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, -offset))
 
-            render.SetColorMaterial()
-            render.SetColorModulation(0, 0, 0)
+            render.SetMaterial(pentagonBlackMat)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
             cam.PopModelMatrix()
 
-            render.SetColorMaterial()
-            render.SetColorModulation(1, 0, 0)
+            render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
