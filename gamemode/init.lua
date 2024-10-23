@@ -128,7 +128,7 @@ function GM:StartRound()
             mask = MASK_SOLID_BRUSHONLY,
         })
 
-        botSpawner:SetAngles(ang_tr.HitNormal:Angle() + Angle(90,0,0))
+        botSpawner:SetAngles(ang_tr.HitNormal:Angle() - Angle(90,0,0))
 
         botSpawner.nextbotClass = nextbotClass
         botSpawner:Spawn()
