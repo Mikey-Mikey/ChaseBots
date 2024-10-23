@@ -2,6 +2,8 @@ AddCSLuaFile()
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
+ENT.PrintName = "Nextbot Spawnpoint"
+ENT.Author = "Mikey"
 
 function ENT:Initialize()
     if SERVER then
