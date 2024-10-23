@@ -275,11 +275,13 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         drawviewer = true,
         x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
         w = minimapSize, h = minimapSize,
+        znear = 5,
+        zfar = 200,
         ortho = {
-            top = 100,
-            bottom = -100,
-            left = -100,
-            right = 100,
+            top = 500,
+            bottom = -500,
+            left = -500,
+            right = 500,
         }
     })
 
