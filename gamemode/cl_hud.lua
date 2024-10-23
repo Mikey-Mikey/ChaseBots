@@ -131,6 +131,9 @@ local minimapMat = CreateMaterial("MinimapMat", "UnlitGeneric", {
     ["$basetexture"] = minimapRT:GetName() -- Make the material use our render target texture
 })
 
+local minimapSize = 300
+local minimapX, minimapY = minimapSize * 0.5 + 25, ScrH() - minimapSize * 0.5 - 25
+
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Int("CurrentRoundTime", 0)
@@ -243,8 +246,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     -- Draw a circular minimap in the bottom left corner
-    local minimapSize = 300
-    local minimapX, minimapY = minimapSize * 0.5 + 25, ScrH() - minimapSize * 0.5 - 25
 
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
 
@@ -272,12 +273,9 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         angles = Angle(-90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
-        ortho = {
-            top = -300,
-            bottom = 300,
-            left = 300,
-            right = -300
-        }
+        x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
+        w = minimapSize, h = minimapSize,
+        ortho = {}
     })
     render.EnableClipping(oldClip)
     minimapDraw = false
