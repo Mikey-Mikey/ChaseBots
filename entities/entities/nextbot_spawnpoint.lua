@@ -137,7 +137,11 @@ if CLIENT then
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
                 spawnpoint.hollowCircleMesh:Draw()
-                spawnpoint.starMesh:Draw()
+                for z = 0, 10 do
+                    render.SetBlend(1 - (z / 10))
+                    spawnpoint.starMesh:Draw()
+                    mat:Translate(Vector(0, 0, -1))
+                end
             cam.PopModelMatrix()
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
