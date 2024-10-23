@@ -54,8 +54,15 @@ if CLIENT then
             local offset = 1
 
             cam.Start3D2D(pos + spawnpoint:GetUp() * offset, ang, 1)
-                surface.SetDrawColor(200, 0, 0)
+                surface.SetDrawColor(0, 0, 0)
                 surface.DrawPoly(spawnpoint.circleVerts)
+                local hollowCircleVerts = {}
+                for i, vert in ipairs(spawnpoint.circleVerts) do
+                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x, y = vert.y}
+                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x * 0.8, y = vert.y * 0.8}
+                end
+                surface.SetDrawColor(127, 0, 0)
+                surface.DrawPoly(hollowCircleVerts)
             cam.End3D2D()
         end
     end)
