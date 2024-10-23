@@ -125,6 +125,8 @@ local timerPulse = 0
 
 local lastSec = 0
 
+local minimapRT = GetRenderTarget("MinimapRT", 512, 512, false)
+
 
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Int("CurrentRoundTime", 0)
@@ -241,6 +243,13 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     local minimapX, minimapY = minimapSize * 0.5 + 25, ScrH() - minimapSize * 0.5 - 25
 
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
+
+    render.RenderView({
+        origin = LocalPlayer():GetPos() + 80,
+        angles = Angle(0, 0, 0),
+        x = minimapX - minimapSize * 0.5, y = minimapY - minimapSize * 0.5,
+        w = minimapSize, h = minimapSize,
+    })
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
