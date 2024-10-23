@@ -237,10 +237,10 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     -- Draw a circular minimap in the bottom left corner
-    local minimapSize = 200
-    local minimapX, minimapY = 0, ScrH() - minimapSize
+    local minimapSize = 300
+    local minimapX, minimapY = minimapSize * 0.5 + 25, ScrH() - minimapSize * 0.5 - 25
 
-    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 200))
+    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
