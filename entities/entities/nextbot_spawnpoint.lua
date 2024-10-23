@@ -23,7 +23,7 @@ function ENT:Initialize()
     else
         self.hollowCircleMesh = Mesh()
         local radius = 80
-        mesh.Begin(self.hollowCircleMesh, MATERIAL_TRIANGLE_STRIP, 1)
+        mesh.Begin(self.hollowCircleMesh, MATERIAL_TRIANGLE_STRIP, 360 / 5)
             for a = 0, 360, 5 do
                 local ang = math.rad(a)
                 local x = math.cos(ang) * radius
