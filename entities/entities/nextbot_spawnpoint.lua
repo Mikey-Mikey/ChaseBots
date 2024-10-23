@@ -29,11 +29,11 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
-                mesh.Color(255, 0, 0, 255)
+                mesh.Color(127, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
 
-                mesh.Color(255, 0, 0, 255)
+                mesh.Color(127, 0, 0, 255)
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
                 mesh.AdvanceVertex()
             end
@@ -46,7 +46,7 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
-                mesh.Color(255, 0, 0, 255)
+                mesh.Color(0, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
             end
@@ -66,20 +66,6 @@ function ENT:OnRemove()
 end
 
 if CLIENT then
-    local whiteMat = Material("lights/white")
-
-    local pentagonMat = CreateMaterial( "pentagon_mat", "UnlitGeneric", {
-        ["$basetexture"] = "color/white",
-        ["$model"] = 1,
-        ["$vertexcolor"] = 1,
-
-      } )
-
-    local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
-        ["$basetexture"] = "color/white",
-        ["$model"] = 1,
-        ["$vertexcolor"] = 1,
-    })
 
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
