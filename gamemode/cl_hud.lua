@@ -257,22 +257,25 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 end)
 
+local minimapDraw = false
+
+hook.Add("ShouldDrawLocalPlayer", "MinimapDrawLocalPlayer", function(ply)
+    return minimapDraw
+end)
+
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.PushRenderTarget(minimapRT)
+    minimapDraw = true
     local oldClip = render.EnableClipping(true)
     render.RenderView({
         origin = LocalPlayer():GetPos(),
         angles = Angle(90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
-        ortho = {
-            top = 100,
-            bottom = -100,
-            left = 100,
-            right = 100
-        }
+        fov = 80
     })
     render.EnableClipping(oldClip)
+    minimapDraw = false
     render.PopRenderTarget()
 end)
 
