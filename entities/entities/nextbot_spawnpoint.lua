@@ -21,14 +21,20 @@ function ENT:Initialize()
         end)
 
     else
-        self.circleVerts = {}
-        -- Cache the circle
-        for a = 0, 360, 360 / 32 do
-            local size = 80
-            local x = math.cos(math.rad(a)) * size
-            local y = math.sin(math.rad(a)) * size
-            self.circleVerts[#self.circleVerts + 1] = {x = x, y = y}
-        end
+        self.hollowCircleMesh = Mesh()
+        local radius = 80
+        mesh.Begin(self.hollowCircleMesh, MATERIAL_TRIANGLE_STRIP, 360)
+            for a = 0, 360, 360 / 5 do
+                local ang = math.rad(a)
+                local x = math.cos(ang) * radius
+                local y = math.sin(ang) * radius
+                mesh.Color(Color(127, 0, 0))
+                mesh.Position(Vector(x, y, 0))
+                mesh.AdvanceVertex()
+                mesh.Position(Vector(x * 1.1, y * 1.1, 0))
+                mesh.AdvanceVertex()
+            end
+        mesh.End()
     end
 end
 
@@ -53,18 +59,15 @@ if CLIENT then
             local ang = spawnpoint:GetAngles()
             local offset = 1
 
-            cam.Start3D2D(pos + spawnpoint:GetUp() * offset, ang, 1)
-                surface.SetDrawColor(0, 0, 0)
-                surface.DrawPoly(spawnpoint.circleVerts)
-                local hollowCircleVerts = {}
+            local mat = Matrix()
 
-                for i, vert in ipairs(spawnpoint.circleVerts) do
-                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x, y = vert.y}
-                    hollowCircleVerts[#hollowCircleVerts + 1] = {x = vert.x * 0.8, y = vert.y * 0.8}
-                end
-                surface.SetDrawColor(127, 0, 0)
-                surface.DrawPoly(hollowCircleVerts)
-            cam.End3D2D()
+            mat:Translate(pos)
+            mat:Rotate(ang)
+            mat:Translate(Vector(0, 0, offset))
+
+            cam.PushModelMatrix(mat, false)
+                spawnpoint.hollowCircleMesh:Draw()
+            cam.PopModelMatrix()
         end
     end)
 end
