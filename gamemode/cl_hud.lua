@@ -274,8 +274,8 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         drawviewer = true,
         ortho = {
             top = 1000,
-            bottom = -1000,
-            left = -1000,
+            bottom = 1000,
+            left = 1000,
             right = 1000
         }
     })
