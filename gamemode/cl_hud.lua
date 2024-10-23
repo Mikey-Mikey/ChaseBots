@@ -272,12 +272,11 @@ hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
         angles = Angle(90, 0, 0),
         drawviewmodel = false,
         drawviewer = true,
-        fov = 0,
         ortho = {
-            top = 80,
-            bottom = -80,
-            left = -80,
-            right = 80
+            top = 8000,
+            bottom = -8000,
+            left = -8000,
+            right = 8000
         }
     })
     render.EnableClipping(oldClip)
