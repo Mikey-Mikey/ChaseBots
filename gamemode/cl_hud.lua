@@ -244,20 +244,21 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             draw.RoundedBox(0, -xPos + math.floor(spectrumX), spectrumY + barWidth, barWidth, barHeights[i], HSVToColor(0, 0, brightness))
         end
     end
+    if LocalPlayer():Alive() then
+        -- Draw a circular minimap in the bottom left corner
+        draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
+        surface.SetMaterial(minimapMat)
+        local circle = {}
 
-    -- Draw a circular minimap in the bottom left corner
-    draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
-    surface.SetMaterial(minimapMat)
-    local circle = {}
+        for a = 0, 360, 5 do
+            local ang = math.rad(a)
+            local x = math.cos(ang) * minimapSize * 0.5
+            local y = math.sin(ang) * minimapSize * 0.5
 
-    for a = 0, 360, 5 do
-        local ang = math.rad(a)
-        local x = math.cos(ang) * minimapSize * 0.5
-        local y = math.sin(ang) * minimapSize * 0.5
-
-        circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang) * 0.5, v = 0.5 + math.sin(ang) * 0.5}
+            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang) * 0.5, v = 0.5 + math.sin(ang) * 0.5}
+        end
+        surface.DrawPoly(circle)
     end
-    surface.DrawPoly(circle)
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
