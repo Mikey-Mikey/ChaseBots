@@ -246,18 +246,18 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     end
 
     -- Draw a circular minimap in the bottom left corner
-    render.SetStencilEnable(true)
-    render.SetStencilReferenceValue(1)
     draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize, Color(0, 0, 0, 255))
-    render.SetStencilPassOperation(STENCILOPERATION_KEEP)
-    render.SetStencilFailOperation(STENCILOPERATION_REPLACE)
-    draw.NoTexture()
-
-    render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_EQUAL)
     surface.SetMaterial(minimapMat)
-    surface.DrawTexturedRect(minimapX - minimapSize * 0.5, minimapY - minimapSize * 0.5, minimapSize, minimapSize)
-    draw.NoTexture()
-    render.SetStencilEnable(false)
+    local circle = {}
+
+    for a = 0, 360, 5 do
+        local ang = math.rad(a)
+        local x = math.cos(ang) * minimapSize * 0.5
+        local y = math.sin(ang) * minimapSize * 0.5
+
+        circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang) * 0.5, v = 0.5 + math.sin(ang) * 0.5}
+    end
+    surface.DrawPoly(circle)
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
