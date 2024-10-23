@@ -29,6 +29,7 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
                 mesh.Color(127, 0, 0, 255)
+                mesh.Specular(0, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
@@ -66,7 +67,9 @@ if CLIENT then
             mat:Translate(Vector(0, 0, offset))
 
             cam.PushModelMatrix(mat, false)
+                render.SuppressEngineLighting(true)
                 spawnpoint.hollowCircleMesh:Draw()
+                render.SuppressEngineLighting(false)
             cam.PopModelMatrix()
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
         end
