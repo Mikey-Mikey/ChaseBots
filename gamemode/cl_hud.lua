@@ -258,6 +258,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
             circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang) * 0.5, v = 0.5 + math.sin(ang) * 0.5}
         end
         surface.DrawPoly(circle)
+        draw.NoTexture()
     end
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
