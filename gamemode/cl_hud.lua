@@ -265,23 +265,22 @@ end)
 
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
     render.PushRenderTarget(minimapRT)
-
     minimapDraw = true
-
     local oldClip = render.EnableClipping(true)
-
-    cam.StartOrthoView(-80, 80, 80, -80)
-        render.RenderView({
-            origin = LocalPlayer():GetPos() + Vector(0,0,80),
-            angles = Angle(90, 0, 0),
-            drawviewmodel = false,
-            drawviewer = true,
-        })
-    cam.EndOrthoView()
-
+    render.RenderView({
+        origin = LocalPlayer():GetPos() + Vector(0,0,4000),
+        angles = Angle(90, 0, 0),
+        drawviewmodel = false,
+        drawviewer = true,
+        ortho = {
+            top = 8000,
+            bottom = -8000,
+            left = -8000,
+            right = 8000
+        }
+    })
     render.EnableClipping(oldClip)
     minimapDraw = false
-
     render.PopRenderTarget()
 end)
 
