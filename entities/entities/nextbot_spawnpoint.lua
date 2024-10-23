@@ -37,28 +37,17 @@ function ENT:Initialize()
             end
         mesh.End()
 
-        self.starMesh = Mesh()
-
-        mesh.Begin(self.starMesh, MATERIAL_QUADS, 5)
-            for i = 0, 4 do
-                local ang = math.rad(i * 72)
+        self.circleMesh = Mesh()
+        mesh.Begin(self.circleMesh, MATERIAL_TRIANGLE_STRIP, 360 / 5)
+            for a = 0, 360, 5 do
+                local ang = math.rad(a)
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
-
-                mesh.Position(Vector(0, 0, 0))
-                mesh.AdvanceVertex()
-
-                mesh.Position(Vector(0, 0, 0))
-                mesh.AdvanceVertex()
-
-                mesh.Position(Vector(x * 1.1, y * 1.1, 0))
-                mesh.AdvanceVertex()
             end
         mesh.End()
-
 
     end
 end
@@ -77,6 +66,9 @@ if CLIENT then
     local pentagonMat = Material("lights/white")
     pentagonMat:SetVector("$color", Vector(1, 0, 0))
 
+    local pentagonBlackMat = Material("lights/white")
+    pentagonBlackMat:SetVector("$color", Vector(0, 0, 0))
+
     hook.Add("PostDrawOpaqueRenderables", "DrawNextbotSpawnpoints", function()
         for k, spawnpoint in pairs(ents.FindByClass("nextbot_spawnpoint")) do
             if spawnpoint:GetNWBool("NextbotSpawned", false) then
@@ -92,10 +84,13 @@ if CLIENT then
             mat:Translate(pos)
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, -offset))
-            render.SetMaterial(pentagonMat)
+
             cam.PushModelMatrix(mat, false)
+                render.SetMaterial(pentagonBlackMat)
+                spawnpoint.circleMesh:Draw()
+
+                render.SetMaterial(pentagonMat)
                 spawnpoint.hollowCircleMesh:Draw()
-                spawnpoint.starMesh:Draw()
             cam.PopModelMatrix()
 
             debugoverlay.Cross(pos, 5, 5, Color(255, 0, 0), true)
