@@ -29,9 +29,11 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
+                mesh.Color(255, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
 
+                mesh.Color(255, 0, 0, 255)
                 mesh.Position(Vector(x * 1.1, y * 1.1, 0))
                 mesh.AdvanceVertex()
             end
@@ -44,6 +46,7 @@ function ENT:Initialize()
                 local x = math.cos(ang) * radius
                 local y = math.sin(ang) * radius
 
+                mesh.Color(255, 0, 0, 255)
                 mesh.Position(Vector(x, y, 0))
                 mesh.AdvanceVertex()
             end
@@ -68,7 +71,7 @@ if CLIENT then
     local pentagonMat = CreateMaterial( "pentagon_mat", "UnlitGeneric", {
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
-        ["$vertexcolor"] = 0,
+        ["$vertexcolor"] = 1,
         ["$color"] = "[1.0 1.0 1.0]",
         ["$color2"] = "[1.0 0.0 0.0]",
 
@@ -77,7 +80,7 @@ if CLIENT then
     local pentagonBlackMat = CreateMaterial("pentagon_black_mat", "UnlitGeneric", {
         ["$basetexture"] = "color/white",
         ["$model"] = 1,
-        ["$vertexcolor"] = 0,
+        ["$vertexcolor"] = 1,
         ["$color"] = "[1.0 1.0 1.0]",
         ["$color2"] = "[0.0 0.0 0.0]",
     })
@@ -98,12 +101,12 @@ if CLIENT then
             mat:Rotate(ang)
             mat:Translate(Vector(0, 0, -offset))
 
-            render.SetMaterial(pentagonBlackMat)
+            render.SetMaterial(pentagonMat)
+
             cam.PushModelMatrix(mat, false)
                 spawnpoint.circleMesh:Draw()
             cam.PopModelMatrix()
 
-            render.SetMaterial(pentagonMat)
             cam.PushModelMatrix(mat, false)
                 spawnpoint.hollowCircleMesh:Draw()
             cam.PopModelMatrix()
