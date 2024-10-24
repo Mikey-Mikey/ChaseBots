@@ -313,7 +313,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local rowHeight = 48
-    local rowY = y + 92
+    local rowY = y + 94
 
     draw.SimpleText("Name", "ScoreboardInfo", x + 20, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     draw.SimpleText("Role", "ScoreboardInfo", x + w * 0.5, rowY - 18, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
