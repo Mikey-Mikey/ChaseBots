@@ -62,7 +62,7 @@ local barHeights = {}
 
 -- Create a font for the timer
 surface.CreateFont("Timer", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 64,
     weight = 100,
     antialias = true,
@@ -71,7 +71,7 @@ surface.CreateFont("Timer", {
 
 -- Create the same font but blurred
 surface.CreateFont("TimerBlurred", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 64,
     weight = 100,
     antialias = true,
@@ -82,7 +82,7 @@ surface.CreateFont("TimerBlurred", {
 
 -- Create a font for the timer
 surface.CreateFont("SmallTimer", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 36,
     weight = 100,
     antialias = true,
@@ -91,7 +91,7 @@ surface.CreateFont("SmallTimer", {
 
 -- Create the same font but blurred
 surface.CreateFont("SmallTimerBlurred", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 36,
     weight = 100,
     antialias = true,
@@ -102,7 +102,7 @@ surface.CreateFont("SmallTimerBlurred", {
 
 -- Scoreboard Fonts
 surface.CreateFont("ScoreboardTitle", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 36,
     weight = 500,
     antialias = true,
@@ -111,7 +111,7 @@ surface.CreateFont("ScoreboardTitle", {
 
 -- Scoreboard Fonts
 surface.CreateFont("ScoreboardInfo", {
-    font = "Roboto",
+    font = "VCR OSD Mono",
     size = 28,
     weight = 500,
     antialias = true,
