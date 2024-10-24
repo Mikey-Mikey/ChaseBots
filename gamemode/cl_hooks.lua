@@ -36,10 +36,11 @@ local shouldJumpscareSnd = false
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
     nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
+    table.sort(nearbyNextbots, function(a, b) return LocalPlayer():GetPos():DistToSqr(a:GetPos()) < LocalPlayer():GetPos():DistToSqr(b:GetPos()) end)
 
     local grayAmount = 0
 
-    if #nearbyNextbots > 0 and not shouldJumpscareSnd then
+    if #nearbyNextbots > 0 and not shouldJumpscareSnd and nearbyNextbots[1]:GetPos():DistToSqr(LocalPlayer():GetPos()) < 500^2 then
         LocalPlayer():EmitSound("ambient/creatures/town_child_scream1.wav", nil, 75, 1)
         -- play combine ball explosion sound
 
