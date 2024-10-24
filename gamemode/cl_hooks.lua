@@ -44,11 +44,10 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
 
     if #nearbyNextbots > 0 and not shouldJumpscareSnd and CurTime() - lastJumpscare > 10 and nearbyNextbots[1]:GetPos():DistToSqr(LocalPlayer():GetPos()) < 500^2 then
         lastJumpscare = CurTime()
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 75, 1)
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 75, 1)
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 75, 1)
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 75, 1)
+        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 40, 1)
+        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 40, 1)
 
+        LocalPlayer():EmitSound("vo/ravenholm/monk_kill03.wav", nil, 40, 1)
         shouldJumpscareSnd = true
     elseif #nearbyNextbots == 0 and shouldJumpscareSnd then
         shouldJumpscareSnd = false
