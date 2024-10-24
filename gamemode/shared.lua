@@ -79,7 +79,14 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if mv:KeyPressed(IN_ATTACK) and SERVER and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() end)
+        if table.Count(alivePlayers) == 0 then
+            ply:SetNWBool("LockedToSpectatedPlayer", false)
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+            return
+        end
+        alivePlayers = FilterTable(alivePlayers, function(v) return v ~= ply end)
+
         if table.Count(alivePlayers) == 0 then return end
 
         ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) - 1)
@@ -103,7 +110,14 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if mv:KeyPressed(IN_ATTACK2) and SERVER and IsFirstTimePredicted() then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() end)
+        if table.Count(alivePlayers) == 0 then
+            ply:SetNWBool("LockedToSpectatedPlayer", false)
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+            return
+        end
+        alivePlayers = FilterTable(alivePlayers, function(v) return v ~= ply end)
+
         if table.Count(alivePlayers) == 0 then return end
 
         ply:SetNWInt("SpectateID", ply:GetNWInt("SpectateID", 1) + 1)
@@ -129,9 +143,15 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
         ply:SetNWBool("LockedToSpectatedPlayer", not ply:GetNWBool("LockedToSpectatedPlayer", false))
 
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() end)
+        if table.Count(alivePlayers) == 0 then
+            ply:SetNWBool("LockedToSpectatedPlayer", false)
+            ply:SetObserverMode(OBS_MODE_ROAMING)
+            return
+        end
+        alivePlayers = FilterTable(alivePlayers, function(v) return v ~= ply end)
 
-        if table.Count(alivePlayers) == 0 or targetPly == ply then return end
+        if table.Count(alivePlayers) == 0 then return end
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
@@ -146,12 +166,13 @@ hook.Add("Move", "SpectatorMovement", function( ply, mv )
 
     if ply:GetNWBool("LockedToSpectatedPlayer", false) then
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() end)
         if table.Count(alivePlayers) == 0 then
             ply:SetNWBool("LockedToSpectatedPlayer", false)
             ply:SetObserverMode(OBS_MODE_ROAMING)
             return
         end
+        alivePlayers = FilterTable(alivePlayers, function(v) return v ~= ply end)
 
         local targetPly = alivePlayers[ply:GetNWInt("SpectateID", 1)]
 
