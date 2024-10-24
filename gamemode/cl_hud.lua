@@ -329,10 +329,11 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     end)
 
     draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, BACKGROUND_COLOR)
-    surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
-    surface.DrawOutlinedRect(x + 8, y + 90, w - 16, h - 8 - 90, 4)
 
     draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0,0,0, 230))
+
+    surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
+    surface.DrawOutlinedRect(x + 8, y + 90, w - 16, h - 8 - 90, 4)
 
     render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
