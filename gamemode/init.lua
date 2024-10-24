@@ -16,7 +16,7 @@ SetGlobal2Float("RoundStartTime", GetGlobal2Float("RoundStartTime", 0))
 SetGlobal2Float("CurrentRoundTime", GetGlobal2Float("CurrentRoundTime", 0))
 SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0))
 
-GM.MaxNextbots = 15
+GM.MaxNextbots = GM.MaxNextbots or 15
 GM.MaxRoundsOnMap = 10
 
 GM.AllowedNavareas = {}
