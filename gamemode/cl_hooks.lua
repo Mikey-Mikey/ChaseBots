@@ -42,7 +42,7 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
 
     local grayAmount = 0
 
-    if #nearbyNextbots > 0 and not shouldJumpscareSnd and Curtime() - lastJumpscare > 10 and nearbyNextbots[1]:GetPos():DistToSqr(LocalPlayer():GetPos()) < 500^2 then
+    if #nearbyNextbots > 0 and not shouldJumpscareSnd and CurTime() - lastJumpscare > 10 and nearbyNextbots[1]:GetPos():DistToSqr(LocalPlayer():GetPos()) < 500^2 then
         lastJumpscare = CurTime()
         LocalPlayer():EmitSound("ambient/creatures/town_child_scream1.wav", nil, 75, 1)
         -- play combine ball explosion sound
