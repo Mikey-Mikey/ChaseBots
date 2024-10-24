@@ -42,15 +42,15 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
         grayAmount = math.max(grayAmount, 1 - (dist / 800^2))
     end
 
-    util.ScreenShake(LocalPlayer():GetPos(), grayAmount * 3, 100, 0.1, 10, true)
+    util.ScreenShake(LocalPlayer():GetPos(), grayAmount * 2, 100, 0.1, 10, true)
     if LocalPlayer():Alive() then
         DrawColorModify({
             ["$pp_colour_addr"] = 0,
             ["$pp_colour_addg"] = 0,
             ["$pp_colour_addb"] = 0,
-            ["$pp_colour_brightness"] = -grayAmount * 0.05,
-            ["$pp_colour_contrast"] = 1 + grayAmount * 0.05,
-            ["$pp_colour_colour"] = 1 - grayAmount * 0.33,
+            ["$pp_colour_brightness"] = -grayAmount * 0.08,
+            ["$pp_colour_contrast"] = 1 + grayAmount * 0.08,
+            ["$pp_colour_colour"] = 1 - grayAmount * 0.4,
             ["$pp_colour_mulr"] = 0,
             ["$pp_colour_mulg"] = 0,
             ["$pp_colour_mulb"] = 0
