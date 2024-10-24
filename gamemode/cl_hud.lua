@@ -118,6 +118,9 @@ surface.CreateFont("ScoreboardInfo", {
     shadow = false
 })
 
+local BACKGROUND_COLOR = Color(46,49,146,255)
+local OUTLINE_COLOR = Color(245,146,32,255)
+
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
 
@@ -147,7 +150,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a round counter at the top of the screen
 
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(46,49,146,255), false, false, true, true)
+    draw.RoundedBoxEx(0, timerX - timerWidth * 0.5 - 4, timerY - 4, timerWidth + 8, timerHeight + 8, OUTLINE_COLOR, false, false, true, true)
+    draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, BACKGROUND_COLOR, false, false, true, true)
 
     local timerColor = TIMER_COLOR
 
@@ -184,7 +188,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local width = math.max(spectateTextWidth + 24,textWidth + 24)
         local height = 85
 
-        draw.RoundedBoxEx(8, spectateX - width * 0.5, spectateY - height, width, height, Color(0,0,0,200), true, true, false, false)
+        draw.RoundedBoxEx(0, spectateX - width * 0.5, spectateY - height, width, height, Color(0,0,0,200), true, true, false, false)
 
 
         draw.SimpleText("Spectating", "SmallTimerBlurred", spectateX, spectateY - height + 24, Color(SPECTATE_COLOR.r, SPECTATE_COLOR.g, SPECTATE_COLOR.b, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
