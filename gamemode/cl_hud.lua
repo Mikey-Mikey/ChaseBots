@@ -125,17 +125,6 @@ local timerPulse = 0
 
 local lastSec = 0
 
-local minimapRT = GetRenderTarget("MinimapRT", 512, 512, false)
-
-local minimapMat = CreateMaterial("MinimapMat", "UnlitGeneric", {
-    ["$basetexture"] = minimapRT:GetName() -- Make the material use our render target texture
-})
-
-local minimapSize = 300
-local minimapX, minimapY = minimapSize * 0.5 + 25, ScrH() - minimapSize * 0.5 - 25
-local minimapViewDist = 3000
-local minimapDraw = false
-
 hook.Add("HUDPaint", "DrawRoundTime", function()
     local timeLeft = GetGlobal2Int("CurrentRoundTime", 0)
 
@@ -246,85 +235,10 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         end
     end
 
-    if LocalPlayer():Alive() then
-
-        render.PushRenderTarget(minimapRT)
-        local old = render.EnableClipping(true)
-        minimapDraw = true
-
-        local heightTr = util.TraceHull({
-            start = LocalPlayer():GetPos() + Vector(0,0,1),
-            endpos = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
-            mins = Vector(-15,-15,0),
-            maxs = Vector(-15,-15,0),
-            filter = LocalPlayer()
-        })
-
-        local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
-
-        render.RenderView({
-            origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
-            angles = Angle(90, 0, 0),
-            drawviewmodel = false,
-            drawviewer = true,
-            fov = 30,
-            znear = minimapViewDist - math.Clamp(dist - 24, 0, minimapViewDist - 2900),
-            zfar = 32000
-        })
-
-        minimapDraw = false
-        render.EnableClipping(old)
-        render.PopRenderTarget()
-
-        -- Draw a circular minimap in the bottom left corner
-        draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
-        surface.SetMaterial(minimapMat)
-
-        local minimapRot = LocalPlayer():EyeAngles()[2]
-
-        local circle = {}
-
-        for a = 0, 360, 5 do
-            local ang = math.rad(a)
-            local x = math.cos(ang) * minimapSize * 0.5
-            local y = math.sin(ang) * minimapSize * 0.5
-
-            local angOffset = math.rad(-minimapRot)
-
-            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
-        end
-        surface.DrawPoly(circle)
-        draw.NoTexture()
-        surface.SetDrawColor(43, 69, 141)
-
-        surface.DrawPoly({
-            {x = minimapX - 4, y = minimapY},
-            {x = minimapX, y = minimapY - 20},
-            {x = minimapX + 4, y = minimapY}
-        })
-
-        circle = {}
-
-        for a = 0, 360, 5 do
-            local ang = math.rad(a)
-            local x = math.cos(ang) * 5
-            local y = math.sin(ang) * 5
-
-            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y}
-        end
-        surface.SetDrawColor(47, 77, 161)
-        surface.DrawPoly(circle)
-    end
-
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
 end)
-
-hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
-    return false
-end)
-
 
 
 hook.Add("HUDShouldDraw", "HideDefaultHUD", function(name)
