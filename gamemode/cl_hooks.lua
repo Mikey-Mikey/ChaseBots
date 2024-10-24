@@ -40,7 +40,11 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local grayAmount = 0
 
     if #nearbyNextbots > 0 and not shouldJumpscareSnd then
-        surface.PlaySound("ambient/creatures/town_child_scream1.wav")
+        LocalPlayer():EmitSound("ambient/creatures/town_child_scream1.wav", nil, 50, 1)
+        -- play combine ball explosion sound
+
+        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 50, 1)
+
         shouldJumpscareSnd = true
     elseif #nearbyNextbots == 0 and shouldJumpscareSnd then
         shouldJumpscareSnd = false
