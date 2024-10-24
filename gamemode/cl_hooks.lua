@@ -31,11 +31,20 @@ hook.Add("PlayerBindPress", "", function(_, bind)
     end
 end)
 
+local shouldJumpscareSnd = false
+
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
     nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
 
     local grayAmount = 0
+
+    if #nearbyNextbots > 0 and not shouldJumpscareSnd then
+        surface.PlaySound("ambient/creatures/town_child_scream1.wav")
+        shouldJumpscareSnd = true
+    elseif #nearbyNextbots == 0 and shouldJumpscareSnd then
+        shouldJumpscareSnd = false
+    end
 
     for i, nextbot in ipairs(nearbyNextbots) do
         local dist = LocalPlayer():GetPos():DistToSqr(nextbot:GetPos())
