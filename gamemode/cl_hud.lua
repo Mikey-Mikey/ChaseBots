@@ -262,6 +262,20 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
 
+        local minimapRot = LocalPlayer():EyeAngles()[2]
+
+        for a = 0, 360, 5 do
+            local ang = math.rad(a)
+            local x = math.cos(ang) * 20
+            local y = math.sin(ang) * 20
+
+            local angOffset = math.rad(-minimapRot)
+
+            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
+        end
+        surface.DrawPoly(circle)
+        draw.NoTexture()
+
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
             angles = Angle(90, 0, 0),
@@ -299,10 +313,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     if LocalPlayer():GetNWBool("KillingSoon", false) then
         draw.SimpleText("Warning: You will be killed soon if you are inactive.", "DermaLarge", ScrW() / 2, ScrH() / 2, Color(255, 0, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
     end
-end)
-
-hook.Add("ShouldDrawLocalPlayer", "MinimapDrawLocalPlayer", function(ply)
-    return minimapDraw
 end)
 
 hook.Add("RenderScene", "MinimapRender", function(origin, angles, fov)
