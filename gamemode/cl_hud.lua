@@ -150,9 +150,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a round counter at the top of the screen
 
     draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, BACKGROUND_COLOR, false, false, true, true)
-    surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
+    --surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
     -- Draw a timer at the top of the screen
-    surface.DrawOutlinedRect(timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, 4)
+    --surface.DrawOutlinedRect(timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, 4)
 
 
     local timerColor = TIMER_COLOR
