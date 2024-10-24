@@ -259,8 +259,8 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     draw.RoundedBox(0, x, y + h, w, 4, Color(245,146,32, 255))
 
-    draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(0,0,0))
-    draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(roleColor.r, roleColor.g, roleColor.b, 10))
+    draw.RoundedBox(0, x - 2, y - 2, w + 4, h + 4, Color(0,0,0))
+    draw.RoundedBox(0, x - 2, y - 2, w + 4, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 10))
 
     if not ply:Alive() then
         draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 20))
