@@ -150,7 +150,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a round counter at the top of the screen
 
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(0, timerX - timerWidth * 0.5 - 4, timerY - 4, timerWidth + 8, timerHeight + 8, OUTLINE_COLOR, false, false, true, true)
+    surface.DrawOutlinedRect(timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, OUTLINE_COLOR, 4)
     draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, BACKGROUND_COLOR, false, false, true, true)
 
     local timerColor = TIMER_COLOR
@@ -256,8 +256,7 @@ end)
 local function DrawPlayerRow(ply, x, y, w, h)
     if not IsValid(ply) then return end
     local roleColor = ROLE_COLORS[ply:GetUserGroup()] or color_white
-
-    draw.RoundedBox(0, x - 2, y + h, w + 5, 6, Color(245,146,32, 255))
+    draw.RoundedBox(0, x - 2, y + h, w + 5, 6, OUTLINE_COLOR)
 
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(0,0,0))
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 10))
@@ -305,7 +304,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
-    draw.RoundedBox(0, x - 4, y - 4, w + 8, h + 8, OUTLINE_COLOR)
+    surface.DrawOutlinedRect(x, y, w, h, OUTLINE_COLOR, 4)
     draw.RoundedBox(0, x, y, w, h, BACKGROUND_COLOR)
 
     draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
@@ -326,7 +325,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    draw.RoundedBox(0, x + 8 - 4, y + 90 - 4, w - 16 + 8, h - 8 - 90 + 8, OUTLINE_COLOR)
+    surface.DrawOutlinedRect(x + 8, y + 90, w - 16, h - 8 - 90, OUTLINE_COLOR, 4)
     draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, BACKGROUND_COLOR)
     draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0,0,0, 230))
 
