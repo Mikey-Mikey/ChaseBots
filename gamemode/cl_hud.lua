@@ -331,7 +331,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     for i = 1, 64 do
         if i % 2 == 0 then continue end
-        draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8, w - 20, rowHeight, Color(0,0,0, 230))
+        draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8 + scoreboardScroll, w - 20, rowHeight, Color(0,0,0, 230))
     end
 
     for i, ply in pairs(players) do
