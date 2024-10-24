@@ -301,7 +301,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
-    draw.RoundedBox(8, x, y, w, h, Color(0, 0, 0, 200))
+    draw.RoundedBox(8, x, y, w, h, Color(46,49,146, 200))
 
     draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
@@ -321,7 +321,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(46,49,146, 200))
+    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0,0,0, 200))
 
     render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
