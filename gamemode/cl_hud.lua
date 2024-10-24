@@ -65,7 +65,7 @@ surface.CreateFont("Timer", {
     font = "VCR OSD Mono",
     size = 64,
     weight = 100,
-    antialias = true,
+    antialias = false,
     shadow = false
 })
 
@@ -74,7 +74,7 @@ surface.CreateFont("TimerBlurred", {
     font = "VCR OSD Mono",
     size = 64,
     weight = 100,
-    antialias = true,
+    antialias = false,
     shadow = false,
     scanlines = 4,
     blursize = 12
@@ -85,7 +85,7 @@ surface.CreateFont("SmallTimer", {
     font = "VCR OSD Mono",
     size = 36,
     weight = 100,
-    antialias = true,
+    antialias = false,
     shadow = false
 })
 
@@ -94,7 +94,7 @@ surface.CreateFont("SmallTimerBlurred", {
     font = "VCR OSD Mono",
     size = 36,
     weight = 100,
-    antialias = true,
+    antialias = false,
     shadow = false,
     scanlines = 4,
     blursize = 6
@@ -105,7 +105,7 @@ surface.CreateFont("ScoreboardTitle", {
     font = "VCR OSD Mono",
     size = 36,
     weight = 500,
-    antialias = true,
+    antialias = false,
     shadow = false
 })
 
@@ -114,7 +114,7 @@ surface.CreateFont("ScoreboardInfo", {
     font = "VCR OSD Mono",
     size = 28,
     weight = 500,
-    antialias = true,
+    antialias = false,
     shadow = false
 })
 
