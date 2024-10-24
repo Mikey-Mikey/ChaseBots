@@ -94,7 +94,7 @@ hook.Add("entity_killed", "SpectateAttackerNextbot", function(data)
         victim:Spectate(OBS_MODE_ROAMING)
 
         local alivePlayers = player.GetAll()
-        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= ply end)
+        alivePlayers = FilterTable(alivePlayers, function(v) return v:Alive() and v ~= victim end)
 
         if victim:GetNWBool("LockedToSpectatedPlayer", false) then
             victim:SpectateEntity(alivePlayers[victim:GetNWInt("SpectateID", 1)])
@@ -136,7 +136,7 @@ hook.Add("player_spawn", "AddPlayerToAliveList", function(data)
     if SERVER then
         local ply = Player(data.userid)
         ply:SetModel("models/player/group01/male_07.mdl")
-        local plyColor = HSVToColor(util.SharedRandom(ply:SteamID(), 0, 360), 1, 1)
+        local plyColor = HSVToColor(math.Rand(0,360), 1, 1)
         ply:SetPlayerColor(Vector(plyColor.r, plyColor.g, plyColor.b))
         ply:SetJumpPower(200)
         ply:SetViewEntity(ply)
