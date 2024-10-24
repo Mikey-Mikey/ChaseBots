@@ -257,7 +257,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
     if not IsValid(ply) then return end
     local roleColor = ROLE_COLORS[ply:GetUserGroup()] or color_white
 
-    draw.RoundedBox(0, x - 2, y + h, w, 9, Color(245,146,32, 255))
+    draw.RoundedBox(0, x - 2, y + h, w, 10, Color(245,146,32, 255))
 
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(0,0,0))
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 10))
