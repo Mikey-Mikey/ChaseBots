@@ -295,7 +295,13 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         end
         surface.DrawPoly(circle)
         draw.NoTexture()
+        surface.SetDrawColor(32, 53, 110)
 
+        surface.DrawPoly({
+            {x = minimapX - 5, y = minimapY},
+            {x = minimapX, y = minimapY - 20},
+            {x = minimapX + 5, y = minimapY}
+        })
 
         circle = {}
 
@@ -306,14 +312,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
             circle[#circle + 1] = {x = minimapX + x, y = minimapY + y}
         end
+        surface.SetDrawColor(47, 77, 161)
         surface.DrawPoly(circle)
-
-        surface.DrawPoly({
-            {x = minimapX - 5, y = minimapY},
-            {x = minimapX, y = minimapY - 20},
-            {x = minimapX + 5, y = minimapY}
-        })
-        draw.NoTexture()
     end
 
     if LocalPlayer():GetNWBool("KillingSoon", false) then
