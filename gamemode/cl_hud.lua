@@ -147,7 +147,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a round counter at the top of the screen
 
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(16, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(46,49,146,255), false, false, true, true)
+    draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(46,49,146,255), false, false, true, true)
 
     local timerColor = TIMER_COLOR
 
@@ -259,7 +259,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.RoundedBox(0, x, y, w, h, Color(roleColor.r, roleColor.g, roleColor.b, 10))
 
     if not ply:Alive() then
-        draw.RoundedBox(8, x, y, w, h, Color(255, 0, 0, 20))
+        draw.RoundedBox(0, x, y, w, h, Color(255, 0, 0, 20))
     end
 
     local name = ply:Nick()
