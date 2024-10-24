@@ -264,6 +264,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         local minimapRot = LocalPlayer():EyeAngles()[2]
 
+        local circle = {}
+
         for a = 0, 360, 5 do
             local ang = math.rad(a)
             local x = math.cos(ang) * 20
@@ -293,9 +295,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         -- Draw a circular minimap in the bottom left corner
         draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
         surface.SetMaterial(minimapMat)
-        local circle = {}
 
-        local minimapRot = LocalPlayer():EyeAngles()[2]
+        circle = {}
 
         for a = 0, 360, 5 do
             local ang = math.rad(a)
