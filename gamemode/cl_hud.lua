@@ -301,8 +301,8 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         for a = 0, 360, 5 do
             local ang = math.rad(a)
-            local x = math.cos(ang) * 20
-            local y = math.sin(ang) * 20
+            local x = math.cos(ang) * 10
+            local y = math.sin(ang) * 10
 
             local angOffset = math.rad(-minimapRot)
 
