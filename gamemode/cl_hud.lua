@@ -309,9 +309,9 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         surface.DrawPoly(circle)
 
         surface.DrawPoly({
-            {x = minimapX - 5, y = minimapY},
-            {x = minimapX, y = minimapY - 10},
-            {x = minimapX + 5, y = minimapY}
+            {x = minimapX - 20, y = minimapY},
+            {x = minimapX, y = minimapY - 20},
+            {x = minimapX + 20, y = minimapY}
         })
         draw.NoTexture()
     end
