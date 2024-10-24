@@ -13,6 +13,7 @@ ROLE_COLORS = {
     ["Superadmin"] = Color(0, 194, 136),
     ["Admin"] = Color(0,196,0),
     ["Regular"] = Color(0,90,192),
+    ["Player"] = Color(136,192,255),
     ["Guest"] = Color(202, 167, 115),
 }
 
@@ -22,7 +23,8 @@ ROLE_PRIORITY = {
     ["Superadmin"] = 3,
     ["Admin"] = 4,
     ["Regular"] = 5,
-    ["Guest"] = 6,
+    ["Player"] = 6,
+    ["Guest"] = 7,
 }
 
 function FilterTable(tbl, filter)
