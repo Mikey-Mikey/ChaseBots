@@ -38,20 +38,8 @@ local lastJumpscare = 0
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
     nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
-    table.sort(nearbyNextbots, function(a, b) return LocalPlayer():GetPos():DistToSqr(a:GetPos()) < LocalPlayer():GetPos():DistToSqr(b:GetPos()) end)
 
     local grayAmount = 0
-
-    if #nearbyNextbots > 0 and not shouldJumpscareSnd and CurTime() - lastJumpscare > 10 and nearbyNextbots[1]:GetPos():DistToSqr(LocalPlayer():GetPos()) < 500^2 then
-        lastJumpscare = CurTime()
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 40, 1)
-        LocalPlayer():EmitSound("ambient/levels/labs/electric_explosion1.wav", nil, 40, 1)
-
-        LocalPlayer():EmitSound("vo/ravenholm/monk_kill03.wav", nil, 40, 1)
-        shouldJumpscareSnd = true
-    elseif #nearbyNextbots == 0 and shouldJumpscareSnd then
-        shouldJumpscareSnd = false
-    end
 
     for i, nextbot in ipairs(nearbyNextbots) do
         local dist = LocalPlayer():GetPos():DistToSqr(nextbot:GetPos())
