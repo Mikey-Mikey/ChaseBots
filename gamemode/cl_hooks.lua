@@ -31,10 +31,6 @@ hook.Add("PlayerBindPress", "", function(_, bind)
     end
 end)
 
-local shouldJumpscareSnd = false
-
-local lastJumpscare = 0
-
 hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
     local nearbyNextbots = ents.FindInSphere(LocalPlayer():GetPos(), 800)
     nearbyNextbots = FilterTable(nearbyNextbots, function(v) return v:IsNextBot() end)
@@ -52,8 +48,8 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
             ["$pp_colour_addr"] = 0,
             ["$pp_colour_addg"] = 0,
             ["$pp_colour_addb"] = 0,
-            ["$pp_colour_brightness"] = -grayAmount * 0.25,
-            ["$pp_colour_contrast"] = 1 + grayAmount,
+            ["$pp_colour_brightness"] = -grayAmount * 0.33,
+            ["$pp_colour_contrast"] = 1 + grayAmount * 0.5,
             ["$pp_colour_colour"] = 1 - grayAmount,
             ["$pp_colour_mulr"] = 0,
             ["$pp_colour_mulg"] = 0,
