@@ -103,7 +103,7 @@ surface.CreateFont("SmallTimerBlurred", {
 -- Scoreboard Fonts
 surface.CreateFont("ScoreboardTitle", {
     font = "VCR OSD Mono",
-    size = 36,
+    size = 64,
     weight = 500,
     antialias = false,
     shadow = false
@@ -112,7 +112,7 @@ surface.CreateFont("ScoreboardTitle", {
 -- Scoreboard Fonts
 surface.CreateFont("ScoreboardInfo", {
     font = "VCR OSD Mono",
-    size = 28,
+    size = 36,
     weight = 500,
     antialias = false,
     shadow = false
