@@ -257,7 +257,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
     if not IsValid(ply) then return end
     local roleColor = ROLE_COLORS[ply:GetUserGroup()] or color_white
 
-    draw.RoundedBox(0, x - 2, y + h, w + 5, 4, Color(245,146,32, 255))
+    draw.RoundedBox(0, x - 2, y + h, w + 5, 6, Color(245,146,32, 255))
 
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(0,0,0))
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 10))
@@ -334,7 +334,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY + scoreboardScroll, w - 20, rowHeight)
-        rowY = rowY + rowHeight + 6
+        rowY = rowY + rowHeight + 8
     end
 
     render.SetScissorRect(0, 0, 0, 0, false)
