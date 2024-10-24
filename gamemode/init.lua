@@ -19,11 +19,11 @@ SetGlobal2Int("CurrentRound", GetGlobal2Int("CurrentRound", 0))
 GM.MaxNextbots = GM.MaxNextbots or 15
 GM.MaxRoundsOnMap = 10
 
-GM.AllowedNavareas = {}
+GM.AllowedNavareas = GM.AllowedNavareas or {}
 
-GM.AllowedNextbotSpawnpoints = {}
+GM.AllowedNextbotSpawnpoints = GM.AllowedNextbotSpawnpoints or {}
 
-GM.CurrentNextbots = {}
+GM.CurrentNextbots = GM.CurrentNextbots or {}
 
 local function GetRandomPointOnNavMesh()
     if table.Count(GAMEMODE.AllowedNextbotSpawnpoints) >= GAMEMODE.MaxNextbots then
