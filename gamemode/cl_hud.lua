@@ -147,7 +147,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
     -- Draw a round counter at the top of the screen
 
     -- Draw a timer at the top of the screen
-    draw.RoundedBoxEx(16, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(0,0,0,200), false, false, true, true)
+    draw.RoundedBoxEx(16, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, Color(46,49,146,200), false, false, true, true)
 
     local timerColor = TIMER_COLOR
 
@@ -321,7 +321,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         return rolePriorityA < rolePriorityB
     end)
 
-    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0, 0, 0, 127))
+    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(46,49,146, 200))
 
     render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
