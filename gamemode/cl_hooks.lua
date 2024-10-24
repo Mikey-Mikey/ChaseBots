@@ -48,7 +48,7 @@ hook.Add("RenderScreenspaceEffects", "DrawRoundTime", function()
             ["$pp_colour_addr"] = 0,
             ["$pp_colour_addg"] = 0,
             ["$pp_colour_addb"] = 0,
-            ["$pp_colour_brightness"] = -grayAmount * 0.33,
+            ["$pp_colour_brightness"] = -grayAmount * 0.2,
             ["$pp_colour_contrast"] = 1 + grayAmount * 0.5,
             ["$pp_colour_colour"] = 1 - grayAmount,
             ["$pp_colour_mulr"] = 0,
