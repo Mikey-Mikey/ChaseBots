@@ -257,13 +257,13 @@ local function DrawPlayerRow(ply, x, y, w, h)
     if not IsValid(ply) then return end
     local roleColor = ROLE_COLORS[ply:GetUserGroup()] or color_white
 
-    draw.RoundedBox(0, x, y + h, 4, w, Color(245,146,32, 255))
+    draw.RoundedBox(0, x, y + h, w, 4, Color(245,146,32, 255))
 
-    draw.RoundedBox(0, x, y, w, h, Color(0,0,0))
-    draw.RoundedBox(0, x, y, w, h, Color(roleColor.r, roleColor.g, roleColor.b, 10))
+    draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(0,0,0))
+    draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(roleColor.r, roleColor.g, roleColor.b, 10))
 
     if not ply:Alive() then
-        draw.RoundedBox(0, x, y, w, h, Color(255, 0, 0, 20))
+        draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 20))
     end
 
     local name = ply:Nick()
