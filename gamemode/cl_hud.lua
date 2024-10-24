@@ -310,7 +310,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
     surface.DrawOutlinedRect(x, y, w, h, 4)
 
-    draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 24, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Scoreboard", "ScoreboardTitle", x + w / 2, y + 28, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     local rowHeight = 48
     local rowY = y + 94
