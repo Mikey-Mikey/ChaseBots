@@ -328,7 +328,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     draw.RoundedBox(0, x + 8 - 4, y + 90 - 4, w - 16 + 8, h - 8 - 90 + 8, OUTLINE_COLOR)
     draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, BACKGROUND_COLOR)
-    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0,0,0, 200))
+    draw.RoundedBox(0, x + 8, y + 90, w - 16, h - 8 - 90, Color(0,0,0, 230))
 
     render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
