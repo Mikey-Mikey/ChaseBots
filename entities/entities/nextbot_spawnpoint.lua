@@ -125,7 +125,7 @@ if CLIENT then
             -- draw a 2d pentagram on the ground
             local pos = spawnpoint:GetPos()
             local ang = spawnpoint:GetAngles()
-            local offset = 1
+            local offset = 0.01 -- reduce z-fighting
 
             local mat = Matrix()
 
