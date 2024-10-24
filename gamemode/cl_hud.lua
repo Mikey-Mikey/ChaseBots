@@ -262,22 +262,6 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         local dist = (heightTr.HitPos - LocalPlayer():GetPos()):Length()
 
-        local minimapRot = LocalPlayer():EyeAngles()[2]
-
-        local circle = {}
-
-        for a = 0, 360, 5 do
-            local ang = math.rad(a)
-            local x = math.cos(ang) * 20
-            local y = math.sin(ang) * 20
-
-            local angOffset = math.rad(-minimapRot)
-
-            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
-        end
-        surface.DrawPoly(circle)
-        draw.NoTexture()
-
         render.RenderView({
             origin = LocalPlayer():GetPos() + Vector(0,0,minimapViewDist),
             angles = Angle(90, 0, 0),
@@ -296,12 +280,29 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         draw.RoundedBox(minimapSize, minimapX - minimapSize * 0.5 - 10, minimapY - minimapSize * 0.5 - 10, minimapSize + 20, minimapSize + 20, Color(47, 77, 161))
         surface.SetMaterial(minimapMat)
 
-        circle = {}
+        local minimapRot = LocalPlayer():EyeAngles()[2]
+
+        local circle = {}
 
         for a = 0, 360, 5 do
             local ang = math.rad(a)
             local x = math.cos(ang) * minimapSize * 0.5
             local y = math.sin(ang) * minimapSize * 0.5
+
+            local angOffset = math.rad(-minimapRot)
+
+            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
+        end
+        surface.DrawPoly(circle)
+        draw.NoTexture()
+
+
+        circle = {}
+
+        for a = 0, 360, 5 do
+            local ang = math.rad(a)
+            local x = math.cos(ang) * 20
+            local y = math.sin(ang) * 20
 
             local angOffset = math.rad(-minimapRot)
 
