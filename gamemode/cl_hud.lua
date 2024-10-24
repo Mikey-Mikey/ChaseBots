@@ -301,14 +301,18 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
         for a = 0, 360, 5 do
             local ang = math.rad(a)
-            local x = math.cos(ang) * 10
-            local y = math.sin(ang) * 10
+            local x = math.cos(ang) * 5
+            local y = math.sin(ang) * 5
 
-            local angOffset = math.rad(-minimapRot)
-
-            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y, u = 0.5 + math.cos(ang + angOffset) * 0.5, v = 0.5 + math.sin(ang + angOffset) * 0.5}
+            circle[#circle + 1] = {x = minimapX + x, y = minimapY + y}
         end
         surface.DrawPoly(circle)
+
+        surface.DrawPoly({
+            {x = minimapX, y = minimapY},
+            {x = minimapX + 5, y = minimapY},
+            {x = minimapX, y = minimapY + 5}
+        })
         draw.NoTexture()
     end
 
