@@ -119,7 +119,7 @@ surface.CreateFont("ScoreboardInfo", {
 })
 
 local BACKGROUND_COLOR = Color(0,0,0,200) -- Color(46,49,146,255)
-local OUTLINE_COLOR = Color(245,146,32,255)
+local OUTLINE_COLOR = Color(255,246,43,255)
 
 local TIMER_COLOR = Color(255,246,43)
 local SPECTATE_COLOR = Color(255,246,43)
