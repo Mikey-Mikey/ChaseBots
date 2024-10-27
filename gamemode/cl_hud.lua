@@ -265,10 +265,15 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     if not ply:Alive() then
         draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 10 + (math.sin(CurTime() * 5 + y) * 0.5 + 0.5) * 20))
-        draw.SimpleText("Dead", "ScoreboardInfo", x + w * 0.25 - 8, y + h / 2, Color(0,0,0,127), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Dead", "ScoreboardInfo", x + w * 0.75 - 8, y + h / 2, Color(0,0,0,127), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
     local name = ply:Nick()
+
+    if #name > 24 then
+        name = string.sub(name, 1, 16) .. "..."
+    end
+
     draw.SimpleText(name, "ScoreboardInfo", x + 10, y + h / 2, color_white, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
 
     local role = table.KeyFromValue(ROLE_COLORS, roleColor)
