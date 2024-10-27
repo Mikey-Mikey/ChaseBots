@@ -265,7 +265,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
 
     if not ply:Alive() then
         draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 10 + (math.sin(CurTime() * 5 + y) * 0.5 + 0.5) * 20))
-        draw.SimpleText("Dead", "ScoreboardInfo", x + w * 0.75 - 24, y + h / 2, Color(0,0,0,127), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        draw.SimpleText("Dead", "ScoreboardInfo", x + w * 0.75 - 48, y + h / 2, Color(0,0,0,127), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
     local name = ply:Nick()
