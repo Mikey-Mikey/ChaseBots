@@ -301,16 +301,23 @@ hook.Add("ScoreboardHide", "HideScoreboard", function()
     return true
 end)
 
+local function pointWithinRect(px,py,x1,y1,x2,y2)
+    return px >= x1 and px <= x2 and py >= y1 and py <= y2
+end
+
 hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     if not scoreboardShowing then return end
     local mouseX, mouseY = input.GetCursorPos()
-    scoreboardScroll = math.Clamp(scoreboardScroll + (mouseY - lastMouseY), -2648, 0)
 
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
 
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
+
+    if input.IsMouseDown(MOUSE_LEFT) and pointWithinRect(mouseX,mouseY, x + 8, y + 90, x + w - 8, y + h - 8) then
+        scoreboardScroll = math.Clamp(scoreboardScroll + (mouseY - lastMouseY), -2648, 0)
+    end
 
     draw.RoundedBox(0, x, y, w, h, Color(48,48,48))
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
