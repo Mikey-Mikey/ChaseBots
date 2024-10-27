@@ -330,8 +330,13 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     render.SetScissorRect(x + 8, y + 90, x + w - 8, y + h - 8, true)
 
     for i = 1, 64 do
-        if i % 2 == 0 then continue end
-        draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8 + scoreboardScroll, w - 20, rowHeight, Color(0,0,0, 230))
+        local col = Color(0,0,0, 230)
+        if i % 2 == 0 then
+            col = Color(48,48,48)
+        else
+            col = Color(27,27,27)
+        end
+        draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8 + scoreboardScroll, w - 20, rowHeight, col)
     end
 
     for i, ply in pairs(players) do
