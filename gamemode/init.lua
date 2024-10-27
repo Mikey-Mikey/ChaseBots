@@ -93,6 +93,29 @@ hook.Add("InitPostEntity", "InitializeServerRound", function()
     end)
 end)
 
+-- DEBUG ONLY TURN OFF SO THE SERVER DOESN'T ERROR
+timer.Create("NavmeshLoad", 0, 0, function()
+    if navmesh.IsLoaded() then
+        timer.Remove("NavmeshLoad")
+        GAMEMODE.AllowedNavareas = navmesh.GetAllNavAreas()
+        -- Get Navmesh size
+        local navareas = navmesh.GetAllNavAreas()
+        local min = Vector(0, 0, 0)
+        local max = Vector(0, 0, 0)
+        for k, navarea in pairs(navareas) do
+            local navPos = navarea:GetCenter()
+            min = Vector(math.min(min.x, navPos.x), math.min(min.y, navPos.y), math.min(min.z, navPos.z))
+            max = Vector(math.max(max.x, navPos.x), math.max(max.y, navPos.y), math.max(max.z, navPos.z))
+        end
+
+        -- Base nextbot count on map size
+        local mapSize = max - min
+        local mapArea = math.sqrt(mapSize.x * mapSize.y)
+        local nextbotCount = math.floor(mapArea / 1000 * 0.6)
+        GAMEMODE.MaxNextbots = math.Clamp(nextbotCount, 10, 50)
+    end
+end)
+
 function GM:StartRound()
     game.CleanUpMap(true, { "env_fire", "entityflame", "_firesmoke" })
 
