@@ -289,7 +289,7 @@ local targetScoreboardScroll = 0
 
 hook.Add("StartCommand", "ScoreboardScroll", function(ply, cmd)
     if scoreboardShowing and ply == LocalPlayer() then
-        targetScoreboardScroll = math.Clamp(targetScoreboardScroll + cmd:GetMouseWheel() * 12, -64 * 56 + 600 + 48 * 7, 0)
+        targetScoreboardScroll = math.Clamp(targetScoreboardScroll + cmd:GetMouseWheel() * 12, -2642, 0)
     end
 end)
 
