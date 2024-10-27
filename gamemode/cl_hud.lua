@@ -340,6 +340,8 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8 + scoreboardScroll, w - 20, rowHeight, col)
     end
 
+    draw.SimpleText("Scroll", "ScoreboardTitle", x + w * 0.5, y + h * 0.5 + 48, Color(0, 0, 0, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY + scoreboardScroll, w - 20, rowHeight)
         rowY = rowY + rowHeight + 8
