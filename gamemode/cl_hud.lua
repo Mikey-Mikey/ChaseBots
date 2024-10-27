@@ -285,13 +285,8 @@ end
 
 local scoreboardShowing = false
 local scoreboardScroll = 0
-local targetScoreboardScroll = 0
-
-hook.Add("StartCommand", "ScoreboardScroll", function(ply, cmd)
-    if scoreboardShowing and ply == LocalPlayer() then
-        targetScoreboardScroll = math.Clamp(targetScoreboardScroll + cmd:GetMouseWheel() * 2000 * FrameTime(), -2648 + 14, 0)
-    end
-end)
+local lastMouseX, lastMouseY = input.GetCursorPos()
+hook.Remove("StartCommand", "ScoreboardScroll")
 
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardShowing = true
@@ -308,7 +303,8 @@ end)
 
 hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     if not scoreboardShowing then return end
-    scoreboardScroll = LerpExpo(FrameTime(), scoreboardScroll, targetScoreboardScroll, 10)
+    local mouseX, mouseY = input.GetCursorPos()
+    scoreboardScroll = math.Clamp(scoreboardScroll + (mouseY - lastMouseY), -2648, 0)
 
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
@@ -349,7 +345,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         draw.RoundedBox(0, x + 10, rowY + i * rowHeight + 8 + scoreboardScroll, w - 20, rowHeight, col)
     end
 
-    draw.SimpleText("Scroll", "ScoreboardTitle", x + w * 0.5, y + h * 0.5 + 48 - 10, Color(0, 0, 0, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Click + Drag", "ScoreboardTitle", x + w * 0.5, y + h * 0.5 + 48 - 10, Color(0, 0, 0, 127), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 
     for i, ply in pairs(players) do
         DrawPlayerRow(ply, x + 10, rowY + scoreboardScroll, w - 20, rowHeight)
@@ -360,4 +356,5 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
 
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
     surface.DrawOutlinedRect(x + 8, y + 90, w - 16, h - 8 - 90, 4)
+    lastMouseX, lastMouseY = mouseX, mouseY
 end)
