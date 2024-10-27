@@ -111,7 +111,7 @@ timer.Create("NavmeshLoad", 0, 0, function()
         -- Base nextbot count on map size
         local mapSize = max - min
         local mapArea = math.sqrt(mapSize.x * mapSize.y)
-        local nextbotCount = math.floor(mapArea / 1000 * 0.6)
+        local nextbotCount = math.floor(mapArea / 1000)
         GAMEMODE.MaxNextbots = math.Clamp(nextbotCount, 10, 50)
         print("Nextbot count: " .. GAMEMODE.MaxNextbots)
     end
