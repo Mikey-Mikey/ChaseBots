@@ -316,7 +316,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
-    if input.WasMousePressed(MOUSE_LEFT) and pointWithinRect(mouseX,mouseY, x + 8, y + 90, x + w - 8, y + h - 8) then
+    if input.IsMouseDown(MOUSE_LEFT) and pointWithinRect(mouseX,mouseY, x + 8, y + 90, x + w - 8, y + h - 8) then
         scrollingScoreboard = true
     end
 
