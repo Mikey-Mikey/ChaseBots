@@ -330,7 +330,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
         scoreboardScrollVel = mouseY - lastMouseY
     else
         scoreboardScroll = math.Clamp(scoreboardScroll + scoreboardScrollVel, -2648 + 14, 0)
-        scoreboardScrollVel = math.Approach(scoreboardScrollVel, 0, FrameTime() * 1000)
+        scoreboardScrollVel = scoreboardScrollVel + (scoreboardScrollVel * 0.9 - scoreboardScrollVel)
     end
     draw.RoundedBox(0, x, y, w, h, Color(48,48,48))
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
