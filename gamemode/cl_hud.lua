@@ -264,7 +264,7 @@ local function DrawPlayerRow(ply, x, y, w, h)
     draw.RoundedBox(0, x - 2, y - 2, w + 5, h + 4, Color(roleColor.r, roleColor.g, roleColor.b, 10))
 
     if not ply:Alive() then
-        draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 10 + (math.sin(CurTime() * 3) * 0.5 + 0.5) * 10))
+        draw.RoundedBox(0, x - 1, y - 1, w + 2, h + 2, Color(255, 0, 0, 10 + (math.sin(CurTime() * 5 + y) * 0.5 + 0.5) * 20))
         draw.SimpleText("Dead", "ScoreboardInfo", x + w * 0.25, y + h / 2, Color(0,0,0,127), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
     end
 
