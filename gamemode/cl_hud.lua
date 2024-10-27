@@ -285,6 +285,7 @@ end
 
 local scoreboardShowing = false
 local scoreboardScroll = 0
+local scrollingScoreboard = false
 local lastMouseX, lastMouseY = input.GetCursorPos()
 hook.Remove("StartCommand", "ScoreboardScroll")
 
@@ -316,9 +317,16 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
     if input.IsMouseDown(MOUSE_LEFT) and pointWithinRect(mouseX,mouseY, x + 8, y + 90, x + w - 8, y + h - 8) then
-        scoreboardScroll = math.Clamp(scoreboardScroll + (mouseY - lastMouseY), -2648, 0)
+        scrollingScoreboard = true
     end
 
+    if not input.IsMouseDown(MOUSE_LEFT) then
+        scrollingScoreboard = false
+    end
+
+    if scrollingScoreboard then
+        scoreboardScroll = math.Clamp(scoreboardScroll + (mouseY - lastMouseY), -2648, 0)
+    end
     draw.RoundedBox(0, x, y, w, h, Color(48,48,48))
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
     surface.DrawOutlinedRect(x, y, w, h, 4)
