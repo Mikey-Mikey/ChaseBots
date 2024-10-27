@@ -295,12 +295,14 @@ end)
 
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
     scoreboardShowing = true
+    gui.EnableScreenClicker(true)
 
     return true
 end)
 
 hook.Add("ScoreboardHide", "HideScoreboard", function()
     scoreboardShowing = false
+    gui.EnableScreenClicker(false)
     return true
 end)
 
