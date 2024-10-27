@@ -306,7 +306,7 @@ hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     local w, h = 800, 600
     local x, y = ScrW() / 2 - w / 2, ScrH() / 2 - h / 2
 
-    draw.RoundedBox(0, x, y, w, h, Color(66,66,66))
+    draw.RoundedBox(0, x, y, w, h, Color(48,48,48))
     surface.SetDrawColor(OUTLINE_COLOR.r, OUTLINE_COLOR.g, OUTLINE_COLOR.b, OUTLINE_COLOR.a)
     surface.DrawOutlinedRect(x, y, w, h, 4)
 
