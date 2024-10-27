@@ -146,7 +146,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
 
     local timerText = string.format("%02d:%02d", mins, secs)
     local timerX, timerY = ScrW() / 2, 0
-    local timerWidth, timerHeight = 255, 110
+    local timerWidth, timerHeight = 253, 110
     -- Draw a round counter at the top of the screen
 
     draw.RoundedBoxEx(0, timerX - timerWidth * 0.5, timerY, timerWidth, timerHeight, BACKGROUND_COLOR, false, false, true, true)
@@ -206,7 +206,7 @@ hook.Add("HUDPaint", "DrawRoundTime", function()
         local spacing = 1
         local spectrumPower = 750
         local barWidth = 1
-        local spectrumX = ScrW() * 0.5
+        local spectrumX = ScrW() * 0.5 - 1
         local spectrumY = 109
 
 
