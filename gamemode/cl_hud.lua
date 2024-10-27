@@ -285,10 +285,11 @@ end
 
 local scoreboardShowing = false
 local scoreboardScroll = 0
+local targetScoreboardScroll = 0
 
 hook.Add("StartCommand", "ScoreboardScroll", function(ply, cmd)
     if scoreboardShowing and ply == LocalPlayer() then
-        scoreboardScroll = math.Clamp(scoreboardScroll + cmd:GetMouseWheel() * 12, -64 * 56 + 600 + 48 * 7, 0)
+        targetScoreboardScroll = math.Clamp(targetScoreboardScroll + cmd:GetMouseWheel() * 12, -64 * 56 + 600 + 48 * 7, 0)
     end
 end)
 
@@ -305,6 +306,7 @@ end)
 
 hook.Add("HUDDrawScoreBoard", "Scoreboard", function()
     if not scoreboardShowing then return end
+    scoreboardScroll = LerpExpo(FrameTime(), scoreboardScroll, targetScoreboardScroll, 10)
 
     local players = player.GetAll()
     table.sort(players, function(a, b) return a:Frags() > b:Frags() end)
