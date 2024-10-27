@@ -287,7 +287,7 @@ local scoreboardShowing = false
 local scoreboardScroll = 0
 local scoreboardScrollVel = 0
 local scrollingScoreboard = false
-local lastMouseX, lastMouseY = input.GetCursorPos()
+local _, lastMouseY = input.GetCursorPos()
 hook.Remove("StartCommand", "ScoreboardScroll")
 
 hook.Add("ScoreboardShow", "ShowScoreboard", function()
